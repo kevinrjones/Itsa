@@ -1,0 +1,16 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>title</h2>
+
+<span id="username" data-bind="text: userName"></span>
+<input type="checkbox" id="allowComments" data-bind="checked: allowComments" />
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Itsa/admin.js"></script>
+    
+}

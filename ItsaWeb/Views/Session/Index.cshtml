@@ -1,0 +1,48 @@
+﻿@model ItsaWeb.Models.LogonViewModel
+@{
+    ViewBag.Title = "Sign in to Itsa";
+    Layout = "~/Views/Shared/_LayoutNoSession.cshtml";
+}
+
+<div id="session-index">
+    <div id="login-page-container">
+        <div id="login-page-liner">
+            <div id="introduction-container">
+                <div id="login-container">
+
+                    <h2>Sign in</h2>
+                    @using (Html.BeginForm("Logon", "Session"))
+                    {
+                        @Html.LabelFor(m => m.UserName) @: @Html.EditorFor(m => m.UserName) @Html.ValidationMessageFor(m => m.UserName)
+                        @Html.LabelFor(m => m.Password) @: @Html.PasswordFor(m => m.Password)  @Html.ValidationMessageFor(m => m.Password)<br/>
+                        @Html.HiddenFor(m => m.RedirectTo)
+                        <input id="signin" type="submit" value="Sign in" />
+                    }
+                </div>
+                <div id="caption" style="position: relative">
+                    <h1>Welcome to Itsa!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var redirectToField = $('#RedirectTo');
+        redirectToField.val(redirectToField.val() + window.location.hash);
+    });
+</script>
+
+<script>
+    $("#userName,#Password").focus(function () {
+        $(this).addClass("focus");
+    }).blur(function () {
+        $(this).removeClass("focus");
+    });
+    $("#signin").hover(function () {
+        $(this).addClass("hover");
+    }, function () {
+        $(this).removeClass("hover");
+    });
+</script>
