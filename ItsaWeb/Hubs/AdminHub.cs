@@ -6,7 +6,7 @@ using ItsaWeb.Models;
 
 namespace ItsaWeb.Hubs
 {
-    public class UserHub : AuthenticatingHub
+    public class AdminHub : AuthenticatingHub
     {
         public UserViewModel GetUserName()
         {

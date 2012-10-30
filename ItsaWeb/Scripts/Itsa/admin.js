@@ -3,7 +3,7 @@
     
     function init() {
         $.connection.hub.start(function () {
-            $.connection.userHub.getUserName()
+            $.connection.adminHub.getUserName()
                 .done(function (data) {                    
                     if (data) {
                         var model = new gridViewModel(data);

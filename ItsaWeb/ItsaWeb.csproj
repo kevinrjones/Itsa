@@ -153,7 +153,7 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Infrastructure\AutofacDependencyResolver.cs" />
     <Compile Include="Infrastructure\NotLoggedInException.cs" />
-    <Compile Include="Hubs\UserHub.cs" />
+    <Compile Include="Hubs\AdminHub.cs" />
     <Compile Include="Infrastructure\HandleErrorWithELMAHAttribute.cs" />
     <Compile Include="Infrastructure\Logging\NLog\NLogHandleErrorAttribute.cs" />
     <Compile Include="Models\ErrorViewModel.cs" />
@@ -302,8 +302,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\less.min.js" />
