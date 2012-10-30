@@ -150,6 +150,7 @@
     <Compile Include="Controllers\ItsaController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Hubs\AuthenticatingHub.cs" />
+    <Compile Include="Models\BlogEntryViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Infrastructure\AutofacDependencyResolver.cs" />
     <Compile Include="Infrastructure\NotLoggedInException.cs" />
@@ -339,6 +340,10 @@
     <ProjectReference Include="..\ConfigurationManagerWrapper\ConfigurationManagerWrapper.csproj">
       <Project>{66cdcdc4-9f60-4f9b-9e31-4e23b76bd146}</Project>
       <Name>ConfigurationManagerWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logging\Logging.csproj">
       <Project>{F65BCCBF-249A-4F8C-81EB-D05F6057E9DF}</Project>
