@@ -15,7 +15,7 @@ namespace Services
 
         public void AddBlogEntry(BlogEntry entry)
         {
-            _repository.New();
+            _repository.Create(entry);
         }
     }
 }
