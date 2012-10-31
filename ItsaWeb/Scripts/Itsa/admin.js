@@ -33,7 +33,11 @@
         model.ModerateComments  = ko.observable(params.ModerateComments);
         model.UserName  = ko.observable(params.UserName);
         model.BlogTitle  = ko.observable(params.BlogTitle);
-        model.BlogSubTitle  = ko.observable(params.BlogSubTitle);
+        model.BlogSubTitle = ko.observable(params.BlogSubTitle);
+
+        model.addBlogEntry = function () {
+            $.connection.adminHub.addEntry({});
+        };
     };
 
 

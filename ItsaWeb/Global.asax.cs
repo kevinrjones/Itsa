@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
 using System.Web;
@@ -11,9 +9,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using Autofac;
-using Autofac.Configuration;
 using Autofac.Integration.Mvc;
 using ItsaWeb.Authentication;
+using ItsaWeb.Hubs;
 using Logging;
 using Logging.NLog;
 using SignalR;
@@ -23,7 +21,7 @@ namespace ItsaWeb
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -49,11 +47,11 @@ namespace ItsaWeb
             {
                 var ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 if (!ticket.Expired)
-                    CreateIdentity(HttpContext.Current, ticket.Name, ticket.Name, "");
+                    CreateIdentity(ticket.Name);
             }
         }
 
-        private void CreateIdentity(HttpContext context, string name, string userId, string authenticatorName)
+        private void CreateIdentity(string name)
         {
             var identity = new ItsaIdentity(name);
             HttpContext.Current.User = new GenericPrincipal(identity, null);
@@ -61,16 +59,24 @@ namespace ItsaWeb
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
+            string baseDirectory = HttpContext.Current.Server.MapPath("~/App_Data");
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
+            var repositoryAssemblies = Assembly.Load("FileRepository");
+            builder.RegisterAssemblyTypes(repositoryAssemblies).AsImplementedInterfaces().WithParameter(new NamedParameter("path", baseDirectory)); 
+
             var serviceAssemblies = Assembly.Load("Services");
             builder.RegisterAssemblyTypes(serviceAssemblies).AsImplementedInterfaces();
+        
             var configurationManagerWrapperAssembly = Assembly.Load("ConfigurationManagerWrapper");
             builder.RegisterAssemblyTypes(configurationManagerWrapperAssembly).AsImplementedInterfaces();
 
-            builder.RegisterType<NLogLogger>().As<ILogger>();
+            var fileAssembly = Assembly.Load("SystemFileAdapter");
+            builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
 
+            builder.RegisterType<NLogLogger>().As<ILogger>();
+            builder.RegisterType<AdminHub>();
 //            builder.RegisterModule(new ConfigurationSettingsReader("autofac"));
         }
 

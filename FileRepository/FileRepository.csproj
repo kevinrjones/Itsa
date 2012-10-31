@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EA58BDDA-34F5-4B48-B2F3-4E4CCE2B66EE}</ProjectGuid>
+    <ProjectGuid>{DDA7CF44-49A9-4E92-BA4F-65488C003CEF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Services</RootNamespace>
-    <AssemblyName>Services</AssemblyName>
+    <RootNamespace>FileRepository</RootNamespace>
+    <AssemblyName>FileRepository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,18 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminService.cs" />
-    <Compile Include="SessionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FileRepository\FileRepository.csproj">
-      <Project>{DDA7CF44-49A9-4E92-BA4F-65488C003CEF}</Project>
-      <Name>FileRepository</Name>
+    <ProjectReference Include="..\FileSystemInterfaces\FileSystemInterfaces.csproj">
+      <Project>{675BEBA7-9580-4B39-96FC-5E0ED60D9CD6}</Project>
+      <Name>FileSystemInterfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\ItsaRepository\ItsaRepository.csproj">
       <Project>{25AE1B5A-F475-4C2B-923D-7351EA677D51}</Project>
@@ -59,10 +58,6 @@
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{6B41D66F-0003-45EC-9692-023F9FCA62E8}</Project>
       <Name>Repository %28Repository\Repository%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceInterfaces\ServiceInterfaces.csproj">
-      <Project>{4E597FB7-4706-45E2-9F9F-BAED246F06C4}</Project>
-      <Name>ServiceInterfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

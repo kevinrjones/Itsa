@@ -345,9 +345,25 @@
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileRepository\FileRepository.csproj">
+      <Project>{dda7cf44-49a9-4e92-ba4f-65488c003cef}</Project>
+      <Name>FileRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystemInterfaces\FileSystemInterfaces.csproj">
+      <Project>{675beba7-9580-4b39-96fc-5e0ed60d9cd6}</Project>
+      <Name>FileSystemInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItsaRepository\ItsaRepository.csproj">
+      <Project>{25ae1b5a-f475-4c2b-923d-7351ea677d51}</Project>
+      <Name>ItsaRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logging\Logging.csproj">
       <Project>{F65BCCBF-249A-4F8C-81EB-D05F6057E9DF}</Project>
       <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{6b41d66f-0003-45ec-9692-023f9fca62e8}</Project>
+      <Name>Repository %28Repository\Repository%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceInterfaces\ServiceInterfaces.csproj">
       <Project>{4E597FB7-4706-45E2-9F9F-BAED246F06C4}</Project>
@@ -356,6 +372,10 @@
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{ea58bdda-34f5-4b48-b2f3-4e4cce2b66ee}</Project>
       <Name>Services %28Services\Services%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemFileAdapter\SystemFileAdapter.csproj">
+      <Project>{98de4fcf-b1b1-4a1a-90e4-f4d29d341585}</Project>
+      <Name>SystemFileAdapter</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
