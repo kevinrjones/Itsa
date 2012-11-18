@@ -23,11 +23,11 @@ namespace SystemFileAdapterTests
         [Test]
         public void GivenAFileName_WhenTheFileIsCreated_ThenTheFileExistsOnDisk()
         {
-            var fileInfo = new SystemIoFileInfo();
+            var fileInfo = new SystemIoFileInfo(_fileName);
             Stream stream = null;
             try
             {
-                stream = fileInfo.Create(_fileName);
+                stream = fileInfo.Create();
             }
             finally
             {
@@ -39,7 +39,7 @@ namespace SystemFileAdapterTests
         [Test]
         public void GivenAnExistingFile_WhenTheFileIsDeleted_ThenTheFileNoLongerExistsOnDisk()
         {
-            var fileInfo = new SystemIoFileInfo();
+            var fileInfo = new SystemIoFileInfo(_fileName);
             Stream stream = null;
             try
             {
@@ -49,14 +49,14 @@ namespace SystemFileAdapterTests
             {
                 if (stream != null) stream.Dispose();
             }
-            fileInfo.Delete(_fileName);
+            fileInfo.Delete();
             File.Exists(_fileName).Should().BeFalse();
         }
 
         [Test]
         public void GivenAnExistingFile_WhenTheFileIsOpened_ThenAStreamIsReturned()
         {
-            var fileInfo = new SystemIoFileInfo();
+            var fileInfo = new SystemIoFileInfo(_fileName);
             Stream stream = null;
             try
             {
@@ -69,7 +69,7 @@ namespace SystemFileAdapterTests
             Stream openStream = null;
             try
             {
-                openStream = fileInfo.Open(FileMode.Open, _fileName);
+                openStream = fileInfo.Open(FileMode.Open);
             }
             finally
             {

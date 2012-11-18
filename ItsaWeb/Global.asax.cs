@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using SystemFileAdapter;
 using Autofac;
 using Autofac.Integration.Mvc;
 using ItsaWeb.Authentication;
@@ -59,7 +60,7 @@ namespace ItsaWeb
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
-            string baseDirectory = HttpContext.Current.Server.MapPath("~/App_Data");
+            string baseDirectory = HttpContext.Current.Server.MapPath("~/App_Data") + "/" + ConfigurationManager.AppSettings["dataFolderName"];
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
@@ -74,6 +75,7 @@ namespace ItsaWeb
 
             var fileAssembly = Assembly.Load("SystemFileAdapter");
             builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(fileAssembly).AssignableTo<FileInfoFactory>();
 
             builder.RegisterType<NLogLogger>().As<ILogger>();
             builder.RegisterType<AdminHub>();

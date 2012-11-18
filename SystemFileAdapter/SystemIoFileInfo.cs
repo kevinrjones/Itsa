@@ -6,21 +6,28 @@ namespace SystemFileAdapter
 {
     public class SystemIoFileInfo : IFileInfo
     {
-        public Stream Create(string fileName)
+        private readonly string _fileName;
+
+        public SystemIoFileInfo(string fileName)
         {
-            var file = new FileInfo(fileName);
+            this._fileName = fileName;
+        }
+
+        public Stream Create()
+        {
+            var file = new FileInfo(_fileName);
             return file.Create();
         }
 
-        public void Delete(string fileName)
+        public void Delete()
         {
-            var file = new FileInfo(fileName);
+            var file = new FileInfo(_fileName);
             file.Delete();
         }
 
-        public Stream Open(FileMode fileMode, string fileName)
+        public Stream Open(FileMode fileMode)
         {
-            var file = new FileInfo(fileName);
+            var file = new FileInfo(_fileName);
             return file.Open(fileMode);
         }
     }

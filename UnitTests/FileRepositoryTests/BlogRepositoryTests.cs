@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SystemFileAdapter;
 using Entities;
 using FileRepository.Repositories;
 using FileSystemInterfaces;
@@ -19,33 +20,38 @@ namespace FileRepositoryTests
     public class BlogRepositoryTests
     {
         private Mock<IFileInfo> _fileInfo;
+        private Mock<IDirectoryInfo> _directoryInfo;
+        private Mock<FileInfoFactory> _fileInfoFactory;
         private const string Path = "test";
 
         [SetUp]
         public void Setup()
         {
             _fileInfo = new Mock<IFileInfo>();
+            _fileInfoFactory = new Mock<FileInfoFactory>();
+            _directoryInfo = new Mock<IDirectoryInfo>();
+            _fileInfoFactory.Setup(f => f.CreateFileInfo(It.IsAny<string>())).Returns(_fileInfo.Object);
         }
 
         [Test]
         public void GivenABlogEntry_WhenThenFileIsCreated_ThenTheCorrectFileNameIsUsed()
         {
             string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", Path, "title", 1990, 1, 1, new DateTime(1990, 1, 1).Ticks);
-            _fileInfo.Setup(f => f.Create(fileName)).Returns(new MemoryStream());
+            _fileInfo.Setup(f => f.Create()).Returns(new MemoryStream());
 
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             repository.Create(entry);
-            _fileInfo.Verify(f => f.Create(fileName), Times.Once());
+            _fileInfo.Verify(f => f.Create(), Times.Once());
         }
 
         [Test]
         public void GivenABlogEntry_WhenTheEntryIsWrittenToAFile_ThenTheCorrectJsonIsWritten()
         {
             var stream = new MemoryStream();
-            _fileInfo.Setup(f => f.Create(It.IsAny<string>())).Returns(stream);
+            _fileInfo.Setup(f => f.Create()).Returns(stream);
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1), EntryUpdateDate = new DateTime(1991, 2, 2), Post = "post" };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             repository.Create(entry);
             var data = stream.ToArray();
             var json = Encoding.UTF8.GetString(data);
@@ -59,9 +65,9 @@ namespace FileRepositoryTests
         [Test]
         public void GivenABlogEntry_WhenThenFileIsCreated_AndTheFileIsNotFound_ThenTheCorrectExceptionIsThrown()
         {
-            _fileInfo.Setup(f => f.Create(It.IsAny<string>())).Throws(new IOException());
+            _fileInfo.Setup(f => f.Create()).Throws(new IOException());
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             Assert.Throws<RepositoryException>(() => repository.Create(entry));
         }
 
@@ -69,21 +75,21 @@ namespace FileRepositoryTests
         public void GivenABlogEntry_WhenThenFileIsUdated_ThenTheCorrectFileIsFound()
         {
             string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", Path, "title", 1990, 1, 1, new DateTime(1990, 1, 1).Ticks);
-            _fileInfo.Setup(f => f.Open(FileMode.Open, fileName)).Returns(new MemoryStream());
+            _fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(new MemoryStream());
 
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             repository.Update(entry);
-            _fileInfo.Verify(f => f.Open(FileMode.Open, fileName), Times.Once());
+            _fileInfo.Verify(f => f.Open(FileMode.Open), Times.Once());
         }
 
         [Test]
         public void GivenABlogEntry_WhenTheEntryIsUpdatedInAFile_ThenTheCorrectJsonIsWritten()
         {
             var stream = new MemoryStream();
-            _fileInfo.Setup(f => f.Open(FileMode.Open, It.IsAny<string>())).Returns(stream);
+            _fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(stream);
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1), EntryUpdateDate = new DateTime(1991, 2, 2), Post = "post" };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             repository.Update(entry);
             var data = stream.ToArray();
             var json = Encoding.UTF8.GetString(data);
@@ -97,9 +103,9 @@ namespace FileRepositoryTests
         [Test]
         public void GivenABlogEntry_WhenThenFileIsUdated_AndTheFileIsNotFound_ThenTheCorrectExceptionIsThrown()
         {
-            _fileInfo.Setup(f => f.Open(FileMode.Open, It.IsAny<string>())).Throws(new IOException());
+            _fileInfo.Setup(f => f.Open(FileMode.Open)).Throws(new IOException());
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             Assert.Throws<RepositoryException>(() => repository.Update(entry));
         }
 
@@ -109,19 +115,35 @@ namespace FileRepositoryTests
             string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", Path, "title", 1990, 1, 1, new DateTime(1990, 1, 1).Ticks);
 
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             repository.Delete(entry);
-            _fileInfo.Verify(f => f.Delete(fileName), Times.Once());
+            _fileInfo.Verify(f => f.Delete(), Times.Once());
         }
 
         [Test]
         public void GivenABlogEntry_WhenThenFileIsDeleted_AndTheFileIsNotFound_ThenTheCorrectExceptionIsThrown()
         {
-            _fileInfo.Setup(f => f.Delete(It.IsAny<string>())).Throws(new IOException());
+            _fileInfo.Setup(f => f.Delete()).Throws(new IOException());
             var entry = new BlogEntry { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
-            var repository = new BlogRepository(Path, _fileInfo.Object);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, null);
             Assert.Throws<RepositoryException>(() => repository.Delete(entry));
         }
 
+        [Test]
+        public void GivenACollectionOfSerializedBlogEntries_WhenTheCollectionIsRetrieved_ThenAllTheEntriesAreRetrieved()
+        {
+            MemoryStream stream  = new MemoryStream();
+            var entry = new BlogEntry();
+            var json = entry.SerializeToString();
+            var data = Encoding.UTF8.GetBytes(json);
+            stream.Write(data, 0, data.Length);
+            Mock<IFileInfo> fileInfo = new Mock<IFileInfo>();
+            fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(stream);
+            var fileInfos = new List<IFileInfo> { fileInfo.Object, fileInfo.Object, };
+            _directoryInfo.Setup(d => d.EnumerateFiles(It.IsAny<string>(), It.IsAny<string>())).Returns(fileInfos);
+            var repository = new BlogRepository(Path, _fileInfoFactory.Object, _directoryInfo.Object);
+            var entities = repository.Entities;
+            entities.Should().HaveCount(2);
+        }
     }
 }

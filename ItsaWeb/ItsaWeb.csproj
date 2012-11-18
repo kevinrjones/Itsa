@@ -85,6 +85,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -120,10 +124,6 @@
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -243,6 +243,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\css\style.less" />
     <Content Include="Content\less\wells.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\less\utilities.less" />
@@ -267,6 +268,7 @@
     <Content Include="Content\less\navbar.less" />
     <Content Include="Content\less\modals.less" />
     <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\media.less" />
     <Content Include="Content\less\layouts.less" />
     <Content Include="Content\less\labels-badges.less" />
     <Content Include="Content\less\hero-unit.less" />
@@ -283,7 +285,6 @@
     <Content Include="Content\less\bootstrap.less" />
     <Content Include="Content\less\alerts.less" />
     <Content Include="Content\less\accordion.less" />
-    <Content Include="Content\css\style.less" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Itsa\admin.js" />

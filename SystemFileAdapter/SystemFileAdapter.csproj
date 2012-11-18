@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileInfoFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemFileInfoFactory.cs" />
+    <Compile Include="SystemIoDirectoryInfo.cs" />
     <Compile Include="SystemIoFileInfo.cs" />
   </ItemGroup>
   <ItemGroup>

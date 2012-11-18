@@ -16,7 +16,7 @@ namespace Serialization
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            return JsonConvert.SerializeObject(o, formatting, settings);
+            return JsonConvert.SerializeObject(o, formatting, settings);            
         }
 
         public static T Deserialize<T>(string json)

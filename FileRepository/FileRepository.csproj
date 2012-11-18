@@ -67,6 +67,10 @@
       <Project>{CFD08804-A078-4D4E-80AF-8A9153B3A55E}</Project>
       <Name>Serialization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SystemFileAdapter\SystemFileAdapter.csproj">
+      <Project>{98DE4FCF-B1B1-4A1A-90E4-F4D29D341585}</Project>
+      <Name>SystemFileAdapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
