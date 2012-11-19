@@ -39,10 +39,13 @@ namespace FileRepository.Repositories
                 foreach (var fileInfo in _directoryInfo.EnumerateFiles(_path, "*.json"))
 // ReSharper restore LoopCanBeConvertedToQuery
                 {
-                    var stream = new StreamReader(fileInfo.Open(FileMode.Open));
-                    var json = stream.ReadToEnd();
-                    var entry = JsonSerializer.Deserialize<BlogEntry>(json);
-                    entries.Add(entry);
+                    BlogEntry entry;
+                    using (var stream = new StreamReader(fileInfo.Open(FileMode.Open)))
+                    {
+                        var json = stream.ReadToEnd();
+                        entry = JsonSerializer.Deserialize<BlogEntry>(json);
+                    }
+                    entries.Add(entry);                    
                 }
                 return entries.AsQueryable();
             }
@@ -54,7 +57,7 @@ namespace FileRepository.Repositories
 
         public void Update(BlogEntry entity)
         {
-            string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", _path, entity.Title, entity.EntryAddedDate.Year, entity.EntryAddedDate.Month, entity.EntryAddedDate.Day, entity.EntryAddedDate.Ticks);
+            string fileName = GenerateFileName(entity);
             IFileInfo fileInfo = _fileInfoFactory.CreateFileInfo(fileName);
             try
             {
@@ -120,9 +123,7 @@ namespace FileRepository.Repositories
 
         private string GenerateFileName(BlogEntry entity)
         {
-            string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", _path, entity.Title, entity.EntryAddedDate.Year,
-                                            entity.EntryAddedDate.Month, entity.EntryAddedDate.Day, entity.EntryAddedDate.Ticks);
-            return fileName;
+            return string.Format("{0}/{1}.json", _path, entity.Id);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace SystemFileAdapter
     {
         public IEnumerable<IFileInfo> EnumerateFiles(string path, string filter)
         {
-            DirectoryInfo di = new DirectoryInfo(path);
+            var di = new DirectoryInfo(path);
             foreach (var fileInfo in di.EnumerateFiles(filter))
             {
-                yield return new SystemIoFileInfo(fileInfo.Name);
+                yield return new SystemIoFileInfo(fileInfo.FullName);
             }            
         }
     }

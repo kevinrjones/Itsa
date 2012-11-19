@@ -49,9 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\FileSystemInterfaces\FileSystemInterfaces.csproj">
       <Project>{675BEBA7-9580-4B39-96FC-5E0ED60D9CD6}</Project>
       <Name>FileSystemInterfaces</Name>

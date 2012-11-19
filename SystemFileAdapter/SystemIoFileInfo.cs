@@ -16,6 +16,10 @@ namespace SystemFileAdapter
         public Stream Create()
         {
             var file = new FileInfo(_fileName);
+            if (file.Exists)
+            {
+                throw new IOException("File already exists");
+            }
             return file.Create();
         }
 

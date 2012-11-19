@@ -4,6 +4,11 @@ namespace Entities
 {
     public class BlogEntry
     {
+        public BlogEntry()
+        {
+            Id = new Guid();
+        }
+        public Guid Id { get; set; }
         public DateTime EntryAddedDate { get; set; }
         public DateTime EntryUpdateDate { get; set; }
         public string Title { get; set; }
