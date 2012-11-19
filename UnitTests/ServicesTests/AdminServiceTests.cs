@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
-using ItsaRepository.interfaces;
+using ItsaRepository.Interfaces;
 using Moq;
 using NUnit.Framework;
 using ServiceInterfaces;

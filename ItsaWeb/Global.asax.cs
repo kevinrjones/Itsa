@@ -75,7 +75,6 @@ namespace ItsaWeb
 
             var fileAssembly = Assembly.Load("SystemFileAdapter");
             builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
-            builder.RegisterAssemblyTypes(fileAssembly).AssignableTo<FileInfoFactory>();
 
             builder.RegisterType<NLogLogger>().As<ILogger>();
             builder.RegisterType<AdminHub>();

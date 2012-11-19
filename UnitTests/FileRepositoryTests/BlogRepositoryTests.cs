@@ -21,14 +21,14 @@ namespace FileRepositoryTests
     {
         private Mock<IFileInfo> _fileInfo;
         private Mock<IDirectoryInfo> _directoryInfo;
-        private Mock<FileInfoFactory> _fileInfoFactory;
+        private Mock<IFileInfoFactory> _fileInfoFactory;
         private const string Path = "test";
 
         [SetUp]
         public void Setup()
         {
             _fileInfo = new Mock<IFileInfo>();
-            _fileInfoFactory = new Mock<FileInfoFactory>();
+            _fileInfoFactory = new Mock<IFileInfoFactory>();
             _directoryInfo = new Mock<IDirectoryInfo>();
             _fileInfoFactory.Setup(f => f.CreateFileInfo(It.IsAny<string>())).Returns(_fileInfo.Object);
         }

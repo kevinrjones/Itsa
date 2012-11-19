@@ -14,7 +14,7 @@ namespace FileRepositoryTests
     [TestFixture]
     public class BlogRepositoryTests
     {
-        FileInfoFactory _fileInfoFactory;
+        IFileInfoFactory _fileInfoFactory;
         private IDirectoryInfo _directoryInfo;
         BlogRepository _blogRepository;
         const string Directory = "files";

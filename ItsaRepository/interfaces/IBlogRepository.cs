@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Repository;
 
-namespace ItsaRepository.interfaces
+namespace ItsaRepository.Interfaces
 {
     public interface IBlogRepository : IRepository<BlogEntry>
     {

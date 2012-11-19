@@ -1,5 +1,5 @@
 using Entities;
-using ItsaRepository.interfaces;
+using ItsaRepository.Interfaces;
 using ServiceInterfaces;
 
 namespace Services

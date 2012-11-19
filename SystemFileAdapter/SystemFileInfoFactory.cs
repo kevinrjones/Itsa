@@ -2,9 +2,9 @@ using FileSystemInterfaces;
 
 namespace SystemFileAdapter
 {
-    public class SystemFileInfoFactory : FileInfoFactory
+    public class SystemFileInfoFactory : IFileInfoFactory
     {
-        public override IFileInfo CreateFileInfo(string filename)
+        public IFileInfo CreateFileInfo(string filename)
         {
             return new SystemIoFileInfo(filename);
         }
