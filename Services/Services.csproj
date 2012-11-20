@@ -48,6 +48,10 @@
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
+      <Project>{3B03CAF2-AC3B-4682-9C76-9AA9F4A25321}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileRepository\FileRepository.csproj">
       <Project>{DDA7CF44-49A9-4E92-BA4F-65488C003CEF}</Project>
       <Name>FileRepository</Name>

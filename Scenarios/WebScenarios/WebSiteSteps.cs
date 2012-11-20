@@ -37,7 +37,7 @@ namespace WebScenarios
             CurrentPage = CurrentPage.As<LogonPage>().Logon();
         }
 
-        [Then(@"the ItSa home page should be shown")]
+        [Then(@"the ItsA home page should be shown")]
         public void ThenTheItSaHomePageShouldBeShown()
         {
             var page = CurrentPage.As<HomePage>();

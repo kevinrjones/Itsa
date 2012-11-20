@@ -6,7 +6,7 @@ namespace Entities
     {
         public BlogEntry()
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
         }
         public Guid Id { get; set; }
         public DateTime EntryAddedDate { get; set; }

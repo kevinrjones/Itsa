@@ -18,7 +18,12 @@ namespace FileRepository.Repositories
 
         protected override string GenerateFileName(User entity)
         {
-            return string.Format("{0}/{1}.json", Path, entity.Name);
+            return string.Format("{0}/user.json", Path);
+        }
+
+        public User GetUser()
+        {
+            return Entities.FirstOrDefault();
         }
     }
 }

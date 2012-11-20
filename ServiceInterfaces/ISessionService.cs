@@ -9,7 +9,8 @@ namespace ServiceInterfaces
 {
     public interface ISessionService
     {
-        bool Register(User user);
+        void Register(string userName, string password, string email);
         bool Logon(string userName, string password);
+        User GetUser();
     }
 }

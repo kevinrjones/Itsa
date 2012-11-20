@@ -170,6 +170,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\empty.txt" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\css\jquery.jgrowl.css" />
     <Content Include="Content\css\main.css" />
@@ -328,9 +329,7 @@
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSession.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

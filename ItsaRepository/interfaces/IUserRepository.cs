@@ -10,5 +10,6 @@ namespace ItsaRepository.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
+        User GetUser();
     }
 }

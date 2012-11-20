@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using AbstractConfigurationManager;
-using ItsaWeb.Authentication;
 using ItsaWeb.Models;
 using Logging;
 using ServiceInterfaces;
@@ -48,6 +46,18 @@ namespace ItsaWeb.Controllers
             return View("Index", user);
         }
 
+        public ActionResult New(RegisterUserViewModel user)
+        {
+            // register view
+            return View();
+        }
+
+        public ActionResult Create(RegisterUserViewModel user)
+        {
+            // create the user
+            _sessionService.Register(user.UserName, user.Password, user.Email);
+            return View();
+        }
 
         private void CreateCookie(string userName)
         {

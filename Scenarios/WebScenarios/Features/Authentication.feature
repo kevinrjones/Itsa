@@ -8,4 +8,4 @@ Scenario: Logon with forms authentication
 	Given I am not logged on
 	And I enter valid credentials into the logon form
 	When I press logon
-	Then the ItSa home page should be shown
+	Then the ItsA home page should be shown
