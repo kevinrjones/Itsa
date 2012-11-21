@@ -14,10 +14,11 @@ namespace Services
             _userRepository = userRepository;
         }
 
+        
+
         public void Register(string userName, string password, string email)
         {
-            var user = GetUser();
-            if (!string.IsNullOrEmpty(user.Name))
+            if (GetUser() != null)
             {
                 throw new ItsaException("User has already registered");
             }
@@ -26,8 +27,7 @@ namespace Services
 
         public void UnRegister()
         {
-            var user = GetUser();
-            if (string.IsNullOrEmpty(user.Name))
+            if (GetUser() == null)
             {
                 throw new ItsaException("User has already unregistered");
             }
@@ -46,7 +46,12 @@ namespace Services
 
         public User GetUser()
         {
-            return _userRepository.GetUser();
+            var user = _userRepository.GetUser();
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                return null;
+            }
+            return user;
         }
     }
 }

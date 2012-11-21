@@ -23,7 +23,7 @@ namespace ServicesTests
         [Test]
         public void GivenNoUser_WhenAUserIsReturned_ThenNullIsReturned()
         {
-            _repository.Setup(r => r.GetUser()).Returns((User) null);
+            _repository.Setup(r => r.GetUser()).Returns((User) new User{Name = ""});
 
             var service = new UserService(_repository.Object);
             service.GetUser().Should().BeNull();
