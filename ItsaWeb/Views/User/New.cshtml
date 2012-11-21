@@ -1,0 +1,33 @@
+﻿@model ItsaWeb.Models.RegisterUserViewModel
+
+@{
+    ViewBag.Title = "Register User";
+    Layout = "~/Views/Shared/_LayoutNoSession.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div id="session-index">
+    <div id="login-page-container">
+        <div id="login-page-liner">
+            <div id="introduction-container">
+                <div id="caption" style="position: relative">
+                    <h1>Welcome to Itsa!</h1>
+                </div>
+                <div id="login-container">
+
+                    <h2>Register</h2>
+                    @using (Html.BeginForm("Create", "User"))
+                    {
+                        @Html.LabelFor(m => m.UserName) @: @Html.EditorFor(m => m.UserName) @Html.ValidationMessageFor(m => m.UserName, "*")
+                        @Html.LabelFor(m => m.Password) @: @Html.PasswordFor(m => m.Password)  @Html.ValidationMessageFor(m => m.Password, "*")<br/>
+                        @Html.LabelFor(m => m.RepeatPassword) @: @Html.PasswordFor(m => m.RepeatPassword)  @Html.ValidationMessageFor(m => m.RepeatPassword, "*")<br/>
+                        @Html.LabelFor(m => m.Email) @: @Html.EditorFor(m => m.Email)  @Html.ValidationMessageFor(m => m.Email, "*")<br/>
+                        <input id="create" type="submit" value="Register" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

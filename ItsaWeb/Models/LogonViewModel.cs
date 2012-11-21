@@ -13,14 +13,4 @@ namespace ItsaWeb.Models
         public string RedirectTo { get; set; }
 
     }
-
-    public class RegisterUserViewModel
-    {
-        [Display(Name = "User Name")]
-        [Required]
-        public string UserName { get; set; }
-        [Required]
-        public string Password { get; set; }
-        public string Email { get; set; }
-    }
 }

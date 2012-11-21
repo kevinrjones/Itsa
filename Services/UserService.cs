@@ -1,32 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities;
+﻿using Entities;
 using Exceptions;
 using ItsaRepository.Interfaces;
 using ServiceInterfaces;
 
 namespace Services
 {
-    public class SessionService : ISessionService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 
-        public SessionService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         public void Register(string userName, string password, string email)
         {
-            // todo: if user exist, throw exception
-            if (GetUser() == null)
+            var user = GetUser();
+            if (!string.IsNullOrEmpty(user.Name))
             {
                 throw new ItsaException("User has already registered");
             }
             _userRepository.Create(new User(userName, password, email));
+        }
+
+        public void UnRegister()
+        {
+            var user = GetUser();
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                throw new ItsaException("User has already unregistered");
+            }
+            _userRepository.Create(new User("", "", ""));
         }
 
         public bool Logon(string userName, string password)

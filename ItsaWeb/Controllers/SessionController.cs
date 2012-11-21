@@ -11,13 +11,13 @@ namespace ItsaWeb.Controllers
 {
     public class SessionController : BaseController
     {
-        private readonly ISessionService _sessionService;
+        private readonly IUserService _userService;
         private readonly IConfigurationManager _configurationManager;
 
-        public SessionController(ISessionService sessionService, IConfigurationManager configurationManager, ILogger logger)
+        public SessionController(IUserService userService, IConfigurationManager configurationManager, ILogger logger)
             : base(logger)
         {
-            _sessionService = sessionService;
+            _userService = userService;
             _configurationManager = configurationManager;
         }
 
@@ -32,7 +32,7 @@ namespace ItsaWeb.Controllers
             if (ModelState.IsValid)
             {
                 var userResponse =
-                    _sessionService.Logon(user.UserName, user.Password);
+                    _userService.Logon(user.UserName, user.Password);
 
                 if (userResponse)
                 {
@@ -44,19 +44,6 @@ namespace ItsaWeb.Controllers
                 Logger.Info("User failed to login.");
             }
             return View("Index", user);
-        }
-
-        public ActionResult New(RegisterUserViewModel user)
-        {
-            // register view
-            return View();
-        }
-
-        public ActionResult Create(RegisterUserViewModel user)
-        {
-            // create the user
-            _sessionService.Register(user.UserName, user.Password, user.Email);
-            return View();
         }
 
         private void CreateCookie(string userName)

@@ -44,5 +44,42 @@ namespace WebScenarios
             Thread.Sleep(1000);
             Assert.That(page.UserName.Text, Is.EqualTo("admin"));
         }
+
+        [Given(@"I do not exist as a user")]
+        public void GivenIDoNotExistAsAUser()
+        {
+            GivenIAmNotLoggedOn();
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"I enter valid details into the registration form")]
+        public void GivenIEnterValidDetailsIntoTheRegistrationForm()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I press register")]
+        public void WhenIPressRegister()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I press unregister")]
+        public void WhenIPressUnregister()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"I exist as a user")]
+        public void GivenIExistAsAUser()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"I should be asked to confirm the deregistration")]
+        public void ThenIShouldBeAskedToConfirmTheDeregistration()
+        {
+            ScenarioContext.Current.Pending();
+        }
     }
 }

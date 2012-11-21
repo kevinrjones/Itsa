@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 0px;
     right: 0;
 
-    width: 350px;
+    width: 400px;
 
     padding: 0.1em 1em;
 }
@@ -197,6 +197,31 @@ h1, h2, h3, h4, h5, h6 {
 #session-index input#Password.focus {
     border: 1px solid black;
 }
+#session-index input#RepeatPassword {
+    height: 30px;
+    width: 320px;
+
+    padding-left: 0.5em;
+
+    border: 1px solid silver;
+    background-color: white;
+}
+#session-index input#RepeatPassword.focus {
+    border: 1px solid black;
+}
+#session-index input#Email {
+    height: 30px;
+    width: 320px;
+
+    padding-left: 0.5em;
+
+    border: 1px solid silver;
+    background-color: white;
+}
+#session-index input#Email.focus {
+    border: 1px solid black;
+}
+
 #session-index label {
     display:block;
     margin-top: 10px;
@@ -668,3 +693,26 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00 !important;
+    background-color: #fee !important;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
