@@ -1,24 +1,20 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
+﻿using System.Web.Mvc;
 using AbstractConfigurationManager;
 using ItsaWeb.Models;
-using Logging;
 using ServiceInterfaces;
+using dotless.Core.Loggers;
+using ILogger = Logging.ILogger;
 
 namespace ItsaWeb.Controllers
 {
-    public class SessionController : BaseController
+    public class SessionController : SessionBaseController
     {
         private readonly IUserService _userService;
-        private readonly IConfigurationManager _configurationManager;
 
         public SessionController(IUserService userService, IConfigurationManager configurationManager, ILogger logger)
-            : base(logger)
+            : base(configurationManager, logger)
         {
             _userService = userService;
-            _configurationManager = configurationManager;
         }
 
         public ActionResult Index(string redirectTo)
@@ -44,17 +40,6 @@ namespace ItsaWeb.Controllers
                 Logger.Info("User failed to login.");
             }
             return View("Index", user);
-        }
-
-        private void CreateCookie(string userName)
-        {
-            Response.Cookies.Add(new HttpCookie(_configurationManager.AppSetting("cookie"), FormsAuthentication.Encrypt(new FormsAuthenticationTicket(
-                1,
-                userName,
-                DateTime.Now,
-                DateTime.Now.AddMinutes(30),
-                false,
-                ""))));
         }
     }
 }

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AbstractConfigurationManager;
 using ItsaWeb.Models;
+using Logging;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Controllers
 {
-    public class UserController : Controller
+    public class UserController : SessionBaseController
     {
         private readonly IUserService _userService;
         //
         // GET: /User/
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService,IConfigurationManager configurationManager, ILogger logger) : base(configurationManager, logger)
         {
             _userService = userService;
         }
@@ -32,6 +34,7 @@ namespace ItsaWeb.Controllers
         public ActionResult Create(RegisterUserViewModel user)
         {
             _userService.Register(user.UserName, user.Password, user.Email);
+            CreateCookie(user.UserName);
             return RedirectToAction("Index", "Itsa");
         }
     }

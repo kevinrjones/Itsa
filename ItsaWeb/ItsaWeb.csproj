@@ -149,6 +149,7 @@
     <Compile Include="Authentication\ItsaIdentity.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ItsaController.cs" />
+    <Compile Include="Controllers\SessionBaseController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Hubs\AuthenticatingHub.cs" />

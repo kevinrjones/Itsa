@@ -23,7 +23,7 @@ namespace ItsaWebTests.Controllers
         public void GivenARegisteredUser_WhenITryAndReRegister_ThenIAmRedirectedToLogin()
         {
             _userService.Setup(u => u.GetUser()).Returns(new User());
-            var controller = new UserController(_userService.Object);
+            var controller = new UserController(_userService.Object, null, null);
             var view = controller.New(new RegisterUserViewModel());
             view.Should().BeOfType<RedirectToRouteResult>();
         }
@@ -33,7 +33,7 @@ namespace ItsaWebTests.Controllers
         public void GivenAnUnRegisteredUser_WhenITryAndReRegister_ThenIAmShowTheRegisterView()
         {
             _userService.Setup(u => u.GetUser()).Returns((User) null);
-            var controller = new UserController(_userService.Object);
+            var controller = new UserController(_userService.Object, null, null);
             var view = controller.New(new RegisterUserViewModel());
             view.Should().BeOfType<ViewResult>();
         }
