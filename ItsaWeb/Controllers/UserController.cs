@@ -21,6 +21,11 @@ namespace ItsaWeb.Controllers
 
         public ActionResult New(RegisterUserViewModel user)
         {
+            if (_userService.GetUser() != null)
+            {
+                TempData["message"] = "User is already registered";
+                return RedirectToAction("Logon", "Session");
+            }
             return View(user);
         }
 
