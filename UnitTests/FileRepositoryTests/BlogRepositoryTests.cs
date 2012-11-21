@@ -132,14 +132,18 @@ namespace FileRepositoryTests
         [Test]
         public void GivenACollectionOfSerializedBlogEntries_WhenTheCollectionIsRetrieved_ThenAllTheEntriesAreRetrieved()
         {
-            MemoryStream stream  = new MemoryStream();
+            MemoryStream stream1 = new MemoryStream();
+            MemoryStream stream2 = new MemoryStream();
             var entry = new BlogEntry();
             var json = entry.SerializeToString();
             var data = Encoding.UTF8.GetBytes(json);
-            stream.Write(data, 0, data.Length);
-            Mock<IFileInfo> fileInfo = new Mock<IFileInfo>();
-            fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(stream);
-            var fileInfos = new List<IFileInfo> { fileInfo.Object, fileInfo.Object, };
+            stream1.Write(data, 0, data.Length);
+            stream2.Write(data, 0, data.Length);
+            var fileInfo1 = new Mock<IFileInfo>();
+            fileInfo1.Setup(f => f.Open(FileMode.Open)).Returns(stream1);
+            var fileInfo2 = new Mock<IFileInfo>();
+            fileInfo2.Setup(f => f.Open(FileMode.Open)).Returns(stream2);
+            var fileInfos = new List<IFileInfo> { fileInfo1.Object, fileInfo2.Object, };
             _directoryInfo.Setup(d => d.EnumerateFiles(It.IsAny<string>(), It.IsAny<string>())).Returns(fileInfos);
             var repository = new BlogRepository(Path, _fileInfoFactory.Object, _directoryInfo.Object);
             var entities = repository.Entities;
