@@ -32,8 +32,7 @@ namespace ItsaWeb.Controllers
         public ActionResult Create(RegisterUserViewModel user)
         {
             _userService.Register(user.UserName, user.Password, user.Email);
-            return Redirect("");
+            return RedirectToAction("Index", "Itsa");
         }
-
     }
 }
