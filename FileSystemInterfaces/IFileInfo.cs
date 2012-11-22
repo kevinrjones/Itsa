@@ -9,5 +9,7 @@ namespace FileSystemInterfaces
         Stream Create();
         void Delete();
         Stream Open(FileMode fileMode);
+        bool Exists { get; }
+    
     }
 }

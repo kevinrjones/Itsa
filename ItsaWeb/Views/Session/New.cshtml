@@ -11,10 +11,10 @@
                 <div id="login-container">
 
                     <h2>Sign in</h2>
-                    @using (Html.BeginForm("Logon", "Session"))
+                    @using (Html.BeginForm("Create", "Session"))
                     {
-                        @Html.LabelFor(m => m.UserName) @: @Html.EditorFor(m => m.UserName) @Html.ValidationMessageFor(m => m.UserName)
-                        @Html.LabelFor(m => m.Password) @: @Html.PasswordFor(m => m.Password)  @Html.ValidationMessageFor(m => m.Password)<br/>
+                        @Html.LabelFor(m => m.UserName) @: @Html.TextBoxFor(m => m.UserName, new { @class = "text-box single-line", autocomplete = "off" })@Html.ValidationMessageFor(m => m.UserName, "*")
+                        @Html.LabelFor(m => m.Password) @: @Html.PasswordFor(m => m.Password)  @Html.ValidationMessageFor(m => m.Password, "*")<br/>
                         @Html.HiddenFor(m => m.RedirectTo)
                         <input id="signin" type="submit" value="Sign in" />
                     }

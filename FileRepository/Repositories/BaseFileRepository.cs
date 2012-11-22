@@ -49,6 +49,7 @@ namespace FileRepository.Repositories
                 return entries.AsQueryable();
             }
         }
+
         public T New()
         {
             return new T();
@@ -77,7 +78,7 @@ namespace FileRepository.Repositories
             }
         }
 
-        public void Create(T entity)
+        public virtual void Create(T entity)
         {
             var fileName = GenerateFileName(entity);
             IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);

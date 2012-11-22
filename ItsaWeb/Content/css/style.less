@@ -1,5 +1,8 @@
 @blue: #0072C6;
 @gray: #F3F3F3;
+@border-color: #f0f0f0;
+@focus-border-color: silver;
+@input-height: 30px;
 
 /* Alter box model for consistency */
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
@@ -104,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 	z-index: 1;
 
 	width: 150px;
-	height:30px;
+	height: @input-height;
 
 	color:white;
 	font-weight:bold;
@@ -125,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Login page styling */
 #session-index #signin {
     width: 85px;
-    height: 30px;
+    height: @input-height;
     background-color:@blue;
     border: none;
     color:white;
@@ -150,7 +153,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #session-index #introduction-container #picture {
     height: 300px;
-    background-color: silver;
+    background-color: #f0f0f0;
 }
 #session-index #introduction-container #caption {
     position:absolute;
@@ -174,53 +177,65 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.1em 1em;
 }
 #session-index input.text-box {
-    height: 30px;
+    height: @input-height;
     width: 320px;
 
     padding-left: 0.5em;
 
-    border: 1px solid silver;
+    border: 1px solid @border-color;
     background-color: white;
 }
 #session-index input.text-box.focus {
-    border: 1px solid black;
+    border: 1px solid @focus-border-color;
 }
+#session-index input#UserName {
+    height: @input-height;
+    width: 320px;
+
+    padding-left: 0.5em;
+
+    border: 1px solid @border-color;
+    background-color: white;
+}
+/*#session-index input#UserName.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index input#Password {
-    height: 30px;
+    height: @input-height;
     width: 320px;
 
     padding-left: 0.5em;
 
-    border: 1px solid silver;
+    border: 1px solid @border-color;
     background-color: white;
 }
-#session-index input#Password.focus {
-    border: 1px solid black;
-}
+/*#session-index input#Password.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index input#RepeatPassword {
-    height: 30px;
+    height: @input-height;
     width: 320px;
 
     padding-left: 0.5em;
 
-    border: 1px solid silver;
+    border: 1px solid @border-color;
     background-color: white;
 }
-#session-index input#RepeatPassword.focus {
-    border: 1px solid black;
-}
+/*#session-index input#RepeatPassword.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index input#Email {
-    height: 30px;
+    height: @input-height;
     width: 320px;
 
     padding-left: 0.5em;
 
-    border: 1px solid silver;
+    border: 1px solid #f0f0f0;
     background-color: white;
 }
-#session-index input#Email.focus {
-    border: 1px solid black;
-}
+/*#session-index input#Email.focus {
+    border: 1px solid @focus-border-color;
+}*/
 
 #session-index label {
     display:block;
@@ -563,7 +578,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #meeting-list #toolbar input.focus {
-    border: 1px solid black;
+    border: 1px solid @focus-border-color;
 }
 
 #meeting-list #toolbar #search input {
@@ -695,8 +710,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error {
-    color: #f00;
+/*.field-validation-error {
+    color: #b94a48 !important;
 }
 
 .field-validation-valid {
@@ -704,7 +719,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .input-validation-error {
-    border: 1px solid #f00 !important;
+    color: #b94a48 !important;
     background-color: #fee !important;
 }
 
@@ -715,4 +730,5 @@ h1, h2, h3, h4, h5, h6 {
 
 .validation-summary-valid {
     display: none;
-}
+}*/
+

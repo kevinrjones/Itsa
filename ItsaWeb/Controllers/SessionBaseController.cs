@@ -15,13 +15,13 @@ namespace ItsaWeb.Controllers
             _configurationManager = configurationManager;
         }
 
-        protected void CreateCookie(string userName)
+        protected void CreateCookie(string userName, int timeInMinutes = 30)
         {
             Response.Cookies.Add(new HttpCookie(_configurationManager.AppSetting("cookie"), 
                                                 FormsAuthentication.Encrypt(new FormsAuthenticationTicket(1,
                                                                                                           userName,
                                                                                                           DateTime.Now,
-                                                                                                          DateTime.Now.AddMinutes(30),
+                                                                                                          DateTime.Now.AddMinutes(timeInMinutes),
                                                                                                           false,
                                                                                                           ""))));
         }

@@ -8,23 +8,23 @@
 <!--[if IE 8]>    
     <html class="no-js lt-ie9" lang="en"> 
 <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html class="no-js" lang="en"> 
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
 <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>@ViewBag.Title</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-    
-	<meta name="viewport" content="width=device-width">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width">
 
 
     @Styles.Render("~/bundles/css")
-    @Styles.Render("~/bundles/less")
     @Styles.Render("~/bundles/content/bootstrap")
+    @Styles.Render("~/bundles/less")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
@@ -32,6 +32,11 @@
 
 </head>
 <body>
+    <div>
+        <ul>
+            <li>@Html.ActionLink("Register", "New", "User", new{}, new { id = "register" })</li>
+        </ul>
+    </div>
     <div>
         <h2>@TempData["message"]</h2>
         @RenderBody()

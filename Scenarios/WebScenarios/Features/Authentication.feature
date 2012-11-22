@@ -5,7 +5,8 @@
 
 @session
 Scenario: Logon with forms authentication
-	Given I am not logged on
+	Given I am registered
+	And I am not logged on
 	And I enter valid credentials into the logon form
 	When I press logon
 	Then the ItsA home page should be shown
@@ -18,7 +19,8 @@ Scenario: Register user
 	Then the ItsA home page should be shown
 
 Scenario: Unregister user
-	Given I exist as a user
+	Given I am registered
+	And I am logged on
 	When I press unregister
-	Then I should be asked to confirm the deregistration
-	And  the ItsA home page should be shown
+	#Then I should be asked to confirm the deregistration
+	Then  the ItsA register page should be shown

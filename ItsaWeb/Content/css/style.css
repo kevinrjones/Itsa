@@ -133,7 +133,7 @@ h6 {
 }
 #session-index #introduction-container #picture {
   height: 300px;
-  background-color: silver;
+  background-color: #f0f0f0;
 }
 #session-index #introduction-container #caption {
   position: absolute;
@@ -155,42 +155,52 @@ h6 {
   height: 30px;
   width: 320px;
   padding-left: 0.5em;
-  border: 1px solid silver;
+  border: 1px solid #f0f0f0;
   background-color: white;
 }
 #session-index input.text-box.focus {
-  border: 1px solid black;
+  border: 1px solid #c0c0c0;
 }
+#session-index input#UserName {
+  height: 30px;
+  width: 320px;
+  padding-left: 0.5em;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+}
+/*#session-index input#UserName.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index input#Password {
   height: 30px;
   width: 320px;
   padding-left: 0.5em;
-  border: 1px solid silver;
+  border: 1px solid #f0f0f0;
   background-color: white;
 }
-#session-index input#Password.focus {
-  border: 1px solid black;
-}
+/*#session-index input#Password.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index input#RepeatPassword {
   height: 30px;
   width: 320px;
   padding-left: 0.5em;
-  border: 1px solid silver;
+  border: 1px solid #f0f0f0;
   background-color: white;
 }
-#session-index input#RepeatPassword.focus {
-  border: 1px solid black;
-}
+/*#session-index input#RepeatPassword.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index input#Email {
   height: 30px;
   width: 320px;
   padding-left: 0.5em;
-  border: 1px solid silver;
+  border: 1px solid #f0f0f0;
   background-color: white;
 }
-#session-index input#Email.focus {
-  border: 1px solid black;
-}
+/*#session-index input#Email.focus {
+    border: 1px solid @focus-border-color;
+}*/
 #session-index label {
   display: block;
   margin-top: 10px;
@@ -467,7 +477,7 @@ h6 {
   padding: 2px;
 }
 #meeting-list #toolbar input.focus {
-  border: 1px solid black;
+  border: 1px solid #c0c0c0;
 }
 #meeting-list #toolbar #search input {
   padding-left: 0.35em;
@@ -657,20 +667,24 @@ h6 {
 }
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error {
-  color: #f00;
+/*.field-validation-error {
+    color: #b94a48 !important;
 }
+
 .field-validation-valid {
-  display: none;
+    display: none;
 }
+
 .input-validation-error {
-  border: 1px solid #f00 !important;
-  background-color: #fee !important;
+    color: #b94a48 !important;
+    background-color: #fee !important;
 }
+
 .validation-summary-errors {
-  font-weight: bold;
-  color: #f00;
+    font-weight: bold;
+    color: #f00;
 }
+
 .validation-summary-valid {
-  display: none;
-}
+    display: none;
+}*/

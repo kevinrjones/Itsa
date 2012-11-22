@@ -152,6 +152,8 @@
     <Compile Include="Controllers\SessionBaseController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\AuthorizedUserAttribute.cs" />
+    <Compile Include="HtmlHelpers\DisplayAuthentication.cs" />
     <Compile Include="Hubs\AuthenticatingHub.cs" />
     <Compile Include="Models\BlogEntryViewModel.cs" />
     <Compile Include="Models\RegisterUserViewModel.cs" />
@@ -317,7 +319,6 @@
     <Content Include="Scripts\log4javascript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Simple.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -334,7 +335,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Itsa\Index.cshtml" />
-    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Session\New.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSession.cshtml" />
     <Content Include="Views\User\New.cshtml" />
   </ItemGroup>

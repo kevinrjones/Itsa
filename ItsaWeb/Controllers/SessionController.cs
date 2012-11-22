@@ -17,12 +17,16 @@ namespace ItsaWeb.Controllers
             _userService = userService;
         }
 
-        public ActionResult Index(string redirectTo)
+        public ActionResult New(string redirectTo)
         {
+            if (_userService.GetRegisteredUser() == null)
+            {
+                return RedirectToAction("New", "User");
+            }
             return View(new LogonViewModel { RedirectTo = redirectTo });
         }
 
-        public ActionResult Logon(LogonViewModel user)
+        public ActionResult Create(LogonViewModel user)
         {
             Logger.Info(string.Format("User Name: {0}; Password {1}", user.UserName, user.Password));
             if (ModelState.IsValid)
@@ -39,7 +43,13 @@ namespace ItsaWeb.Controllers
                 }
                 Logger.Info("User failed to login.");
             }
-            return View("Index", user);
+            return View("New", user);
+        }
+
+        public ActionResult Delete()
+        {
+            CreateCookie("", -10);
+            return RedirectToAction("New");
         }
     }
 }

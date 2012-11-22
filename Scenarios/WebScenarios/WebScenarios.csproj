@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Authentication.feature</DependentUpon>
     </Compile>
+    <Compile Include="PageLibrary\Pages\RegistrationPage.cs" />
     <Compile Include="Setup\FeaturesBase.cs" />
     <Compile Include="Fixtures\Settings.cs" />
     <Compile Include="Fixtures\TestFixtureBase.cs" />

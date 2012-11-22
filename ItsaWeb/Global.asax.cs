@@ -13,6 +13,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using ItsaWeb.Authentication;
 using ItsaWeb.Hubs;
+using ItsaWeb.Models;
 using Logging;
 using Logging.NLog;
 using SignalR;
@@ -28,10 +29,9 @@ namespace ItsaWeb
         {
             var builder = new ContainerBuilder();
             RegisterTypes(builder);
-            builder.RegisterFilterProvider();
             var container = builder.Build();
+            
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
             GlobalHost.DependencyResolver = new Infrastructure.AutofacDependencyResolver(container); // for signalr
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -48,19 +48,21 @@ namespace ItsaWeb
             {
                 var ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 if (!ticket.Expired)
+                {
                     CreateIdentity(ticket.Name);
+                }
             }
         }
 
         private void CreateIdentity(string name)
         {
             var identity = new ItsaIdentity(name);
-            HttpContext.Current.User = new GenericPrincipal(identity, null);
+            HttpContext.Current.User = new UserViewModel{Identity = identity, UserName = name};
         }
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
-            string baseDirectory = HttpContext.Current.Server.MapPath("~/App_Data") + "/" + ConfigurationManager.AppSettings["dataFolderName"];
+            string baseDirectory = HttpContext.Current.Server.MapPath("~/App_Data") + ConfigurationManager.AppSettings["dataFolderName"];
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
@@ -76,9 +78,11 @@ namespace ItsaWeb
             var fileAssembly = Assembly.Load("SystemFileAdapter");
             builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
 
-            builder.RegisterType<NLogLogger>().As<ILogger>();
+            //builder.RegisterType<NLogLogger>().As<ILogger>();
+            builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest(); 
             builder.RegisterType<AdminHub>();
 //            builder.RegisterModule(new ConfigurationSettingsReader("autofac"));
+            builder.RegisterFilterProvider();
         }
 
     }

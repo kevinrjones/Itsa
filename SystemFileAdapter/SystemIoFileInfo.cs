@@ -34,5 +34,14 @@ namespace SystemFileAdapter
             var file = new FileInfo(_fileName);
             return file.Open(fileMode);
         }
+
+        public bool Exists
+        {
+            get
+            {
+                var file = new FileInfo(_fileName);
+                return file.Exists;
+            }
+        }
     }
 }

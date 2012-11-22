@@ -15,6 +15,7 @@ namespace WebScenarios
     [Binding]
     public class WebSiteSteps : FeaturesBase
     {
+
         // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
         [Given(@"I am not logged on")]
         public void GivenIAmNotLoggedOn()
@@ -27,8 +28,8 @@ namespace WebScenarios
         {
             CurrentPage = PageBase.LoadLogonPage(CurrentDriver, Settings.CurrentSettings.Url);
             var page = CurrentPage.As<LogonPage>();
-            page.SetUserName("admin");
-            page.SetPassword("letmein");
+            page.SetUserName(LogonPage.LogonUserName);
+            page.SetPassword(LogonPage.LogonPassword);
         }
 
         [When(@"I press logon")]
@@ -42,44 +43,61 @@ namespace WebScenarios
         {
             var page = CurrentPage.As<HomePage>();
             Thread.Sleep(1000);
-            Assert.That(page.UserName.Text, Is.EqualTo("admin"));
+            Assert.That(page.UserName.Text, Is.EqualTo(LogonPage.LogonUserName));
         }
 
         [Given(@"I do not exist as a user")]
         public void GivenIDoNotExistAsAUser()
         {
-            GivenIAmNotLoggedOn();
-            ScenarioContext.Current.Pending();
+            CurrentPage = PageBase.LoadRegisterPage(CurrentDriver, Settings.CurrentSettings.Url);
         }
 
         [Given(@"I enter valid details into the registration form")]
         public void GivenIEnterValidDetailsIntoTheRegistrationForm()
         {
-            ScenarioContext.Current.Pending();
+            var page = CurrentPage.As<RegistrationPage>();
+            page.SetUserName(LogonPage.LogonUserName);
+            page.SetPassword(LogonPage.LogonPassword);
+            page.SetRepeatPassword(LogonPage.LogonPassword);
+            page.SetEMail(LogonPage.RegisterEmail);
         }
 
         [When(@"I press register")]
         public void WhenIPressRegister()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage = CurrentPage.As<RegistrationPage>().RegisterUser();
+        }
+
+        [Given(@"I am registered")]
+        public void GivenIAmRegistered()
+        {
+            CurrentPage = PageBase.LoadLogonPage(CurrentDriver, Settings.CurrentSettings.Url);
+        }
+
+        [Given(@"I am logged on")]
+        public void GivenIAmLoggedOn()
+        {
+            GivenIEnterValidCredentialsIntoTheLogonForm();
+            WhenIPressLogon();
         }
 
         [When(@"I press unregister")]
         public void WhenIPressUnregister()
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I exist as a user")]
-        public void GivenIExistAsAUser()
-        {
-            ScenarioContext.Current.Pending();
+            CurrentPage = CurrentPage.As<HomePage>().UnRegisterUser();
         }
 
         [Then(@"I should be asked to confirm the deregistration")]
         public void ThenIShouldBeAskedToConfirmTheDeregistration()
         {
             ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the ItsA register page should be shown")]
+        public void ThenTheItsARegisterPageShouldBeShown()
+        {
+            var page = CurrentPage.As<RegistrationPage>();
+            Assert.That(page.RegisterLink.Text, Is.EqualTo("Register"));
         }
     }
 }

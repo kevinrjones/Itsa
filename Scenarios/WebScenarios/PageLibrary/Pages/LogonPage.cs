@@ -6,18 +6,22 @@ namespace WebScenarios.PageLibrary.Pages
 {
     public class LogonPage : PageBase
     {
-        public const string URL = "/";
+        public const string LogonUserName = "user";
+        public const string LogonPassword = "password";
+        public const string RegisterEmail = "foo@bar.com";
+
+        public const string URL = "/session/new";
 
         public override string DefaultTitle { get { return "Sign in to ItSa"; } }
 
-        public IndexPage Logon(string userName, string password)
+        public HomePage Logon(string userName, string password)
         {
-            return GetInstance<IndexPage>();
+            SetUserName(userName);
+            SetPassword(password);
+            return Logon();
         }
 
-
-
-        [FindsBy(How = How.Id , Using = "UserName")]
+        [FindsBy(How = How.Id, Using = "UserName")]
         public IWebElement UserName { get; set; }
 
         [FindsBy(How = How.Id, Using = "Password")]

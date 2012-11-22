@@ -42,6 +42,7 @@ namespace ItsaWeb
 
             var itsaLess = new StyleBundle("~/bundles/less").Include(
                         "~/Content/css/style.less");
+
             itsaLess.Transforms.Add(new LessMinify());
             bundles.Add(itsaLess);
 

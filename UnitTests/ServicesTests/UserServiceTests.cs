@@ -26,7 +26,7 @@ namespace ServicesTests
             _repository.Setup(r => r.GetUser()).Returns((User) new User{Name = ""});
 
             var service = new UserService(_repository.Object);
-            service.GetUser().Should().BeNull();
+            service.GetRegisteredUser().Should().BeNull();
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace ServicesTests
             _repository.Setup(r => r.GetUser()).Returns(new User { Name = "" });
 
             var service = new UserService(_repository.Object);
-            Action act = service.UnRegister;
+            Action act = () => service.UnRegister();
             act.ShouldThrow<ItsaException>();
         }
 

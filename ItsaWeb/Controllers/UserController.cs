@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AbstractConfigurationManager;
+using ItsaWeb.Filters;
 using ItsaWeb.Models;
 using Logging;
 using ServiceInterfaces;
@@ -12,9 +13,7 @@ namespace ItsaWeb.Controllers
 {
     public class UserController : SessionBaseController
     {
-        private readonly IUserService _userService;
-        //
-        // GET: /User/
+        private readonly IUserService _userService;        
 
         public UserController(IUserService userService,IConfigurationManager configurationManager, ILogger logger) : base(configurationManager, logger)
         {
@@ -23,10 +22,10 @@ namespace ItsaWeb.Controllers
 
         public ActionResult New(RegisterUserViewModel user)
         {
-            if (_userService.GetUser() != null)
+            if (_userService.GetRegisteredUser() != null)
             {
                 TempData["message"] = "User is already registered";
-                return RedirectToAction("Logon", "Session");
+                return RedirectToAction("New", "Session");
             }
             return View(user);
         }
@@ -37,5 +36,20 @@ namespace ItsaWeb.Controllers
             CreateCookie(user.UserName);
             return RedirectToAction("Index", "Itsa");
         }
+
+        [AuthorizeUser]
+        public ActionResult Delete()
+        {
+            if (_userService.UnRegister())
+            {
+                TempData["message"] = "User unregistered";
+            }
+            else
+            {
+                TempData["message"] = "User already unregistered";                
+            }
+            return RedirectToAction("New");
+        }
+
     }
 }

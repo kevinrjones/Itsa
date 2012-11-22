@@ -21,6 +21,17 @@ namespace FileRepository.Repositories
             return string.Format("{0}/user.json", Path);
         }
 
+        public override void Create(User entity)
+        {
+            string fileName = GenerateFileName(entity);
+            IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
+            if (fileInfo.Exists)
+            {
+                fileInfo.Delete();
+            }
+            base.Create(entity);
+        }
+
         public User GetUser()
         {
             return Entities.FirstOrDefault();

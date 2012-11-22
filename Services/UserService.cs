@@ -18,25 +18,26 @@ namespace Services
 
         public void Register(string userName, string password, string email)
         {
-            if (GetUser() != null)
+            if (GetRegisteredUser() != null)
             {
                 throw new ItsaException("User has already registered");
             }
-            _userRepository.Create(new User(userName, password, email));
+            _userRepository.Create(new User(userName, email, password));
         }
 
-        public void UnRegister()
+        public bool UnRegister()
         {
-            if (GetUser() == null)
+            if (GetRegisteredUser() == null)
             {
-                throw new ItsaException("User has already unregistered");
+                return false;
             }
             _userRepository.Create(new User("", "", ""));
+            return true;
         }
 
         public bool Logon(string userName, string password)
         {
-            User user = GetUser();
+            User user = GetRegisteredUser();
             if (user == null)
             {
                 throw new ItsaException("User not yet registered");
@@ -44,10 +45,10 @@ namespace Services
             return user.Name == userName && user.MatchPassword(password);
         }
 
-        public User GetUser()
+        public User GetRegisteredUser()
         {
             var user = _userRepository.GetUser();
-            if (string.IsNullOrEmpty(user.Name))
+            if (user == null || string.IsNullOrEmpty(user.Name))
             {
                 return null;
             }

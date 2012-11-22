@@ -23,30 +23,35 @@ namespace Entities
         public string Name { get; set; }
         public string HashedPassword { get; set; }
         public string Salt { get; set; }
+
         public string Password
         {
-            set { HashedPassword = GenerateHashedPasswordFromPlaintext(value); }
+            set { GenerateHashedPasswordFromPlaintext(value); }
         }
 
 
         private void GeneratePassword(string password)
         {
+            SHA256 shaM = new SHA256Managed();
             byte[] data;
             Salt = Convert.ToBase64String(Encoding.UTF32.GetBytes(GetHashCode() + new Random().Next().ToString(CultureInfo.InvariantCulture)));
-            HashedPassword = GenerateHashedPasswordFromPlaintext(password);
+            data = Encoding.UTF32.GetBytes(password + "wibble" + Salt);
+            HashedPassword = Convert.ToBase64String(shaM.ComputeHash(data));
         }
 
         public bool MatchPassword(string password)
         {
-            return HashedPassword == GenerateHashedPasswordFromPlaintext(password);
+            string hashedPassword = GenerateHashedPasswordFromPlaintext(password);
+
+            return HashedPassword == hashedPassword;
         }
 
         private string GenerateHashedPasswordFromPlaintext(string password)
         {
-            SHA256 sha256 = new SHA256Managed();
+            SHA256 shaM = new SHA256Managed();
             byte[] data = Encoding.UTF32.GetBytes(password + "wibble" + Salt);
 
-            return Convert.ToBase64String(sha256.ComputeHash(data));
+            return Convert.ToBase64String(shaM.ComputeHash(data));
         }
 
     }

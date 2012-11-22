@@ -8,8 +8,8 @@
 <!--[if IE 8]>    
     <html class="no-js lt-ie9" lang="en"> 
 <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html class="no-js" lang="en"> 
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
@@ -21,8 +21,16 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
-
+    <div>
+        <ul>
+            <li>@Html.ActionLink("Deregister", "Delete", "User", new{},  new { id = "deregister" })</li>
+            <li>@Html.ActionLink("Logout", "Delete", "Session", new{},  new { id = "logout" })</li>
+        </ul>
+    </div>
+    <div>
+        <h2>@TempData["message"]</h2>
+        @RenderBody()
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
