@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace ItsaWeb.Authentication
 {
-    interface IItsaIdentity : IIdentity
+    public interface IItsaIdentity : IIdentity
     {
-        string UserId { get; }
+        string Name { get; set; }
+        string AuthenticationType { get; set; }
+        bool IsAuthenticated { get;  set; }
+        
     }
 }

@@ -32,9 +32,9 @@ namespace ItsaWeb.Hubs
 
         public void AddEntry(BlogEntryViewModel model)
         {
-            var entry = new BlogEntry { EntryAddedDate = model.EntryAddedDate, 
+            var entry = new Post { EntryAddedDate = model.EntryAddedDate, 
                 EntryUpdateDate = model.EntryUpdateDate, 
-                Post = model.Post, 
+                Body = model.Post, 
                 Title = model.Title };
 
             _adminService.AddBlogEntry(entry);

@@ -37,7 +37,7 @@ namespace ItsaWeb.Controllers
             return RedirectToAction("Index", "Itsa");
         }
 
-        [AuthorizeUser]
+        [AuthorizedUser]
         public ActionResult Delete()
         {
             if (_userService.UnRegister())

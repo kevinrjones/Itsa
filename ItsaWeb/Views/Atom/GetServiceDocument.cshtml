@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding='utf-8' ?>
+@model ItsaWeb.Models.Atom.AtomViewModel
+@{
+    Response.ContentType = "application/atomsvc+xml";
+    Layout = "";
+}
+<service xmlns="http://www.w3.org/2007/app" xmlns:atom="http://www.w3.org/2005/Atom">
+  <workspace>
+    <atom:title>MBlog</atom:title>
+    <atom:subtitle>@Model.Title</atom:subtitle>
+    <collection href="@Url.Action("Index", "atom", new { }, HttpContext.Current.Request.Url.Scheme)">
+        <atom:title>@Model.Title</atom:title>
+        @* Need this to satisfy Windows Live Writer - so that I can upload Media to it *@
+        <categories fixed="no"/>
+    </collection>
+    <collection href="@Url.RouteUrl("Image-create", new{}, HttpContext.Current.Request.Url.Scheme)">
+      <atom:title>Media Collection</atom:title>
+      <accept>image/png</accept>
+      <accept>image/jpeg</accept>
+      <accept>image/gif</accept>
+    </collection>
+  </workspace>
+</service>

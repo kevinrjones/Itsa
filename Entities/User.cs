@@ -19,7 +19,7 @@ namespace Entities
             GeneratePassword(password);
         }
 
-        protected string Email { get; set; }
+        public string Email { get; set; }
         public string Name { get; set; }
         public string HashedPassword { get; set; }
         public string Salt { get; set; }
@@ -28,6 +28,12 @@ namespace Entities
         {
             set { GenerateHashedPasswordFromPlaintext(value); }
         }
+
+        public string BlogDescription { get; set; }
+
+        public string BlogTitle { get; set; }
+
+        public DateTimeOffset LastUpdated { get; set; }
 
 
         private void GeneratePassword(string password)

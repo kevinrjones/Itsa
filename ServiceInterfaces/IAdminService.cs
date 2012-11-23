@@ -4,6 +4,6 @@ namespace ServiceInterfaces
 {
     public interface IAdminService
     {
-        void AddBlogEntry(BlogEntry entry);
+        void AddBlogEntry(Post entry);
     }
 }

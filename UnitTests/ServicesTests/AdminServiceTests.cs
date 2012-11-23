@@ -15,21 +15,21 @@ namespace AdminServiceUnitTests
     [TestFixture]
     public class AdminServiceTests
     {
-        private Mock<IBlogRepository> _blogRepository;
+        private Mock<IPostRepository> _blogRepository;
         private IAdminService _adminService;
 
         [SetUp]
         public void SetUp()
         {
-            _blogRepository = new Mock<IBlogRepository>();
+            _blogRepository = new Mock<IPostRepository>();
             _adminService = new AdminService(_blogRepository.Object);
         }
 
         [Test]
         public void GivenABlogEntry_WhenTheEntryIsAdded_ThenTheRepositoryIsCalled()
         {
-            _adminService.AddBlogEntry(It.IsAny<BlogEntry>());
-            _blogRepository.Verify(s => s.Create(It.IsAny<BlogEntry>()), Times.Once());
+            _adminService.AddBlogEntry(It.IsAny<Post>());
+            _blogRepository.Verify(s => s.Create(It.IsAny<Post>()), Times.Once());
 
         }
     }

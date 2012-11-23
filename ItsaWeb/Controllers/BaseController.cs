@@ -53,13 +53,5 @@ namespace ItsaWeb.Controllers
                 Severity = ErrorSeverity.Error
             });
         }
-
-        protected string UserId
-        {
-            get
-            {
-                return ((IItsaIdentity)ControllerContext.HttpContext.User.Identity).UserId;
-            }
-        }
     }
 }

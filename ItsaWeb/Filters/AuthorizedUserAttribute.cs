@@ -8,7 +8,7 @@ using Logging;
 
 namespace ItsaWeb.Filters
 {
-    public class AuthorizeUserAttribute : AuthorizeAttribute
+    public class AuthorizedUserAttribute : AuthorizeAttribute
     {
         public ILogger Logger { get; set; }
 

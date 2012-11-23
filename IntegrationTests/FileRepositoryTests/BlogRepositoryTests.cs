@@ -16,7 +16,7 @@ namespace FileRepositoryTests
     {
         IFileInfoFactory _fileInfoFactory;
         private IDirectoryInfo _directoryInfo;
-        BlogRepository _blogRepository;
+        PostRepository _postRepository;
         const string Directory = "files";
         FileInfo _file;
 
@@ -32,7 +32,7 @@ namespace FileRepositoryTests
                 di.Delete(true);
             }
             di.Create();
-            _blogRepository = new BlogRepository(Directory, _fileInfoFactory, _directoryInfo);
+            _postRepository = new PostRepository(Directory, _fileInfoFactory, _directoryInfo);
             CreateFiles(Directory);
         }
 
@@ -57,26 +57,26 @@ namespace FileRepositoryTests
         [Test]
         public void GivenASetOfFilesOnDisk_WhenThoseFilesAreRetrieved_ThenTheFIlesAreReturned()
         {
-            _blogRepository.Entities.Count().Should().Be(10);
+            _postRepository.Entities.Count().Should().Be(10);
         }
 
         [Test]
         public void GivenAnExistingFile_WhenAFileWithTheSameNameIsCreated_ThenAnExceptionIsThrown()
         {
-            var entry = new BlogEntry { Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
+            var entry = new Post { Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
 
             _file = new FileInfo(GenerateFileName(entry));
             using (_file.Create()) ;
-            Action act = () => _blogRepository.Create(entry);
+            Action act = () => _postRepository.Create(entry);
             act.ShouldThrow<Exception>();
         }
 
         [Test]
         public void GivenTheNameOfAFileThatDoesNotExist_WhenThatFileIsCreated_ThenTheFileExistsOnDisk()
         {
-            var entry = new BlogEntry { Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
+            var entry = new Post { Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
 
-            _blogRepository.Create(entry);
+            _postRepository.Create(entry);
             _file = new FileInfo(GenerateFileName(entry));
             _file.Exists.Should().BeTrue();
         }
@@ -84,14 +84,14 @@ namespace FileRepositoryTests
         [Test]
         public void GivenTheNameOfAFileThatDoesNotExist_WhenThatFileIsCreated_ThenTheFileDataIsCorrect()
         {
-            var entry = new BlogEntry { Title = "title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
+            var entry = new Post { Title = "title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
 
-            _blogRepository.Create(entry);
+            _postRepository.Create(entry);
             _file = new FileInfo(GenerateFileName(entry));
             using (var stream = new StreamReader(_file.Open(FileMode.Open)))
             {
                 var json = stream.ReadToEnd();
-                entry = JsonSerializer.Deserialize<BlogEntry>(json);
+                entry = JsonSerializer.Deserialize<Post>(json);
                 entry.Title.Should().Be("title");
             }
         }
@@ -99,17 +99,17 @@ namespace FileRepositoryTests
         [Test]
         public void GivenTheNameOfAFileThatExists_WhenThatFileIsUpdated_ThenTheFileDataIsCorrect()
         {
-            var entry = new BlogEntry { Title = "old title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
+            var entry = new Post { Title = "old title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
 
-            _blogRepository.Create(entry);
+            _postRepository.Create(entry);
             entry.Title = "new title";
 
-            _blogRepository.Update(entry);
+            _postRepository.Update(entry);
             _file = new FileInfo(GenerateFileName(entry));
             using (var stream = new StreamReader(_file.Open(FileMode.Open)))
             {
                 var json = stream.ReadToEnd();
-                entry = JsonSerializer.Deserialize<BlogEntry>(json);
+                entry = JsonSerializer.Deserialize<Post>(json);
                 entry.Title.Should().Be("new title");
             }
 
@@ -118,19 +118,19 @@ namespace FileRepositoryTests
         [Test]
         public void GivenAnExistingFile_WhenTheFileIsDeleted_ThenTheFileIsRemovedFromDisk()
         {
-            var entry = new BlogEntry { Title = "title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
+            var entry = new Post { Title = "title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
 
             _file = new FileInfo(GenerateFileName(entry));
             using (_file.Create()) ;
 
-            _blogRepository.Delete(entry);
+            _postRepository.Delete(entry);
 
             _file = new FileInfo(GenerateFileName(entry));
 
             _file.Exists.Should().BeFalse();
         }
 
-        private string GenerateFileName(BlogEntry entity)
+        private string GenerateFileName(Post entity)
         {
             return string.Format("{0}/{1}.json", Directory, entity.Id);
         }

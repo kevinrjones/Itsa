@@ -8,10 +8,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using SystemFileAdapter;
 using Autofac;
 using Autofac.Integration.Mvc;
-using ItsaWeb.Authentication;
 using ItsaWeb.Hubs;
 using ItsaWeb.Models;
 using Logging;
@@ -41,13 +39,13 @@ namespace ItsaWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
         {
             var authCookie = Request.Cookies.Get(ConfigurationManager.AppSettings["cookie"]);
             if (authCookie != null)
             {
                 var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                if (!ticket.Expired)
+                if (ticket != null && !ticket.Expired)
                 {
                     CreateIdentity(ticket.Name);
                 }
@@ -56,8 +54,8 @@ namespace ItsaWeb
 
         private void CreateIdentity(string name)
         {
-            var identity = new ItsaIdentity(name);
-            HttpContext.Current.User = new UserViewModel{Identity = identity, UserName = name};
+            var identity = new UserViewModel { UserName = name };
+            HttpContext.Current.User = new GenericPrincipal(identity, null);
         }
 
         private static void RegisterTypes(ContainerBuilder builder)

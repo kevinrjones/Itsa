@@ -21,6 +21,9 @@
 
     <meta name="viewport" content="width=device-width">
 
+    <link rel="service" type="application/atomsvc+xml" href="@Url.Action("GetServiceDocument", "Atom", new { }, HttpContext.Current.Request.Url.Scheme)" />
+    <link rel="shortcut icon" href="~/favicon.ico">
+
 
     @Styles.Render("~/bundles/css")
     @Styles.Render("~/bundles/content/bootstrap")

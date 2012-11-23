@@ -1,6 +1,6 @@
 using System;
 
-namespace ItsaWeb.Hubs
+namespace ItsaWeb.Infrastructure
 {
     public class NotLoggedInException : Exception
     {
