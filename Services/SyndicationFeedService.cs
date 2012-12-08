@@ -5,7 +5,7 @@ using Entities;
 using ItsaRepository.Interfaces;
 using ServiceInterfaces;
 
-namespace MBlogService
+namespace Services
 {
     public class SyndicationFeedService : ISyndicationFeedService
     {

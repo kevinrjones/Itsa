@@ -15,23 +15,65 @@ namespace ItsaWeb
 
             routes.MapRoute(
                 name: "Image-create",
-                url: "{nickname}/image",
+                url: "image",
                 defaults: new { controller = "Media", action = "CreateImage" },
                 constraints: new { httpMethod = new HttpMethodConstraint("POST") }
                 );
 
             routes.MapRoute(
                 name: "Image-get",
-                url: "{nickname}/image/{id}",
+                url: "image/{id}",
                 defaults: new { controller = "Media", action = "Get" },
                 constraints: new { httpMethod = new HttpMethodConstraint("GET") }
                 );
 
             routes.MapRoute(
                 name: "Image-get-uri",
-                url: "{nickname}/image/uri/{id}",
+                url: "image/uri/{id}",
                 defaults: new { controller = "Media", action = "GetUri" },
                 constraints: new { httpMethod = new HttpMethodConstraint("GET", "HEAD") }
+                );
+
+            routes.MapRoute(
+                name: "Atom-Service-GetServiceDocument",
+                url: "pub/service",
+                defaults: new { controller = "Atom", action = "GetServiceDocument" },
+                constraints: new { httpMethod = new HttpMethodConstraint("GET") }
+                );
+
+            routes.MapRoute(
+                name: "Atom-Service-Index",
+                url: "pub/atom",
+                defaults: new { controller = "Atom", action = "Index" },
+                constraints: new { httpMethod = new HttpMethodConstraint("GET") }
+                );
+
+            routes.MapRoute(
+                name: "Posts-get-atom",
+                url: "pub/atom/{postId}",
+                defaults: new { controller = "Atom", action = "Get" },
+                constraints: new { httpMethod = new HttpMethodConstraint("GET") }
+                );
+
+            routes.MapRoute(
+                name: "Posts-update-atom",
+                url: "pub/atom/{postId}",
+                defaults: new { controller = "Atom", action = "Update" },
+                constraints: new { httpMethod = new HttpMethodConstraint("PUT") }
+                );
+
+            routes.MapRoute(
+                name: "Posts-create-atom",
+                url: "pub/atom/",
+                defaults: new { controller = "Atom", action = "Create" },
+                constraints: new { httpMethod = new HttpMethodConstraint("POST") }
+                );
+
+            routes.MapRoute(
+                name: "Posts-delete-atom",
+                url: "pub/atom/{postId}",
+                defaults: new { controller = "Atom", action = "Delete" },
+                constraints: new { httpMethod = new HttpMethodConstraint("DELETE") }
                 );
 
             routes.MapRoute(

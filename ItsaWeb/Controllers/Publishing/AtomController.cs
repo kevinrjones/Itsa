@@ -93,6 +93,7 @@ namespace ItsaWeb.Controllers.Publishing
                            select node.Value).FirstOrDefault();
             Post post = new Post
             {
+                Id = Guid.NewGuid(),
                 Body = content,
                 Title = title,
                 EntryUpdateDate = DateTime.UtcNow,

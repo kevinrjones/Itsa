@@ -1,6 +1,6 @@
 using System;
 
-namespace MBlog.ActionResults
+namespace ItsaWeb.ActionResults
 {
     public class FeedData
     {

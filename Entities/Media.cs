@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 
@@ -42,7 +43,7 @@ namespace Entities
         }
 
         public Media(string fileName, string title, string caption,
-                     string description, string alternate, int userId,
+                     string description, string alternate, 
                      string mimeType, int alignment, int size, byte[] imageData)
             : this()
         {
@@ -58,21 +59,21 @@ namespace Entities
             Caption = caption;
             Description = description;
             Alternate = alternate;
-            UserId = userId;
             MimeType = mimeType;
             Alignment = alignment;
             Size = size;
             Data = imageData;
         }
 
-        public Media(string fileName, int id, string contentType, Stream inputStream, int contentLength)
-            : this(fileName, "", "", "", "", id, contentType, 0, 0, null)
+        public Media(string fileName, string contentType, Stream inputStream, int contentLength)
+            : this(fileName, "", "", "", "", contentType, 0, 0, null)
         {
             Data = new byte[contentLength];
             inputStream.Read(Data, 0, contentLength);
         }
 
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         public string FileName { get; set; }
         public string Title
         {
@@ -123,9 +124,7 @@ namespace Entities
         }
 
         public byte[] Data { get; set; }
-        public int UserId { get; set; }
         public string LinkKey { get; set; }
-        public User User { get; set; }
         public string Url
         {
             get { return string.Format("{0}/{1}/{2}/{3}", Year, Month, Day, LinkKey); }
@@ -149,7 +148,7 @@ namespace Entities
 
         public override int GetHashCode()
         {
-            return Id;
+            return Id.GetHashCode();
         }
     }
 }

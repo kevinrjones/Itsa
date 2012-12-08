@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using ItsaWeb.Models;
@@ -19,7 +20,7 @@ namespace ItsaWeb.Filters
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var user = httpContext.User as UserViewModel;
+            var user = httpContext.User as GenericPrincipal;
 
             return user != null;
         }

@@ -38,7 +38,6 @@ namespace ItsaWeb.Models.Media
             Month = media.Month;
             Day = media.Day;
             Url = media.Url;
-            UserId = media.UserId;
             Alignment = media.Alignment;
             Size = media.Size;
             DisplayDate = new DateTime(media.Year, media.Month, media.Day).ToShortDateString();
@@ -66,7 +65,7 @@ namespace ItsaWeb.Models.Media
         public int Day { get; set; }
         public string Url { get; set; }
         public string DisplayDate { get; set; }
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int UserId { get; set; }
         public int Alignment { get; set; }
         public int Size { get; set; }

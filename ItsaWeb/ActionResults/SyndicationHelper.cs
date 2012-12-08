@@ -4,7 +4,6 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Xml;
-using MBlog.ActionResults;
 
 namespace ItsaWeb.ActionResults
 {

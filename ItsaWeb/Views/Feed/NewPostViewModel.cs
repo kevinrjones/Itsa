@@ -10,11 +10,12 @@ namespace ItsaWeb.Views.Feed
             DatePosted = post.EntryAddedDate;
             Title = post.Title;
             Post = post.Body;
+            Id = post.Id;
         }
 
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Post { get; set; }
         public DateTime DatePosted { get; set; }
-        public int Id { get; set; }
     }
 }
