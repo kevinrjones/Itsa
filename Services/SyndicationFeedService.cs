@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel.Syndication;
 using Entities;
 using ItsaRepository.Interfaces;
@@ -10,20 +11,20 @@ namespace Services
     public class SyndicationFeedService : ISyndicationFeedService
     {
         private readonly IPostRepository _postRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public SyndicationFeedService(IPostRepository postRepository, IUserRepository userRepository)
+        public SyndicationFeedService(IPostRepository postRepository, IUserService userService)
         {
             _postRepository = postRepository;
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         #region ISyndicationFeedService Members
 
         public SyndicationFeed CreateSyndicationFeed(string feedType, string scheme, string host)
         {
-            IList<Post> posts = _postRepository.GetPosts();
-            var user = _userRepository.GetUser();
+            IList<Post> posts = _postRepository.Entities.ToList();
+            var user = _userService.GetUser();
             
             string url = string.Format("{0}://{1}", scheme, host);
             var feed = new SyndicationFeed(user.BlogTitle, user.BlogDescription, new Uri(url), url, user.LastUpdated);

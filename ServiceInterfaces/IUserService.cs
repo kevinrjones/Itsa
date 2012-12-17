@@ -13,6 +13,7 @@ namespace ServiceInterfaces
         bool UnRegister();
         bool Logon(string userName, string password);
         User GetRegisteredUser();
+        User GetUser();
     }
 
 }

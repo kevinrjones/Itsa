@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminService.cs" />
+    <Compile Include="MediaService.cs" />
     <Compile Include="PostService.cs" />
     <Compile Include="SyndicationFeedService.cs" />
     <Compile Include="UserService.cs" />

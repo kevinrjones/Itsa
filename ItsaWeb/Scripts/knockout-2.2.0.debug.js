@@ -1462,7 +1462,7 @@ ko.exportSymbol('toJSON', ko.toJSON);
                     switch(typeof value) {
                         case "string":
                             ko.utils.domData.set(element, ko.bindingHandlers.options.optionValueDomDataKey, undefined);
-                            if (hasDomDataExpandoProperty in element) { // IE <= 8 throws errors if you delete non-existent properties from a DOM node
+                            if (hasDomDataExpandoProperty in element) { // IE <= 8 throws errors if you DeletePost non-existent properties from a DOM node
                                 delete element[hasDomDataExpandoProperty];
                             }
                             element.value = value;
@@ -3181,7 +3181,7 @@ ko.exportSymbol('setTemplateEngine', ko.setTemplateEngine);
 ko.exportSymbol('renderTemplate', ko.renderTemplate);
 
 ko.utils.compareArrays = (function () {
-    var statusNotInOld = 'added', statusNotInNew = 'deleted';
+    var statusNotInOld = 'added', statusNotInNew = 'DeletePostd';
 
     // Simple calculation based on Levenshtein distance.
     function compareArrays(oldArray, newArray, dontLimitMoves) {
@@ -3234,7 +3234,7 @@ ko.utils.compareArrays = (function () {
                     'value': bigArray[--bigIndex],
                     'index': bigIndex });
             } else if (smlIndex && meMinusOne === editDistanceMatrix[smlIndex - 1][bigIndex]) {
-                notInBig.push(editScript[editScript.length] = {     // deleted
+                notInBig.push(editScript[editScript.length] = {     // DeletePostd
                     'status': statusNotInBig,
                     'value': smlArray[--smlIndex],
                     'index': smlIndex });
@@ -3251,7 +3251,7 @@ ko.utils.compareArrays = (function () {
             // smlIndexMax keeps the time complexity of this algorithm linear.
             var limitFailedCompares = smlIndexMax * 10, failedCompares,
                 a, d, notInSmlItem, notInBigItem;
-            // Go through the items that have been added and deleted and try to find matches between them.
+            // Go through the items that have been added and DeletePostd and try to find matches between them.
             for (failedCompares = a = 0; (dontLimitMoves || failedCompares < limitFailedCompares) && (notInSmlItem = notInSml[a]); a++) {
                 for (d = 0; notInBigItem = notInBig[d]; d++) {
                     if (notInSmlItem['value'] === notInBigItem['value']) {
@@ -3279,7 +3279,7 @@ ko.exportSymbol('utils.compareArrays', ko.utils.compareArrays);
     //   map the array elements to arrays of DOM nodes, concatenate together all these arrays, and use them to populate the container DOM node
     // * Next time we're given the same combination of things (with the array possibly having mutated), update the container DOM node
     //   so that its children is again the concatenation of the mappings of the array elements, but don't re-map any array elements that we
-    //   previously mapped - retain those nodes, and just insert/delete other ones
+    //   previously mapped - retain those nodes, and just insert/DeletePost other ones
 
     // "callbackAfterAddingNodes" will be invoked after any "mapping"-generated nodes are inserted into the container node
     // You can use this, for example, to activate bindings on those nodes.
@@ -3334,7 +3334,7 @@ ko.exportSymbol('utils.compareArrays', ko.utils.compareArrays);
             }
 
             // Replace the contents of the mappedNodes array, thereby updating the record
-            // of which nodes would be deleted if valueToMap was itself later removed
+            // of which nodes would be DeletePostd if valueToMap was itself later removed
             mappedNodes.splice(0, mappedNodes.length);
             ko.utils.arrayPushAll(mappedNodes, newMappedNodes);
         }, null, { disposeWhenNodeIsRemoved: containerNode, disposeWhen: function() { return (mappedNodes.length == 0) || !ko.utils.domNodeIsAttachedToDocument(mappedNodes[0]) } });
@@ -3390,7 +3390,7 @@ ko.exportSymbol('utils.compareArrays', ko.utils.compareArrays);
         for (var i = 0, editScriptItem, movedIndex; editScriptItem = editScript[i]; i++) {
             movedIndex = editScriptItem['moved'];
             switch (editScriptItem['status']) {
-                case "deleted":
+                case "DeletePostd":
                     if (movedIndex === undefined) {
                         mapData = lastMappingResult[lastMappingResultIndex];
 
@@ -3429,10 +3429,10 @@ ko.exportSymbol('utils.compareArrays', ko.utils.compareArrays);
         // Call beforeMove first before any changes have been made to the DOM
         callCallback(options['beforeMove'], itemsForMoveCallbacks);
 
-        // Next remove nodes for deleted items (or just clean if there's a beforeRemove callback)
+        // Next remove nodes for DeletePostd items (or just clean if there's a beforeRemove callback)
         ko.utils.arrayForEach(nodesToDelete, options['beforeRemove'] ? ko.cleanNode : ko.removeNode);
 
-        // Next add/reorder the remaining items (will include deleted items if there's a beforeRemove callback)
+        // Next add/reorder the remaining items (will include DeletePostd items if there's a beforeRemove callback)
         for (var i = 0, nextNode = ko.virtualElements.firstChild(domNode), lastNode, node; mapData = itemsToProcess[i]; i++) {
             // Get nodes for newly added items
             if (!mapData.mappedNodes)

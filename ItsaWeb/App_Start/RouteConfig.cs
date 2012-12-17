@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ItsaWeb
+namespace ItsaWeb.App_Start
 {
-    public class RouteConfig
+    public static class RouteConfig
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        public static void RegisterRoutes(this RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -72,7 +68,7 @@ namespace ItsaWeb
             routes.MapRoute(
                 name: "Posts-delete-atom",
                 url: "pub/atom/{postId}",
-                defaults: new { controller = "Atom", action = "Delete" },
+                defaults: new { controller = "Atom", action = "DeletePost" },
                 constraints: new { httpMethod = new HttpMethodConstraint("DELETE") }
                 );
 

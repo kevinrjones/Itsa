@@ -32,9 +32,5 @@ namespace FileRepository.Repositories
             base.Create(entity);
         }
 
-        public User GetUser()
-        {
-            return Entities.FirstOrDefault();
-        }
     }
 }

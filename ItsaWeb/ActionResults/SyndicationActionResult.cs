@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using ItsaWeb.ActionResults;
 
-namespace MBlog.ActionResults
+namespace ItsaWeb.ActionResults
 {
     public class SyndicationActionResult : ActionResult
     {
@@ -22,9 +21,9 @@ namespace MBlog.ActionResults
             {
                 response.ContentType = FeedData.ContentType;
                 response.AppendHeader("Cache-Control", "private");                
-                response.AppendHeader("Location", string.Format("{0}://{1}", 
-                    HttpContext.Current.Request.Url.Scheme, 
-                    HttpContext.Current.Request.Headers["HOST"]));
+                response.AppendHeader("Location", string.Format("{0}://{1}",
+                    context.HttpContext.Request.Url.Scheme,
+                    context.HttpContext.Request.Headers["HOST"]));
                 response.AppendHeader("Last-Modified", FeedData.LastModifiedDate.ToString("r"));
                 response.AppendHeader("ETag", String.Format("\"{0}\"", FeedData.ETag));
                 response.Output.WriteLine(FeedData.Content);

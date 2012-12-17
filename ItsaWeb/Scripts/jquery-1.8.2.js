@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery JavaScript Library v1.8.2
  * http://jquery.com/
  *
@@ -1344,7 +1344,7 @@ jQuery.support = (function() {
 	select.disabled = true;
 	support.optDisabled = !opt.disabled;
 
-	// Test to see if it's possible to delete an expando from an element
+	// Test to see if it's possible to DeletePost an expando from an element
 	// Fails in Internet Explorer
 	try {
 		delete div.test;
@@ -1698,7 +1698,7 @@ jQuery.extend({
 		if ( isNode ) {
 			jQuery.cleanData( [ elem ], true );
 
-		// Use delete when supported for expandos or `cache` is not a window per isWindow (#10080)
+		// Use DeletePost when supported for expandos or `cache` is not a window per isWindow (#10080)
 		} else if ( jQuery.support.deleteExpando || cache != cache.window ) {
 			delete cache[ id ];
 
@@ -2825,7 +2825,7 @@ jQuery.event = {
 			delete elemData.handle;
 
 			// removeData also checks for emptiness and clears the expando if empty
-			// so use it instead of delete
+			// so use it instead of DeletePost
 			jQuery.removeData( elem, "events", true );
 		}
 	},
@@ -6439,7 +6439,7 @@ jQuery.extend({
 
 						delete cache[ id ];
 
-						// IE does not allow us to delete expando properties from nodes,
+						// IE does not allow us to DeletePost expando properties from nodes,
 						// nor does it have a removeAttribute function on Document nodes;
 						// we must handle all of these cases
 						if ( deleteExpando ) {

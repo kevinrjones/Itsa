@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 
@@ -68,11 +67,11 @@ namespace Entities
         public Media(string fileName, string contentType, Stream inputStream, int contentLength)
             : this(fileName, "", "", "", "", contentType, 0, 0, null)
         {
+            if (inputStream == null) throw new ArgumentNullException();
             Data = new byte[contentLength];
             inputStream.Read(Data, 0, contentLength);
         }
 
-        [Key]
         public Guid Id { get; set; }
         public string FileName { get; set; }
         public string Title

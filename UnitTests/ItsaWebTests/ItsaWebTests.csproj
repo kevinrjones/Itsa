@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
@@ -76,30 +77,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseControllerTests.cs" />
+    <Compile Include="Controllers\SessionControllerTest.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
+    <Compile Include="Helpers\FakeRequest.cs" />
+    <Compile Include="Helpers\FakeResponse.cs" />
+    <Compile Include="Models\UserViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractConfigurationManager\AbstractConfigurationManager.csproj">
+    <ProjectReference Include="..\..\AbstractConfigurationManager\AbstractConfigurationManager.csproj">
       <Project>{4049F353-A3D2-4B82-BF5A-25578717F904}</Project>
       <Name>AbstractConfigurationManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
+    <ProjectReference Include="..\..\Entities\Entities.csproj">
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ItsaWeb\ItsaWeb.csproj">
+    <ProjectReference Include="..\..\ItsaWeb\ItsaWeb.csproj">
       <Project>{9C4C6CBC-4F8F-47DC-83D7-BAB33902F917}</Project>
       <Name>ItsaWeb</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Logging\Logging.csproj">
+    <ProjectReference Include="..\..\Logging\Logging.csproj">
       <Project>{F65BCCBF-249A-4F8C-81EB-D05F6057E9DF}</Project>
       <Name>Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceInterfaces\ServiceInterfaces.csproj">
+    <ProjectReference Include="..\..\ServiceInterfaces\ServiceInterfaces.csproj">
       <Project>{4E597FB7-4706-45E2-9F9F-BAED246F06C4}</Project>
       <Name>ServiceInterfaces</Name>
     </ProjectReference>

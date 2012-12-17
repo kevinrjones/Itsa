@@ -584,7 +584,7 @@
 					newContents[index] = mappedItem;
 					ignoreIndexOf[index] = true;
 					break;
-				case "deleted":
+				case "DeletePostd":
 					mappedItem = getItemByKey(mappedRootObject, key.value, keyCallback);
 					break;
 				}

@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using System.Linq;
+using Entities;
 using Exceptions;
 using ItsaRepository.Interfaces;
 using ServiceInterfaces;
@@ -47,12 +48,18 @@ namespace Services
 
         public User GetRegisteredUser()
         {
-            var user = _userRepository.GetUser();
+            var user = GetUser();
             if (user == null || string.IsNullOrEmpty(user.Name))
             {
                 return null;
             }
             return user;
         }
+
+        public User GetUser()
+        {
+            return _userRepository.Entities.FirstOrDefault();
+        }
+
     }
 }

@@ -10,6 +10,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using Autofac;
 using Autofac.Integration.Mvc;
+using ItsaWeb.App_Start;
 using ItsaWeb.Hubs;
 using ItsaWeb.Models;
 using Logging;
@@ -33,10 +34,10 @@ namespace ItsaWeb
             GlobalHost.DependencyResolver = new Infrastructure.AutofacDependencyResolver(container); // for signalr
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteTable.Routes.MapHubs(); // for signalr - *must* come before other routes
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            GlobalFilters.Filters.RegisterGlobalFilters();
+//            RouteTable.Routes.MapHubs(); // for signalr - *must* come before other routes
+            RouteTable.Routes.RegisterRoutes();
+            BundleTable.Bundles.RegisterBundles();
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs e)

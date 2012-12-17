@@ -48,7 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlogRepositoryTests.cs" />
+    <Compile Include="BaseFileRepositoryTests.cs" />
+    <Compile Include="UserRepositoryTests.cs" />
+    <Compile Include="MediaRepositoryTests.cs" />
+    <Compile Include="PostRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +61,10 @@
     <ProjectReference Include="..\..\Entities\Entities.csproj">
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Exceptions\Exceptions.csproj">
+      <Project>{3B03CAF2-AC3B-4682-9C76-9AA9F4A25321}</Project>
+      <Name>Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\FileRepository\FileRepository.csproj">
       <Project>{DDA7CF44-49A9-4E92-BA4F-65488C003CEF}</Project>

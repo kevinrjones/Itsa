@@ -17,7 +17,7 @@ using Serialization;
 namespace FileRepositoryTests
 {
     [TestFixture]
-    public class BlogRepositoryTests
+    public class PostRepositoryTests
     {
         private Mock<IFileInfo> _fileInfo;
         private Mock<IDirectoryInfo> _directoryInfo;
@@ -34,9 +34,17 @@ namespace FileRepositoryTests
         }
 
         [Test]
+        public void GivenARepository_WhenAnEntityCreated_ThenTheCorrectTypeIsCreated()
+        {
+            using (var repository = new PostRepository(Path, _fileInfoFactory.Object, null))
+            {
+                repository.New().Should().BeOfType<Post>();
+            }
+        }
+
+        [Test]
         public void GivenABlogEntry_WhenThenFileIsCreated_ThenTheCorrectFileNameIsUsed()
         {
-            string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", Path, "title", 1990, 1, 1, new DateTime(1990, 1, 1).Ticks);
             _fileInfo.Setup(f => f.Create()).Returns(new MemoryStream());
 
             var entry = new Post { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
@@ -149,5 +157,6 @@ namespace FileRepositoryTests
             var entities = repository.Entities;
             entities.Should().HaveCount(2);
         }
+
     }
 }

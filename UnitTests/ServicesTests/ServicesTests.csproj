@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminServiceTests.cs" />
+    <Compile Include="MediaServiceTests.cs" />
+    <Compile Include="PostServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests.cs" />
   </ItemGroup>

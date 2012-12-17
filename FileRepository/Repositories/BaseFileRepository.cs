@@ -24,10 +24,7 @@ namespace FileRepository.Repositories
             DirectoryInfo = directoryInfo;
         }
 
-        public void Dispose()
-        {
-            
-        }
+        public void Dispose(){}
 
         public IQueryable<T> Entities
         {
@@ -58,9 +55,9 @@ namespace FileRepository.Repositories
         public void Update(T entity)
         {
             string fileName = GenerateFileName(entity);
-            IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
             try
             {
+                IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
                 using (var stream = fileInfo.Open(FileMode.Open))
                 {
                     var json = entity.SerializeToString();
@@ -81,10 +78,10 @@ namespace FileRepository.Repositories
         public virtual void Create(T entity)
         {
             var fileName = GenerateFileName(entity);
-            IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
-
             try
             {
+                IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
+
                 using (var stream = fileInfo.Create())
                 {
                     var json = entity.SerializeToString();
@@ -96,19 +93,19 @@ namespace FileRepository.Repositories
             {
                 throw new RepositoryException(string.Format("Unable to create entry with filename: {0}", fileName));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new ItsaException();
+                throw new ItsaException("Unable to create entity", e);
             }
         }
 
         public void Delete(T entity)
         {
             var fileName = GenerateFileName(entity);
-            IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
-
             try
             {
+                IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
+
                 fileInfo.Delete();
             }
             catch (IOException)

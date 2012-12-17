@@ -26,7 +26,11 @@ namespace Entities
 
         public string Password
         {
-            set { GenerateHashedPasswordFromPlaintext(value); }
+            set
+            {
+                if(string.IsNullOrEmpty(Salt)) throw new ArgumentException("Salt has not been set");
+                HashedPassword = GenerateHashedPasswordFromPlaintext(value);
+            }
         }
 
         public string BlogDescription { get; set; }

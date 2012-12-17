@@ -10,9 +10,7 @@ using ItsaWeb.ActionResults;
 using ItsaWeb.Filters;
 using ItsaWeb.Models.Atom;
 using ItsaWeb.Models.Posts;
-using ItsaWeb.Views.Feed;
 using Logging;
-using MBlog.ActionResults;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Controllers.Publishing
@@ -54,7 +52,7 @@ namespace ItsaWeb.Controllers.Publishing
         [AuthorizedUser]
         public virtual ActionResult Get(Guid postId)
         {
-            Post post = _postService.Get(postId);
+            Post post = _postService.GetPost(postId);
             return
                 View(new EditPostViewModel {PostId = postId, Title = post.Title, Post = post.Body, Edited = post.EntryUpdateDate, Published = post.EntryAddedDate});
         }
@@ -69,7 +67,7 @@ namespace ItsaWeb.Controllers.Publishing
                            select node.Value).FirstOrDefault();
             var content = (from node in atomXMl.Descendants(ns + "content")
                            select node.Value).FirstOrDefault();
-            _postService.Update(postId, title, content);
+            _postService.UpdatePost(postId, title, content);
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
@@ -77,7 +75,7 @@ namespace ItsaWeb.Controllers.Publishing
         [AuthorizedUser]
         public virtual ActionResult Delete(Guid postId)
         {
-            _postService.Delete(postId);
+            _postService.DeletePost(postId);
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 

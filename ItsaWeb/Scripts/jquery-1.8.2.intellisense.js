@@ -2049,12 +2049,12 @@ intellisense.annotate(jQuery.fn, {
   'removeData': function() {
     /// <signature>
     ///   <summary>Remove a previously-stored piece of data.</summary>
-    ///   <param name="name" type="String">A string naming the piece of data to delete.</param>
+    ///   <param name="name" type="String">A string naming the piece of data to DeletePost.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
     ///   <summary>Remove a previously-stored piece of data.</summary>
-    ///   <param name="list" type="String">An array or space-separated string naming the pieces of data to delete.</param>
+    ///   <param name="list" type="String">An array or space-separated string naming the pieces of data to DeletePost.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },

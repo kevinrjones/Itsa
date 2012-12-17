@@ -12,7 +12,9 @@ namespace ItsaWeb.Infrastructure
             if (str1 != null)
             {
                 if (!string.IsNullOrEmpty(fragment))
+                {
                     str1 = str1 + "#" + fragment;
+                }
                 if (!string.IsNullOrEmpty(protocol) || !string.IsNullOrEmpty(hostName))
                 {
                     Uri url = requestContext.HttpContext.Request.Url;

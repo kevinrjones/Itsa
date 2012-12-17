@@ -18,24 +18,36 @@ namespace Services
             _postRepository = postRepository;
         }
 
-        public Post Get(Guid postId)
+        public Post GetPost(Guid postId)
         {
-            return _postRepository.GetBlogPost(postId);
+            return (from e in _postRepository.Entities
+                    where e.Id == postId
+                    select e).FirstOrDefault();
         }
 
-        public void Update(Guid postId, string title, string content)
+        public void UpdatePost(Guid postId, string title, string content)
         {
-            _postRepository.Update(postId, title, content);
+            var post = GetPost(postId);
+            post.Title = title;
+            post.Body = content;
+
+            _postRepository.Update(post);
         }
 
-        public void Delete(Guid postId)
+        public void DeletePost(Guid postId)
         {
-            _postRepository.Delete(postId);
+            var post = GetPost(postId);            
+            _postRepository.Delete(post);
         }
 
         public void CreatePost(Post post)
         {
             _postRepository.Create(post);
+        }
+
+        public int GetCountOfPostsForBlog()
+        {
+            return _postRepository.Entities.Count();
         }
     }
 }

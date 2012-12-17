@@ -1,7 +1,7 @@
 ﻿using System;
 using Entities;
 
-namespace ItsaWeb.Views.Feed
+namespace ItsaWeb.Models.Posts
 {
     public class NewPostViewModel
     {

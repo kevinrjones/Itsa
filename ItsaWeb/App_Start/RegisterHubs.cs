@@ -1,11 +1,11 @@
 using System.Web;
 using System.Web.Routing;
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Hosting.AspNet;
+using ItsaWeb.App_Start;
+using SignalR;
 
-[assembly: PreApplicationStartMethod(typeof(ItsaWeb.RegisterHubs), "Start")]
+[assembly: PreApplicationStartMethod(typeof(RegisterHubs), "Start")]
 
-namespace ItsaWeb
+namespace ItsaWeb.App_Start
 {
     public static class RegisterHubs
     {
