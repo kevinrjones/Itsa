@@ -10,7 +10,7 @@ namespace SystemFileAdapter
 
         public SystemIoFileInfo(string fileName)
         {
-            this._fileName = fileName;
+            _fileName = fileName;
         }
 
         public Stream Create()
