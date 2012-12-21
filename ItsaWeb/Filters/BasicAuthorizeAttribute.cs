@@ -25,7 +25,9 @@ namespace ItsaWeb.Filters
         public IUserService UserService { get; set; }
         private AuthorizationContext _filterContext;
 
+// ReSharper disable RedundantAssignment
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
+// ReSharper restore RedundantAssignment
         {
             validationStatus = OnCacheAuthorization(new HttpContextWrapper(context));
         }

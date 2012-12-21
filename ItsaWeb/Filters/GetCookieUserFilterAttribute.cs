@@ -31,7 +31,7 @@ namespace ItsaWeb.Filters
                     if (user != null)
                     {
                         string name = cipherText.Decrypt(user.Salt);
-                        userViewModel.UserName = name;                        
+                        userViewModel.DisplayName = name;                        
                         userViewModel.Email = user.Email;
                         //    userViewModel.Name = user.Name;
                         //    userViewModel.IsLoggedIn = true;

@@ -7,7 +7,7 @@ namespace ItsaWeb.Models
     {
         public bool AllowComments { get; set; }
         public bool ModerateComments { get; set; }
-        public string UserName { get; set; }
+        public string DisplayName { get; set; }
         public string BlogTitle { get; set; }
         public string BlogSubTitle { get; set; }
         public string Email { get; set; }

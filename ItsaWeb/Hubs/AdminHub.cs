@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Entities;
+using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
 using ServiceInterfaces;
 
@@ -17,25 +18,23 @@ namespace ItsaWeb.Hubs
             _adminService = adminService;
         }
 
-        public UserViewModel GetUserName()
+        public UserViewModel GetUser()
         {
-            try
-            {
-                var model = new UserViewModel { UserName = UserName, AllowComments = true };
-                return model;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            var model = new UserViewModel { Name = UserName, AllowComments = true };
+            return model;
         }
 
         public void AddEntry(BlogEntryViewModel model)
         {
-            var entry = new Post { EntryAddedDate = model.EntryAddedDate, 
-                EntryUpdateDate = model.EntryUpdateDate, 
-                Body = model.Post, 
-                Title = model.Title };
+            var user = UserName;
+
+            var entry = new Post
+            {
+                EntryAddedDate = model.EntryAddedDate,
+                EntryUpdateDate = model.EntryUpdateDate,
+                Body = model.Post,
+                Title = model.Title
+            };
 
             _adminService.AddBlogEntry(entry);
         }
