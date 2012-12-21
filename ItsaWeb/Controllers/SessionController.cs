@@ -2,8 +2,7 @@
 using AbstractConfigurationManager;
 using ItsaWeb.Models;
 using ServiceInterfaces;
-using dotless.Core.Loggers;
-using ILogger = Logging.ILogger;
+using Logging;
 
 namespace ItsaWeb.Controllers
 {

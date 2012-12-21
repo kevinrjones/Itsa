@@ -20,6 +20,7 @@ namespace ItsaWeb.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
         public ActionResult New(RegisterUserViewModel user)
         {
             if (_userService.GetRegisteredUser() != null)
@@ -30,6 +31,7 @@ namespace ItsaWeb.Controllers
             return View(user);
         }
 
+        [HttpPost]
         public ActionResult Create(RegisterUserViewModel user)
         {
             _userService.Register(user.UserName, user.Password, user.Email);
@@ -38,6 +40,7 @@ namespace ItsaWeb.Controllers
         }
 
         [AuthorizedUser]
+        [HttpPost]
         public ActionResult Delete()
         {
             if (_userService.UnRegister())

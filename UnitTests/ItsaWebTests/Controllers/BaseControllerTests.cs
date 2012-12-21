@@ -16,6 +16,7 @@ namespace ItsaWebTests.Controllers
         protected Mock<HttpContextBase> MockHttpContext;
         protected Mock<HttpRequestBase> MockRequest;
         protected RouteCollection Routes;
+        protected TempDataDictionary TempData;
 
         [SetUp]
         public void BaseSetup()
@@ -28,12 +29,14 @@ namespace ItsaWebTests.Controllers
 
             MockHttpContext.Setup(m => m.Request).Returns(MockRequest.Object);
             MockHttpContext.Setup(m => m.Response).Returns(FakeResponse);
+            TempData = new TempDataDictionary();
         }
 
         protected void SetControllerContext(BaseController controller)
         {
             ControllerContext = new ControllerContext(MockHttpContext.Object, new RouteData(), controller);
             controller.ControllerContext = ControllerContext;
+            controller.TempData = TempData;
         }
     }
 }

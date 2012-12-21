@@ -3,7 +3,7 @@
 namespace ItsaWebTests.Controllers
 {
     [TestFixture]
-    internal class SessionControllerTest : BaseControllerTests
+    class SessionControllerTest : BaseControllerTests
     {
     }
 }
