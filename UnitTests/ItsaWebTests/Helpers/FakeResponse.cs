@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Collections.Specialized;
+using System.Web;
 using Moq;
 
 namespace ItsaWebTests.Helpers
@@ -7,11 +8,14 @@ namespace ItsaWebTests.Helpers
     {
         // Routing calls this to account for cookieless sessions
         // It's irrelevant for the test, so just return the path unmodified
-        private readonly HttpCookieCollection cookies = new HttpCookieCollection();
+        private readonly HttpCookieCollection _cookies = new HttpCookieCollection();
+        private readonly NameValueCollection _headers = new NameValueCollection();
+
+        public override int StatusCode { get; set; }
 
         public override HttpCookieCollection Cookies
         {
-            get { return cookies; }
+            get { return _cookies; }
         }
 
         public override HttpCachePolicyBase Cache
@@ -26,6 +30,19 @@ namespace ItsaWebTests.Helpers
         public override string ApplyAppPathModifier(string x)
         {
             return x;
+        }
+
+        public override void AddHeader(string name, string value)
+        {
+            _headers.Add(name, value);
+        }
+
+        public override NameValueCollection Headers
+        {
+            get
+            {
+                return _headers;
+            }
         }
     }
 }

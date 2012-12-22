@@ -1,13 +1,9 @@
-﻿using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿using System.Web.Mvc;
 using AbstractConfigurationManager;
 using Entities;
 using FluentAssertions;
-using ItsaWeb.App_Start;
 using ItsaWeb.Controllers;
 using ItsaWeb.Models;
-using ItsaWebTests.Helpers;
 using Logging;
 using Moq;
 using NUnit.Framework;
@@ -16,7 +12,7 @@ using ServiceInterfaces;
 namespace ItsaWebTests.Controllers
 {
     [TestFixture]
-    public class UserControllerTests : BaseControllerTests
+    public class UserControllerTests : ControllerTestsBase
     {
         private Mock<IUserService> _userService;
         private Mock<IConfigurationManager> _configurationManager;

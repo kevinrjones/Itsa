@@ -33,10 +33,10 @@ namespace ItsaWeb.Infrastructure
             }
         }
 
-        public static byte[] Encrypt(this string plainText, string salt)
+        public static byte[] Encrypt(this string plainText, string salt, string keyphrase)
         {
             var saltBytes = Encoding.Default.GetBytes(salt);
-            KeyGenerator = new Rfc2898DeriveBytes(ConfigurationManager.AppSettings["keyphrase"], saltBytes);
+            KeyGenerator = new Rfc2898DeriveBytes(keyphrase, saltBytes);
 
             if (string.IsNullOrEmpty(plainText))
                 throw new ArgumentNullException("plainText");
@@ -58,14 +58,14 @@ namespace ItsaWeb.Infrastructure
             return encrypted;
         }
 
-        public static string Decrypt(this byte[] cipherText, string salt)
+        public static string Decrypt(this byte[] cipherText, string salt, string keyphrase)
         {
             // Check arguments.
             if (cipherText == null || cipherText.Length == 0)
                 throw new ArgumentNullException("cipherText");
 
             var saltBytes = Encoding.Default.GetBytes(salt); 
-            KeyGenerator = new Rfc2898DeriveBytes(ConfigurationManager.AppSettings["keyphrase"], saltBytes);
+            KeyGenerator = new Rfc2898DeriveBytes(keyphrase, saltBytes);
 
             string plaintext;
 

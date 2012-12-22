@@ -44,6 +44,7 @@
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -78,10 +79,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseControllerTests.cs" />
+    <Compile Include="Controllers\ControllerTestsBase.cs" />
     <Compile Include="Controllers\SessionControllerTest.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
+    <Compile Include="Filters\AuthorizedUserAttributeTests.cs" />
+    <Compile Include="Filters\BasicAuthorizeAttributeTests.cs" />
+    <Compile Include="Filters\GetCookieUserFilterAttributeTests.cs" />
+    <Compile Include="Filters\HttpBasicUnauthorizedResultTests.cs" />
     <Compile Include="Helpers\FakeRequest.cs" />
     <Compile Include="Helpers\FakeResponse.cs" />
+    <Compile Include="Models\NewMediaViewModelTests.cs" />
+    <Compile Include="Models\ShowMediaViewModelTests.cs" />
     <Compile Include="Models\UserViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

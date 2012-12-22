@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using AbstractConfigurationManager;
 using Entities;
 using System.Linq;
 using ItsaWeb.Infrastructure;
@@ -14,22 +15,15 @@ namespace ItsaWeb.Filters
 {
     public class BasicAuthorizeAttribute : AuthorizeAttribute
     {
-        private bool _requireSsl = true;
-
-        public bool RequireSsl
-        {
-            get { return _requireSsl; }
-            set { _requireSsl = value; }
-        }
+        public bool RequireSsl { get; set; }
 
         public IUserService UserService { get; set; }
+        public IConfigurationManager ConfigurationManager { get; set; }
         private AuthorizationContext _filterContext;
 
-// ReSharper disable RedundantAssignment
-        private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
-// ReSharper restore RedundantAssignment
+        public BasicAuthorizeAttribute()
         {
-            validationStatus = OnCacheAuthorization(new HttpContextWrapper(context));
+            RequireSsl = true;
         }
 
         public override void OnAuthorization(AuthorizationContext filterContext)
@@ -50,11 +44,17 @@ namespace ItsaWeb.Filters
                     cachePolicy.SetProxyMaxAge(new TimeSpan(0));
                     cachePolicy.AddValidationCallback(CacheValidateHandler, null);
                 }
-                else
-                {
-                    filterContext.Result = new HttpBasicUnauthorizedResult();
-                }
+                //else
+                //{
+                //    // no roles set and IsAuthenticated is always true so this is redundant
+                //    filterContext.Result = new HttpBasicUnauthorizedResult();
+                //}
             }
+        }
+
+        private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
+        {
+            validationStatus = OnCacheAuthorization(new HttpContextWrapper(context));
         }
 
         private bool Authenticate(HttpContextBase context)
@@ -68,7 +68,8 @@ namespace ItsaWeb.Filters
             IIdentity identity;
             if (TryGetPrincipal(authHeader, out identity))
             {
-                HttpContext.Current.User = Thread.CurrentPrincipal = new GenericPrincipal(identity, null);
+                //HttpContext.Current.User = Thread.CurrentPrincipal = new GenericPrincipal(identity, null);
+                context.User = Thread.CurrentPrincipal = new GenericPrincipal(identity, null);
                 return true;
             }
             return false;
@@ -120,7 +121,7 @@ namespace ItsaWeb.Filters
 
             if (_filterContext.HttpContext.Request.Cookies[GetCookieUserFilterAttribute.UserCookieName] == null)
             {
-                byte[] cipherText = user.Name.Encrypt(user.Salt);
+                byte[] cipherText = user.Name.Encrypt(user.Salt, ConfigurationManager.AppSetting("keyphrase"));
                 string base64CipherText = Convert.ToBase64String(cipherText);
                 var cookie = new HttpCookie(GetCookieUserFilterAttribute.UserCookieName,
                                             base64CipherText) {Secure = RequireSsl};

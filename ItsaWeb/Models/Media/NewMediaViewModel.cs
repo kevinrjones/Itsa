@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -45,7 +46,14 @@ namespace ItsaWeb.Models.Media
                 {
                     return File.ContentType;
                 }
-                return _validExtensions[GetExtension(QqFile).ToLower()];
+                try
+                {
+                    return _validExtensions[Extension(QqFile).ToLower()];
+                }
+                catch
+                {
+                    return "";
+                }                
             }
         }
 
@@ -56,11 +64,11 @@ namespace ItsaWeb.Models.Media
             string ext;
             if (File != null)
             {
-                ext = GetExtension(File.FileName);
+                ext = Extension(File.FileName);
             }
             else
             {
-                ext = GetExtension(QqFile);
+                ext = Extension(QqFile);
             }
             if (!IsAllowed(ext))
                 yield return new ValidationResult("Files with this extension not allowed", new[] {"File"});
@@ -68,7 +76,7 @@ namespace ItsaWeb.Models.Media
 
         #endregion
 
-        public bool IsAllowed(string extension)
+        private bool IsAllowed(string extension)
         {
             string s = (from a in _validExtensions.Keys
                         where a == extension
@@ -77,9 +85,13 @@ namespace ItsaWeb.Models.Media
             return s != null;
         }
 
-        public string GetExtension(string fileName)
+        private string Extension(string fileName)
         {
-            return fileName.Split('.').Last();
+            if (!string.IsNullOrEmpty(fileName) && fileName.Contains("."))
+            {
+                return fileName.Split('.').Last();
+            }
+            return "";
         }
     }
 }

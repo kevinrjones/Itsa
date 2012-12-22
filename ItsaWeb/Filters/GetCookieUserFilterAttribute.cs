@@ -2,6 +2,7 @@
 using System.Security.Principal;
 using System.Threading;
 using System.Web.Mvc;
+using AbstractConfigurationManager;
 using ItsaWeb.Controllers;
 using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
@@ -14,6 +15,7 @@ namespace ItsaWeb.Filters
         public const string UserCookieName = "USER";
 
         public IUserService UserService { get; set; }
+        public IConfigurationManager ConfigurationManager { get; set;  }
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -30,8 +32,8 @@ namespace ItsaWeb.Filters
                     var user = UserService.GetRegisteredUser();
                     if (user != null)
                     {
-                        string name = cipherText.Decrypt(user.Salt);
-                        userViewModel.DisplayName = name;                        
+                        string name = cipherText.Decrypt(user.Salt, ConfigurationManager.AppSetting("keyphrase"));
+                        userViewModel.Name = name;                        
                         userViewModel.Email = user.Email;
                         //    userViewModel.Name = user.Name;
                         //    userViewModel.IsLoggedIn = true;

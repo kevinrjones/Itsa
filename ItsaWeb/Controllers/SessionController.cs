@@ -20,6 +20,7 @@ namespace ItsaWeb.Controllers
         {
             if (_userService.GetRegisteredUser() == null)
             {
+                TempData["message"] = "User does not exist";
                 return RedirectToAction("New", "User");
             }
             return View(new LogonViewModel { RedirectTo = redirectTo });
@@ -30,11 +31,12 @@ namespace ItsaWeb.Controllers
             Logger.Info(string.Format("User Name: {0}; Password {1}", user.UserName, user.Password));
             if (ModelState.IsValid)
             {
-                var userResponse =
+                var isUser =
                     _userService.Logon(user.UserName, user.Password);
 
-                if (userResponse)
+                if (isUser)
                 {
+                    TempData["message"] = "User logged on";
                     CreateCookie(user.UserName);
                     return string.IsNullOrEmpty(user.RedirectTo)
                                ? RedirectToAction("Index", "Itsa", null)
@@ -42,12 +44,14 @@ namespace ItsaWeb.Controllers
                 }
                 Logger.Info("User failed to login.");
             }
+            TempData["message"] = "Unable to log user on";
             return View("New", user);
         }
 
         public ActionResult Delete()
         {
             CreateCookie("", -10);
+            TempData["message"] = "Session ended";
             return RedirectToAction("New");
         }
     }
