@@ -17,7 +17,8 @@ namespace FileRepositoryTests
         IFileInfoFactory _fileInfoFactory;
         private IDirectoryInfo _directoryInfo;
         PostRepository _postRepository;
-        const string Directory = "files";
+        const string BaseDirectory = "files";
+        const string PostsDirectory = "files/posts";
         FileInfo _file;
 
         [SetUp]
@@ -26,20 +27,20 @@ namespace FileRepositoryTests
             _fileInfoFactory = new SystemFileInfoFactory();
             _directoryInfo = new SystemIoDirectoryInfo();
 
-            var di = new DirectoryInfo(Directory);
+            var di = new DirectoryInfo(PostsDirectory);
             if (di.Exists)
             {
                 di.Delete(true);
             }
             di.Create();
-            _postRepository = new PostRepository(Directory, _fileInfoFactory, _directoryInfo);
-            CreateFiles(Directory);
+            _postRepository = new PostRepository(BaseDirectory, _fileInfoFactory, _directoryInfo);
+            CreateFiles(PostsDirectory);
         }
 
         [TearDown]
         public void TearDown()
         {
-            var di = new DirectoryInfo(Directory);
+            var di = new DirectoryInfo(PostsDirectory);
             if (di.Exists)
             {
                 di.Delete(true);
@@ -121,7 +122,7 @@ namespace FileRepositoryTests
             var entry = new Post { Title = "title", Id = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) };
 
             _file = new FileInfo(GenerateFileName(entry));
-            using (_file.Create()) ;
+            using (_file.Create()){};
 
             _postRepository.Delete(entry);
 
@@ -132,7 +133,7 @@ namespace FileRepositoryTests
 
         private string GenerateFileName(Post entity)
         {
-            return string.Format("{0}/{1}.json", Directory, entity.Id);
+            return string.Format("{0}/{1}.json", PostsDirectory, entity.Id);
         }
 
     }

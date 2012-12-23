@@ -110,7 +110,7 @@ namespace FileRepository.Repositories
             }
             catch (IOException)
             {
-                throw new RepositoryException(string.Format("Unable to create entry with filename: {0}", fileName));
+                throw new RepositoryException(string.Format("Unable to delete entry with filename: {0}", fileName));
             }
             catch (Exception)
             {
