@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using SystemFileAdapter;
 using Entities;
 using FileRepository.Repositories;
@@ -41,9 +42,30 @@ namespace FileRepositoryTests
         public void TearDown()
         {
             var di = new DirectoryInfo(PostsDirectory);
-            if (di.Exists)
+            while (di.Exists)
             {
-                di.Delete(true);
+                try
+                {
+                    di.Delete(true);
+                }
+                catch
+                {
+                }
+                Thread.Sleep(10);
+                di = new DirectoryInfo(PostsDirectory);
+            }
+            di = new DirectoryInfo(BaseDirectory);
+            while (di.Exists)
+            {
+                try
+                {
+                    di.Delete(true);
+                }
+                catch
+                {
+                }
+                Thread.Sleep(10);
+                di = new DirectoryInfo(BaseDirectory);
             }
         }
 
