@@ -71,7 +71,7 @@
     <Compile Include="PageLibrary\Base\CommonBase.cs" />
     <Compile Include="PageLibrary\Base\PageBase.cs" />
     <Compile Include="PageLibrary\PageBase.Navigation.cs" />
-    <Compile Include="PageLibrary\Pages\HomePage.cs" />
+    <Compile Include="PageLibrary\Pages\UserPage.cs" />
     <Compile Include="PageLibrary\Pages\IndexPage.cs" />
     <Compile Include="PageLibrary\Pages\LogonPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

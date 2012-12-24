@@ -54,14 +54,14 @@ namespace WebScenarios.PageLibrary.Pages
             EMail.SendKeys(email);
         }
 
-        public HomePage RegisterUser()
+        public UserPage RegisterUser()
         {
             Thread.Sleep(100);
             RegisterButton.Click();
-            return GetInstance<HomePage>();
+            return GetInstance<UserPage>();
         }
 
-        public HomePage RegisterUser(string name, string password, string email)
+        public UserPage RegisterUser(string name, string password, string email)
         {
             SetUserName(name);
             SetPassword(password);

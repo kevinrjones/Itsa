@@ -9,14 +9,14 @@ Scenario: Logon with forms authentication
 	And I am not logged on
 	And I enter valid credentials into the logon form
 	When I press logon
-	Then the ItsA home page should be shown
+	Then the ItsA user page should be shown
 
 @session
 Scenario: Register user
 	Given I do not exist as a user
 	And I enter valid details into the registration form
 	When I press register
-	Then the ItsA home page should be shown
+	Then the ItsA user page should be shown
 
 Scenario: Unregister user
 	Given I am registered

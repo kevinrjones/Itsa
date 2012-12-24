@@ -38,10 +38,10 @@ namespace WebScenarios
             CurrentPage = CurrentPage.As<LogonPage>().Logon();
         }
 
-        [Then(@"the ItsA home page should be shown")]
-        public void ThenTheItSaHomePageShouldBeShown()
+        [Then(@"the ItsA user page should be shown")]
+        public void ThenTheItSaUserPageShouldBeShown()
         {
-            var page = CurrentPage.As<HomePage>();
+            var page = CurrentPage.As<UserPage>();
             Thread.Sleep(1000);
             Assert.That(page.UserName.Text, Is.EqualTo(LogonPage.LogonUserName));
         }
@@ -84,7 +84,7 @@ namespace WebScenarios
         [When(@"I press unregister")]
         public void WhenIPressUnregister()
         {
-            CurrentPage = CurrentPage.As<HomePage>().UnRegisterUser();
+            CurrentPage = CurrentPage.As<UserPage>().UnRegisterUser();
         }
 
         [Then(@"I should be asked to confirm the deregistration")]

@@ -5,7 +5,7 @@ using WebSiteSpecifications.PageLibrary.Base;
 
 namespace WebScenarios.PageLibrary.Pages
 {
-    public class HomePage : PageBase
+    public class UserPage : PageBase
     {
         [FindsBy(How = How.Id, Using = "username")]
         public IWebElement UserName { get; set; }
