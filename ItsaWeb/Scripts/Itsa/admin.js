@@ -3,7 +3,7 @@
     
     function init() {
         $.connection.hub.start(function () {
-            $.connection.adminHub.getUser()
+            $.connection.userHub.getUser()
                 .done(function (data) {                    
                     if (data) {
                         var model = new gridViewModel(data);
@@ -12,6 +12,10 @@
                         // otherwise we're not logged in, so bounce to login page
                         redirectToLogin();
                     }
+                })
+                .fail(function (error) {
+                    console.log(error);
+                    redirectToLogin();
                 });
         });
     }
@@ -22,13 +26,13 @@
         $.jGrowl('Redirecting to login...');
 
         // then redirect
-        window.location = '/Session/Index?redirectTo=' + encodeURIComponent(window.location);
+        window.location = '/Session/New?redirectTo=' + encodeURIComponent(window.location);
     }
 
     function gridViewModel(params) {
         var model = this;
 
-        model.userName = ko.observable(params.UserName);
+        model.name = ko.observable(params.Name);
         model.allowComments = ko.observable(params.AllowComments);
         model.ModerateComments  = ko.observable(params.ModerateComments);
         model.UserName  = ko.observable(params.UserName);
@@ -47,6 +51,6 @@
     };
 }();
 
-$(function () {
-    admin.init();    
-})
+$(function() {
+    admin.init();
+});

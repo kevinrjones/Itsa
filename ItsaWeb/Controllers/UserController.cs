@@ -40,7 +40,6 @@ namespace ItsaWeb.Controllers
         }
 
         [AuthorizedUser]
-        [HttpPost]
         public ActionResult Delete()
         {
             if (_userService.UnRegister())

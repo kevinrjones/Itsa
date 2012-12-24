@@ -19,7 +19,7 @@ namespace WebScenarios.PageLibrary.Base
             driver.Navigate().GoToUrl(baseURL.TrimEnd(new[] { '/' }) + LogonPage.URL);
             if (driver.Url.EndsWith("User/New"))
             {
-                RegistrationPage registrationPage = GetInstance<RegistrationPage>(driver, baseURL, "");
+                var registrationPage = GetInstance<RegistrationPage>(driver, baseURL, "");
                 var page = registrationPage.RegisterUser(LogonPage.LogonUserName, LogonPage.LogonPassword, LogonPage.RegisterEmail);
                 page.LogoutUser();
             }
@@ -29,12 +29,14 @@ namespace WebScenarios.PageLibrary.Base
         public static RegistrationPage LoadRegisterPage(RemoteWebDriver driver, string baseURL)
         {
             driver.Navigate().GoToUrl(baseURL.TrimEnd(new[] { '/' }) + RegistrationPage.URL);
-            if(!driver.Url.EndsWith("new"))
+            if(!driver.Url.EndsWith(RegistrationPage.URL))
             {
-                LogonPage logonPage = GetInstance<LogonPage>(driver, baseURL, "");
+                var logonPage = GetInstance<LogonPage>(driver, baseURL, "");
                 logonPage.Logon(LogonPage.LogonUserName, LogonPage.LogonPassword);
-                IWebElement unregister = driver.FindElementById("deregister");
-                unregister.Click();
+                //IWebElement logout = driver.FindElementById("logout");
+                //logout.Click();
+                IWebElement derigester = driver.FindElementById("deregister");
+                derigester.Click();
             }
             return GetInstance<RegistrationPage>(driver, baseURL, "");
         }

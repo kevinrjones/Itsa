@@ -36,6 +36,7 @@ namespace ItsaWeb
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             GlobalFilters.Filters.RegisterGlobalFilters();
 //            RouteTable.Routes.MapHubs(); // for signalr - *must* come before other routes
+            RegisterHubs.Start();
             RouteTable.Routes.RegisterRoutes();
             BundleTable.Bundles.RegisterBundles();
         }
@@ -78,9 +79,10 @@ namespace ItsaWeb
             builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
 
             //builder.RegisterType<NLogLogger>().As<ILogger>();
-            builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest(); 
+            builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest();
             builder.RegisterType<AdminHub>();
-//            builder.RegisterModule(new ConfigurationSettingsReader("autofac"));
+            builder.RegisterType<UserHub>();
+            //            builder.RegisterModule(new ConfigurationSettingsReader("autofac"));
             builder.RegisterFilterProvider();
         }
 

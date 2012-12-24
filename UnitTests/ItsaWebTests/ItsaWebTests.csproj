@@ -88,6 +88,7 @@
     <Compile Include="Filters\HttpBasicUnauthorizedResultTests.cs" />
     <Compile Include="Helpers\FakeRequest.cs" />
     <Compile Include="Helpers\FakeResponse.cs" />
+    <Compile Include="Infrastructure\CookieEncryptionTests.cs" />
     <Compile Include="Models\NewMediaViewModelTests.cs" />
     <Compile Include="Models\ShowMediaViewModelTests.cs" />
     <Compile Include="Models\UserViewModelTests.cs" />

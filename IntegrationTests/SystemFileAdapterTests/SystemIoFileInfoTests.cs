@@ -21,6 +21,22 @@ namespace SystemFileAdapterTests
         }
 
         [Test]
+        public void GivenAFileName_WhenTheFileIsCreated_ThenTheSystemFIleInfoSaysFileExistsOnDisk()
+        {
+            var fileInfo = new SystemIoFileInfo(_fileName);
+            Stream stream = null;
+            try
+            {
+                stream = fileInfo.Create();
+            }
+            finally
+            {
+                if (stream != null) stream.Dispose();
+            }
+            fileInfo.Exists.Should().BeTrue();
+        }
+
+        [Test]
         public void GivenAFileName_WhenTheFileIsCreated_ThenTheFileExistsOnDisk()
         {
             var fileInfo = new SystemIoFileInfo(_fileName);
