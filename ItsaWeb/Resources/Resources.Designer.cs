@@ -68,5 +68,14 @@ namespace ItsaWeb.Resources {
                 return ResourceManager.GetString("AdminTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Itsa Knockout.
+        /// </summary>
+        public static string ItsaHomeTitle {
+            get {
+                return ResourceManager.GetString("ItsaHomeTitle", resourceCulture);
+            }
+        }
     }
 }

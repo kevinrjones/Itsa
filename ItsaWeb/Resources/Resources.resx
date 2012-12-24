@@ -120,4 +120,7 @@
   <data name="AdminTitle" xml:space="preserve">
     <value>Administration</value>
   </data>
+  <data name="ItsaHomeTitle" xml:space="preserve">
+    <value>Itsa Knockout</value>
+  </data>
 </root>
