@@ -4,18 +4,19 @@
     function init() {
         $.connection.hub.start(function () {
             $.connection.userHub.getUser()
-                .done(function (data) {                    
+                .done(function (data) {
                     if (data) {
-                        var model = new gridViewModel(data);
-                        ko.applyBindings(model);
+                        var model = new userModel(data);
+                        ko.applyBindings(model, adminsection);
                     } else {
-                        // otherwise we're not logged in, so bounce to login page
-                        redirectToLogin();
+                        var model = new userModel({ isAuthenticated: false });
+                        ko.applyBindings(model, adminsection);
                     }
                 })
                 .fail(function (error) {
                     console.log(error);
-                    redirectToLogin();
+                    var model = new userModel({ isAuthenticated: false });
+                    ko.applyBindings(model, adminsection);
                 });
         });
     }
@@ -29,20 +30,6 @@
         window.location = '/Session/New?redirectTo=' + encodeURIComponent(window.location);
     }
 
-    function gridViewModel(params) {
-        var model = this;
-
-        model.name = ko.observable(params.Name);
-        model.allowComments = ko.observable(params.AllowComments);
-        model.ModerateComments  = ko.observable(params.ModerateComments);
-        model.UserName  = ko.observable(params.UserName);
-        model.BlogTitle  = ko.observable(params.BlogTitle);
-        model.BlogSubTitle = ko.observable(params.BlogSubTitle);
-
-        model.addBlogEntry = function () {
-            $.connection.adminHub.addEntry({});
-        };
-    };
 
 
     /* publicly-exposed methods */
@@ -51,6 +38,3 @@
     };
 }();
 
-$(function() {
-    admin.init();
-});

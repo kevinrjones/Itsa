@@ -14,7 +14,7 @@ namespace WebScenarios.PageLibrary.Pages
 
         public override string DefaultTitle { get { return "Sign in to ItSa"; } }
 
-        public UserPage Logon(string userName, string password)
+        public HomePage Logon(string userName, string password)
         {
             SetUserName(userName);
             SetPassword(password);
@@ -40,10 +40,10 @@ namespace WebScenarios.PageLibrary.Pages
             Password.SendKeys(password);
         }
 
-        public UserPage Logon()
+        public HomePage Logon()
         {
             Signin.Click();
-            return GetInstance<UserPage>();
+            return GetInstance<HomePage>();
         }
     }
 }

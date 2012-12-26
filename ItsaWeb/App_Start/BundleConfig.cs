@@ -62,13 +62,15 @@ namespace ItsaWeb.App_Start
 
 
             bundles.Add(new ScriptBundle("~/bundles/other").Include(                            
-                            "~/Scripts/itsa/security.js",
                             "~/Scripts/knockout-{version}.js",
                             "~/Scripts/knockout.mapping-latest.js",
                             "~/Scripts/log4javascript.js",
-                            "~/Scripts/jquery.jgrowl.js",
-                            "~/Scripts/itsa/main.js"));
+                            "~/Scripts/expanding.js",
+                            "~/Scripts/kosetup.js",
+                            "~/Scripts/jquery.jgrowl.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/itsa").Include(
+                "~/Scripts/itsa/*.js"));
 
         }
     }

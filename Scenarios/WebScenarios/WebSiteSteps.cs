@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using FluentAssertions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebScenarios.PageLibrary.Base;
@@ -41,7 +42,7 @@ namespace WebScenarios
         [Then(@"the ItsA user page should be shown")]
         public void ThenTheItSaUserPageShouldBeShown()
         {
-            var page = CurrentPage.As<UserPage>();
+            var page = CurrentPage.As<HomePage>();
             Thread.Sleep(1000);
             Assert.That(page.UserName.Text, Is.EqualTo(LogonPage.LogonUserName));
         }
@@ -84,9 +85,8 @@ namespace WebScenarios
         [When(@"I press unregister")]
         public void WhenIPressUnregister()
         {
-            CurrentPage = CurrentPage.As<UserPage>().UnRegisterUser();
+            CurrentPage = CurrentPage.As<HomePage>().UnRegisterUser();
         }
-
         [Then(@"I should be asked to confirm the deregistration")]
         public void ThenIShouldBeAskedToConfirmTheDeregistration()
         {
@@ -98,6 +98,50 @@ namespace WebScenarios
         {
             var page = CurrentPage.As<RegistrationPage>();
             Assert.That(page.RegisterLink.Text, Is.EqualTo("Register"));
+        }
+
+
+        [When(@"I press add blog post")]
+        public void WhenIPressAddBlogPost()
+        {
+            var page = CurrentPage.As<HomePage>();
+            page.AddBlogPost.Displayed.Should().Be(true);
+            page.AddBlogPost.Click();
+        }
+
+        [Then(@"the new blog post screen show be shown")]
+        public void ThenTheNewBlogPostScreenShowBeShown()
+        {
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(100);
+            page.CreateBlogPost.Displayed.Should().BeTrue();
+        }
+
+        [Given(@"I am a reader")]
+        public void GivenIAmAReader()
+        {
+            GivenIAmNotLoggedOn();
+        }
+
+        [Given(@"There are posts available")]
+        [Given(@"I browse to the home page")]
+        public void GivenThereArePostsAvailable()
+        {
+            CurrentPage = PageBase.LoadHomePage(CurrentDriver, Settings.CurrentSettings.Url);            
+        }
+
+        [Then(@"I can read the latest posts")]
+        public void ThenICanReadTheLatestPosts()
+        {
+            ScenarioContext.Current.Pending();   
+        }
+
+        [Then(@"the add blog post button is not visible")]
+        public void ThenTheAddBlogPostButtonIsNotVisible()
+        {
+            Thread.Sleep(100);
+            var page = CurrentPage.As<HomePage>();
+            page.AddBlogPost.Displayed.Should().Be(false);
         }
     }
 }

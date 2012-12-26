@@ -6,9 +6,32 @@
 }
 
 <h2>title</h2>
+<div id="adminsection">
+    <ul data-bind="visible: isAuthenticated">
+        <li>@Html.ActionLink("Deregister", "Delete", "User", new { }, new { id = "deregister" })</li>
+        <li>@Html.ActionLink("Logout", "Delete", "Session", new { }, new { id = "logout" })</li>
+    </ul>
+    <ul data-bind="visible: !isAuthenticated()">
+        <li>@Html.ActionLink("Login", "New", "Session", new { }, new { id = "login" })</li>
+    </ul>
+    <div data-bind="visible: isAuthenticated">
+        <h1 id="username" data-bind="text: name"></h1>
+        <div>
+            <input type="button" id="addBlogPost" data-bind="click: addBlogPost" value="Add blog post" />
+        </div>
+        <div id="createBlogPost" data-bind="animate: isCreatingBlogPost()" style="min-height: 300px; border: solid 1px black">
+            <div>Title:</div>
+            <div>
+                <input type="text" id="postTitle" data-bind="value: newPost.postTitle" />
+            </div>
+            <div>Entry:</div>
+            <div>
+                <input type="text" id="postBody" data-bind="value: newPost.postBody" />
+            </div>
+            <div>
+                <input type="button" value="Add Blog Post" data-bind="click: newPost.add"/>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-@section scripts
-{
-    <script type="text/javascript" src="~/Scripts/Itsa/home.js"></script>
-}

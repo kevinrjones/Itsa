@@ -33,6 +33,9 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.0.0.4001\lib\net35\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\..\IntegrationTests\SystemFileAdapterTests\bin\Debug\FluentAssertions.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
@@ -64,6 +67,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Authentication.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\BlogBrowser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlogBrowser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\AddBlogPosts.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddBlogPosts.feature</DependentUpon>
+    </Compile>
     <Compile Include="PageLibrary\Pages\RegistrationPage.cs" />
     <Compile Include="Setup\FeaturesBase.cs" />
     <Compile Include="Fixtures\Settings.cs" />
@@ -71,8 +84,7 @@
     <Compile Include="PageLibrary\Base\CommonBase.cs" />
     <Compile Include="PageLibrary\Base\PageBase.cs" />
     <Compile Include="PageLibrary\PageBase.Navigation.cs" />
-    <Compile Include="PageLibrary\Pages\UserPage.cs" />
-    <Compile Include="PageLibrary\Pages\IndexPage.cs" />
+    <Compile Include="PageLibrary\Pages\HomePage.cs" />
     <Compile Include="PageLibrary\Pages\LogonPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Values\DefaultValues.cs" />
@@ -83,6 +95,14 @@
     <None Include="Features\Authentication.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Authentication.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\BlogBrowser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BlogBrowser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\AddBlogPosts.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddBlogPosts.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <Content Include="TestRun.config">

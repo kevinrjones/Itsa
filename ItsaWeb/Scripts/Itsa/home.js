@@ -7,6 +7,7 @@
                 .done(function (data) {
                     // iterate over the data array and display it
                     // ko.applyBindings(model);
+                    //ko.applyBindings(model);
                 })
                 .fail(function (error) {
                     console.log(error);
@@ -20,7 +21,8 @@
     };
 }();
 
-$(function() {
+$(function () {
+    admin.init();
     home.init();
 });
 

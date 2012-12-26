@@ -39,7 +39,7 @@ namespace ItsaWeb.Controllers
                     TempData["message"] = "User logged on";
                     CreateCookie(user.UserName);
                     return string.IsNullOrEmpty(user.RedirectTo)
-                               ? RedirectToAction("Index", "Admin", null)
+                               ? RedirectToAction("Index", "Itsa", null)
                                : Redirect(user.RedirectTo) as ActionResult;
                 }
                 Logger.Info("User failed to login.");

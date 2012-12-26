@@ -6,6 +6,11 @@ namespace ItsaWeb.Hubs
 {
     public abstract class AuthenticatingHub : Hub
     {
+        protected bool IsAuthenticated()
+        {
+            return UserName != null;
+        }
+
         protected string UserName
         {
             get

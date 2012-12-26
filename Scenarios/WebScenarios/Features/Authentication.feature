@@ -24,3 +24,4 @@ Scenario: Unregister user
 	When I press unregister
 	#Then I should be asked to confirm the deregistration
 	Then  the ItsA register page should be shown
+

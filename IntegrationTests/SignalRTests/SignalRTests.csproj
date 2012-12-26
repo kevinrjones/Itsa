@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2CDB7BF1-7F6F-4C7D-B0C1-FC6CDCEE8B0D}</ProjectGuid>
+    <ProjectGuid>{8AF3F92C-B0E4-4CCC-8F28-6789701C44E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SignalRTests</RootNamespace>
@@ -30,17 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\IntegrationTests\SystemFileAdapterTests\bin\Debug\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\UnitTests\FileRepositoryTests\bin\Debug\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\Scenarios\WebScenarios\bin\Debug\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="SignalR">
-      <HintPath>..\ItsaWeb\bin\SignalR.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,24 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminHubTests.cs" />
-    <Compile Include="AuthenticatingHubTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestableAuthenticatingHub.cs" />
-    <Compile Include="UserHubTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Entities\Entities.csproj">
-      <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ItsaWeb\ItsaWeb.csproj">
-      <Project>{9C4C6CBC-4F8F-47DC-83D7-BAB33902F917}</Project>
-      <Name>ItsaWeb</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceInterfaces\ServiceInterfaces.csproj">
-      <Project>{4E597FB7-4706-45E2-9F9F-BAED246F06C4}</Project>
-      <Name>ServiceInterfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

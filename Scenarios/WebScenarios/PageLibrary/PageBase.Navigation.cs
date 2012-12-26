@@ -40,5 +40,12 @@ namespace WebScenarios.PageLibrary.Base
             }
             return GetInstance<RegistrationPage>(driver, baseURL, "");
         }
+
+        public static PageBase LoadHomePage(RemoteWebDriver driver, string baseURL)
+        {
+            driver.Navigate().GoToUrl(baseURL.TrimEnd(new[] { '/' }) + HomePage.URL);
+            return GetInstance<HomePage>(driver, baseURL, "");
+            
+        }
     }
 }

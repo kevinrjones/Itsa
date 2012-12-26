@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Entities;
 using FluentAssertions;
 using ItsaWeb.Hubs;
-using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
 using Moq;
 using NUnit.Framework;
@@ -18,41 +17,30 @@ using SignalR.Hubs;
 namespace SignalRTests
 {
     [TestFixture]
-    class AdminHubTests
+    class UserHubTests
     {
+        Mock<IUserService> service = new Mock<IUserService>();
+
         [Test]
-        public void GivenAnInValidUser_WhenAPostIsSentToTheHub_ThenAnExceptionIsThrown()
+        public void GivenAnAuthenticatedUser_WhenTheUserIsRetrieved_ThenTheUserViewModelIsReturned()
         {
-            var hub = new TestableAdminHub(null, null);
-            Action act = () => hub.AddEntry(new BlogEntryViewModel());
-            act.ShouldThrow<NotLoggedInException>();
+            service.Setup(s => s.GetUser()).Returns(new User());
+            UserHub hub = new TestableUserHub(service.Object, "Kevin");
+            hub.GetUser().Result.As<UserViewModel>().Should().NotBeNull();
         }
 
         [Test]
-        public void GivenAValidUser_WhenAPostIsSentToTheHub_ThenThePostIsAdded()
+        public void GivenAnAuthenticatedUser_WhenTheUserIsRetrieved_ThenTheUserIsAuthenticated()
         {
-            var service = new Mock<IAdminService>();
-            var hub = new TestableAdminHub(service.Object, "Kevin");
-            hub.AddEntry(new BlogEntryViewModel());
-
-            service.Verify(s => s.AddBlogEntry(It.IsAny<Post>()), Times.Once());
-        }
-
-        [Test]
-        public void GivenAValidUser_WhenAPostIsSentToTheHub_ThenTheCorrectDetailsAreSaved()
-        {
-            var service = new Mock<IAdminService>();
-            var hub = new TestableAdminHub(service.Object, "Kevin");
-            hub.AddEntry(new BlogEntryViewModel{Title = "title", Post = "body"});
-            var post = new Post {Title = "title", Body = "body"};
-            service.Verify(s => s.AddBlogEntry(post), Times.Once());
+            service.Setup(s => s.GetUser()).Returns(new User());
+            UserHub hub = new TestableUserHub(service.Object, "Kevin");
+            hub.GetUser().Result.As<UserViewModel>().IsAuthenticated.Should().BeTrue();
         }
     }
 
-    internal class TestableAdminHub : AdminHub
+    internal class TestableUserHub : UserHub
     {
-        public TestableAdminHub(IAdminService adminService, string name)
-            : base(adminService)
+        public TestableUserHub(IUserService userService, string name) : base(userService)
         {
             InitializeHub(name);
         }

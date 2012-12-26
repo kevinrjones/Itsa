@@ -24,10 +24,6 @@
 </head>
 <body>
     <div>
-        <ul>
-            <li>@Html.ActionLink("Deregister", "Delete", "User", new{},  new { id = "deregister" })</li>
-            <li>@Html.ActionLink("Logout", "Delete", "Session", new{},  new { id = "logout" })</li>
-        </ul>
     </div>
     <div>
         <h2>@TempData["message"]</h2>
@@ -39,6 +35,7 @@
     @Scripts.Render("~/bundles/signalr")
     <script type="text/javascript" src="@Url.Content("~/signalr/hubs")"></script>
     @Scripts.Render("~/bundles/other")
+    @Scripts.Render("~/bundles/itsa")
     @RenderSection("scripts", required: false)
 </body>
 </html>

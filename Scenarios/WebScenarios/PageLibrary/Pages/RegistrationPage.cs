@@ -11,9 +11,9 @@ namespace WebScenarios.PageLibrary.Pages
 
         public override string DefaultTitle { get { return "Register"; } }
 
-        public IndexPage Logon(string userName, string password)
+        public HomePage Logon(string userName, string password)
         {
-            return GetInstance<IndexPage>();
+            return GetInstance<HomePage>();
         }
 
         [FindsBy(How = How.Id , Using = "UserName")]
@@ -54,14 +54,14 @@ namespace WebScenarios.PageLibrary.Pages
             EMail.SendKeys(email);
         }
 
-        public UserPage RegisterUser()
+        public HomePage RegisterUser()
         {
             Thread.Sleep(100);
             RegisterButton.Click();
-            return GetInstance<UserPage>();
+            return GetInstance<HomePage>();
         }
 
-        public UserPage RegisterUser(string name, string password, string email)
+        public HomePage RegisterUser(string name, string password, string email)
         {
             SetUserName(name);
             SetPassword(password);

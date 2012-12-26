@@ -167,6 +167,7 @@
     <Compile Include="Filters\HttpBasicUnauthorizedResult.cs" />
     <Compile Include="HtmlHelpers\DisplayAuthentication.cs" />
     <Compile Include="Hubs\AuthenticatingHub.cs" />
+    <Compile Include="Hubs\UserHub.cs" />
     <Compile Include="Infrastructure\CookieEncryption.cs" />
     <Compile Include="Infrastructure\UrlGenerator.cs" />
     <Compile Include="Models\Atom\AtomViewModel.cs" />
@@ -322,10 +323,13 @@
     <Content Include="Content\less\accordion.less" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\expanding.js" />
     <Content Include="Scripts\Itsa\admin.js" />
+    <Content Include="Scripts\Itsa\blogPost.js" />
     <Content Include="Scripts\Itsa\home.js" />
     <Content Include="Scripts\Itsa\main.js" />
     <Content Include="Scripts\Itsa\security.js" />
+    <Content Include="Scripts\Itsa\UserModel.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.js" />
@@ -344,6 +348,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\kosetup.js" />
     <Content Include="Scripts\less.min.js" />
     <Content Include="Scripts\log4javascript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -370,9 +375,9 @@
     <Content Include="Views\Atom\Create.cshtml" />
     <Content Include="Views\Atom\Get.cshtml" />
     <Content Include="Views\Atom\GetServiceDocument.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Feed\" />
   </ItemGroup>
   <ItemGroup>

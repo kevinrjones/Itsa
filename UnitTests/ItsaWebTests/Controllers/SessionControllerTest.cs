@@ -98,7 +98,7 @@ namespace ItsaWebTests.Controllers
 
             var view = controller.Create(new LogonViewModel { UserName = userName, Password = password });
             view.Should().BeOfType<RedirectToRouteResult>();
-            view.As<RedirectToRouteResult>().RouteValues["controller"].Should().Be("Admin");
+            view.As<RedirectToRouteResult>().RouteValues["controller"].Should().Be("Itsa");
             view.As<RedirectToRouteResult>().RouteValues["action"].Should().Be("Index");
         }
 

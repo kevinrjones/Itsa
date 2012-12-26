@@ -56,7 +56,7 @@ namespace ItsaWeb
 
         private void CreateIdentity(string name)
         {
-            var identity = new UserViewModel { DisplayName = name };
+            var identity = new UserViewModel { Name = name };
             HttpContext.Current.User = new GenericPrincipal(identity, null);
         }
 
