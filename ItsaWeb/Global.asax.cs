@@ -33,9 +33,8 @@ namespace ItsaWeb
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             GlobalHost.DependencyResolver = new Infrastructure.AutofacDependencyResolver(container); // for signalr
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configuration.Register();
             GlobalFilters.Filters.RegisterGlobalFilters();
-//            RouteTable.Routes.MapHubs(); // for signalr - *must* come before other routes
             RegisterHubs.Start();
             RouteTable.Routes.RegisterRoutes();
             BundleTable.Bundles.RegisterBundles();
