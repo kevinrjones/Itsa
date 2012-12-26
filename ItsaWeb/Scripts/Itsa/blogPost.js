@@ -8,10 +8,10 @@
     self.add = function () {
         $.connection.adminHub.addEntry({title: self.postTitle(), post: self.postBody()})
             .done(function () {
-                $.jGrowl("Post added");
+                $.jGrowl(resources.res('Resources.AddPostSucceeded'));
             })
             .fail(function () {
-                $.jGrowl("Failed to add post");
+                $.jGrowl(resources.res('Resources.AddPostFailed'));
             });
         parent.isCreatingBlogPost(false);
     };

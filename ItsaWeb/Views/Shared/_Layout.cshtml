@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using ItsaWeb.HtmlHelpers
+
+<!DOCTYPE html>
 <!--[if lt IE 7]> 
 <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> 
 <![endif]-->
@@ -38,4 +40,5 @@
     @Scripts.Render("~/bundles/itsa")
     @RenderSection("scripts", required: false)
 </body>
+        @Html.IncludeResources()
 </html>

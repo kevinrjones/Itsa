@@ -688,3 +688,9 @@ h6 {
 .validation-summary-valid {
     display: none;
 }*/
+.formfields {
+  width: 100%;
+}
+textarea {
+  min-height: 300px;
+}

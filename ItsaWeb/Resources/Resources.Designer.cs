@@ -61,11 +61,47 @@ namespace ItsaWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Blog Post.
+        /// </summary>
+        public static string AddBlogPostTitle {
+            get {
+                return ResourceManager.GetString("AddBlogPostTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to add post&quot;.
+        /// </summary>
+        public static string AddPostFailed {
+            get {
+                return ResourceManager.GetString("AddPostFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post added&quot;.
+        /// </summary>
+        public static string AddPostSucceeded {
+            get {
+                return ResourceManager.GetString("AddPostSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administration.
         /// </summary>
         public static string AdminTitle {
             get {
                 return ResourceManager.GetString("AdminTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Blog Post.
+        /// </summary>
+        public static string CreateBlogPostTitle {
+            get {
+                return ResourceManager.GetString("CreateBlogPostTitle", resourceCulture);
             }
         }
         

@@ -5,6 +5,10 @@
     ViewBag.Title = Resources.ItsaHomeTitle;
 }
 
+<style>
+   
+</style>
+
 <h2>title</h2>
 <div id="adminsection">
     <ul data-bind="visible: isAuthenticated">
@@ -17,19 +21,19 @@
     <div data-bind="visible: isAuthenticated">
         <h1 id="username" data-bind="text: name"></h1>
         <div>
-            <input type="button" id="addBlogPost" data-bind="click: addBlogPost" value="Add blog post" />
+            <input type="button" id="addBlogPost" data-bind="click: addBlogPost" value="@Resources.AddBlogPostTitle" />
         </div>
         <div id="createBlogPost" data-bind="animate: isCreatingBlogPost()" style="min-height: 300px; border: solid 1px black">
             <div>Title:</div>
             <div>
-                <input type="text" id="postTitle" data-bind="value: newPost.postTitle" />
+                <input type="text" id="postTitle" data-bind="value: newPost.postTitle, valueUpdate: 'afterkeydown'"  class="formfields"/>
             </div>
             <div>Entry:</div>
             <div>
-                <input type="text" id="postBody" data-bind="value: newPost.postBody" />
+                <textarea id="postBody" data-bind="value: newPost.postBody, valueUpdate: 'afterkeydown'" class="formfields"></textarea>
             </div>
             <div>
-                <input type="button" value="Add Blog Post" data-bind="click: newPost.add"/>
+                <input type="button" value="@Resources.CreateBlogPostTitle" data-bind="click: newPost.add"/>
             </div>
         </div>
     </div>
