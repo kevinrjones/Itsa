@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using FluentAssertions;
 using ItsaWeb.Filters;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using Moq;
 using NUnit.Framework;
 

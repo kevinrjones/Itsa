@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using Moq;
 using NUnit.Framework;
 

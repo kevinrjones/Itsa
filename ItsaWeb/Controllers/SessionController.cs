@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using AbstractConfigurationManager;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using ServiceInterfaces;
 using Logging;
 

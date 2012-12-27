@@ -13,6 +13,7 @@ using Autofac.Integration.Mvc;
 using ItsaWeb.App_Start;
 using ItsaWeb.Hubs;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using Logging;
 using Logging.NLog;
 using SignalR;

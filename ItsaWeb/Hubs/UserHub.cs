@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Hubs

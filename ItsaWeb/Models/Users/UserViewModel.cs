@@ -1,7 +1,6 @@
-using System.Security.Principal;
 using ItsaWeb.Authentication;
 
-namespace ItsaWeb.Models
+namespace ItsaWeb.Models.Users
 {
     public class UserViewModel : IItsaIdentity
     {

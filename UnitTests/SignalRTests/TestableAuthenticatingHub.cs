@@ -1,6 +1,7 @@
 ﻿using System.Security.Principal;
 using ItsaWeb.Hubs;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using Moq;
 using SignalR;
 using SignalR.Hubs;

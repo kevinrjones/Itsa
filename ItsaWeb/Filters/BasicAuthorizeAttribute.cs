@@ -9,6 +9,7 @@ using Entities;
 using System.Linq;
 using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Filters

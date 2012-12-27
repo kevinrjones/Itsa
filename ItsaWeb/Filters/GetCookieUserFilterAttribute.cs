@@ -6,6 +6,7 @@ using AbstractConfigurationManager;
 using ItsaWeb.Controllers;
 using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Filters

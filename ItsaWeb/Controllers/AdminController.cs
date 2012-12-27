@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Controllers

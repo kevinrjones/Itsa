@@ -10,6 +10,7 @@ using ItsaWeb.Hubs;
 using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Posts;
+using ItsaWeb.Models.Users;
 using Moq;
 using NUnit.Framework;
 using ServiceInterfaces;

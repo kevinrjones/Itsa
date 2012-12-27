@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ItsaWeb.Models
+namespace ItsaWeb.Models.Users
 {
     public class RegisterUserViewModel
     {

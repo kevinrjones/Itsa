@@ -8,6 +8,7 @@ using Entities;
 using FluentAssertions;
 using ItsaWeb.Controllers;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Users;
 using Moq;
 using NUnit.Framework;
 using ServiceInterfaces;
