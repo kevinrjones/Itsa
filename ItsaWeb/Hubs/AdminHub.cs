@@ -5,6 +5,7 @@ using System.Web;
 using Entities;
 using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Posts;
 using ServiceInterfaces;
 
 namespace ItsaWeb.Hubs
@@ -18,7 +19,7 @@ namespace ItsaWeb.Hubs
             _adminService = adminService;
         }
 
-        public void AddEntry(BlogEntryViewModel model)
+        public void AddEntry(NewPostViewModel model)
         {
             var user = UserName;
 

@@ -5,6 +5,10 @@ namespace ItsaWeb.Models.Posts
 {
     public class NewPostViewModel
     {
+        public NewPostViewModel()
+        {
+            
+        }
         public NewPostViewModel(Post post)       
         {
             DatePosted = post.EntryAddedDate;

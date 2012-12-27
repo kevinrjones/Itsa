@@ -1,8 +1,8 @@
 using System;
 
-namespace ItsaWeb.Models
+namespace ItsaWeb.Models.Posts
 {
-    public class BlogEntryViewModel
+    public class BlogPostViewModel
     {
         public DateTime EntryAddedDate { get; set; }
         public DateTime EntryUpdateDate { get; set; }

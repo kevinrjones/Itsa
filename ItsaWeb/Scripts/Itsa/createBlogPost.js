@@ -1,4 +1,4 @@
-﻿function BlogPost(parent) {
+﻿function CreateBlogPost(parent) {
     var self = this;
     self.parent = parent;
 

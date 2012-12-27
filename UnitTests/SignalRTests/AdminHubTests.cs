@@ -9,6 +9,7 @@ using FluentAssertions;
 using ItsaWeb.Hubs;
 using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
+using ItsaWeb.Models.Posts;
 using Moq;
 using NUnit.Framework;
 using ServiceInterfaces;
@@ -24,7 +25,7 @@ namespace SignalRTests
         public void GivenAnInValidUser_WhenAPostIsSentToTheHub_ThenAnExceptionIsThrown()
         {
             var hub = new TestableAdminHub(null, null);
-            Action act = () => hub.AddEntry(new BlogEntryViewModel());
+            Action act = () => hub.AddEntry(new NewPostViewModel());
             act.ShouldThrow<NotLoggedInException>();
         }
 
@@ -33,7 +34,7 @@ namespace SignalRTests
         {
             var service = new Mock<IAdminService>();
             var hub = new TestableAdminHub(service.Object, "Kevin");
-            hub.AddEntry(new BlogEntryViewModel());
+            hub.AddEntry(new NewPostViewModel());
 
             service.Verify(s => s.AddBlogEntry(It.IsAny<Post>()), Times.Once());
         }
@@ -43,7 +44,7 @@ namespace SignalRTests
         {
             var service = new Mock<IAdminService>();
             var hub = new TestableAdminHub(service.Object, "Kevin");
-            hub.AddEntry(new BlogEntryViewModel{Title = "title", Post = "body"});
+            hub.AddEntry(new NewPostViewModel { Title = "title", Post = "body" });
             var post = new Post {Title = "title", Body = "body"};
             service.Verify(s => s.AddBlogEntry(post), Times.Once());
         }

@@ -1,18 +1,16 @@
 ﻿var home = function () {
 
 
+
     function init() {
-        $.connection.hub.start(function () {
-            $.connection.blogHub.getBlogEntries()
-                .done(function (data) {
-                    // iterate over the data array and display it
-                    // ko.applyBindings(model);
-                    //ko.applyBindings(model);
-                })
-                .fail(function (error) {
-                    console.log(error);
-                });
-        });
+        $.connection.blogHub.getBlogEntries()
+            .done(function (data) {
+                var model = new BlogPostsModel();
+                ko.applyBindings(model, mainsection);
+            })
+            .fail(function (error) {
+                console.log(error);
+            });
     }
 
     /* publicly-exposed methods */
@@ -22,7 +20,9 @@
 }();
 
 $(function () {
-    admin.init();
-    home.init();
+    $.connection.hub.start(function () {
+        admin.init();
+        home.init();
+    });
 });
 

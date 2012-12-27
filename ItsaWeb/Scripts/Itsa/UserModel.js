@@ -23,7 +23,7 @@
         self.isCreatingBlogPost(true);
     };
 
-    self.newPost = new BlogPost(this);
+    self.newPost = new CreateBlogPost(this);
 };
 
 
