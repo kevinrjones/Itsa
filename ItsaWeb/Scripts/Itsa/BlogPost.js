@@ -19,7 +19,7 @@
     self.deletePost = function () {
         $.connection.adminHub.deleteBlogPost(self.id())
             .done(function (data) {
-                self.parent.remove(self);
+                self.parent.removePost(self);
             })
             .fail(function (error) {
             });

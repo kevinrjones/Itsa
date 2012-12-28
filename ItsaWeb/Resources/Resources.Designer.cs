@@ -122,5 +122,14 @@ namespace ItsaWeb.Resources {
                 return ResourceManager.GetString("ItsaHomeTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post deleted.
+        /// </summary>
+        public static string PostDeleted {
+            get {
+                return ResourceManager.GetString("PostDeleted", resourceCulture);
+            }
+        }
     }
 }

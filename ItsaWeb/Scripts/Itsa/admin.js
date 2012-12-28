@@ -2,33 +2,23 @@
 
 
     function init() {
+        var page;
         $.connection.userHub.getUser()
             .done(function (data) {
                 if (data) {
-                    var model = new userModel(data);
-                    ko.applyBindings(model, adminsection);
+                    page = new PageViewModel(data);
                 } else {
-                    var model = new userModel({ isAuthenticated: false });
-                    ko.applyBindings(model, adminsection);
+                    page = new PageViewModel({ isAuthenticated: false });
                 }
             })
             .fail(function (error) {
                 console.log(error);
-                var model = new userModel({ isAuthenticated: false });
-                ko.applyBindings(model, adminsection);
+                page = new PageViewModel({ isAuthenticated: false });
+            }).always(function() {
+                page.getPosts();
+                ko.applyBindings(page);
             });
     }
-
-    function redirectToLogin() {
-
-        // notify user in Growl box
-        $.jGrowl('Redirecting to login...');
-
-        // then redirect
-        window.location = '/Session/New?redirectTo=' + encodeURIComponent(window.location);
-    }
-
-
 
     /* publicly-exposed methods */
     return {
@@ -36,3 +26,8 @@
     };
 }();
 
+$(function () {
+    $.connection.hub.start(function () {
+        admin.init();
+    });
+});

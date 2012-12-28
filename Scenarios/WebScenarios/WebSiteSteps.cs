@@ -200,6 +200,7 @@ namespace WebScenarios
         {
             var page = CurrentPage.As<HomePage>();
             Thread.Sleep(100);
+            page.Message.Text.Should().Be("Post deleted");
             var elems = page.BlogPosts.FindElements(By.CssSelector("ul#posts li"));
             elems.Count.Should().Be(0);
         }
@@ -224,9 +225,8 @@ namespace WebScenarios
         public void ThenTheDeleteBlogPostButtonIsNotVisible()
         {
             var page = CurrentPage.As<HomePage>();
-            Thread.Sleep(100);
-            var elems = page.BlogPosts.FindElements(By.CssSelector("ul#posts li"));
-            elems.Count.Should().Be(0);
+            Thread.Sleep(200);
+            page.DeleteBlogPost.Displayed.Should().BeFalse();
         }
     }
 }

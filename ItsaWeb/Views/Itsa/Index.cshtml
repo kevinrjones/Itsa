@@ -48,7 +48,7 @@
                 <div data-bind="text: postCreated"></div>
             </div>
             <div data-bind="text: postBody"></div>
-            <div>
+            <div data-bind="visible: $parent.isAuthenticated">
                 <input type="button" value="@Resources.DeletePost" data-bind="click: deletePost"/>
             </div>
         </li>
