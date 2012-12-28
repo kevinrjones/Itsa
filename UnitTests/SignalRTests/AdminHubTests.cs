@@ -35,6 +35,7 @@ namespace SignalRTests
         {
             var service = new Mock<IAdminService>();
             var hub = new TestableAdminHub(service.Object, "Kevin");
+            service.Setup(s => s.AddBlogPost(It.IsAny<Post>())).Returns(new Post());
             hub.AddBlogPost(new NewPostViewModel());
 
             service.Verify(s => s.AddBlogPost(It.IsAny<Post>()), Times.Once());
@@ -45,8 +46,9 @@ namespace SignalRTests
         {
             var service = new Mock<IAdminService>();
             var hub = new TestableAdminHub(service.Object, "Kevin");
+            var post = new Post { Title = "title", Body = "body" };
+            service.Setup(s => s.AddBlogPost(It.IsAny<Post>())).Returns(post);
             hub.AddBlogPost(new NewPostViewModel { Title = "title", Post = "body" });
-            var post = new Post {Title = "title", Body = "body"};
             service.Verify(s => s.AddBlogPost(It.Is<Post>(p => p.Title == post.Title && p.Body == post.Body)), Times.Once());
         }
     }
