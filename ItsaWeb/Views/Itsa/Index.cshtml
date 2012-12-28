@@ -40,17 +40,19 @@
     </div>
 </div>
 
-<div id="mainsection">
-    <ul id="posts" data-bind="foreach: posts">
-        <li>
-            <div>
-                <div data-bind="text: postTitle"></div>
-                <div data-bind="text: postCreated"></div>
-            </div>
-            <div data-bind="text: postBody"></div>
-            <div data-bind="visible: $parent.isAuthenticated">
-                <input type="button" value="@Resources.DeletePost" data-bind="click: deletePost"/>
-            </div>
-        </li>
-    </ul>
-</div>
+<div id="mainsection"  data-bind="with: blogPosts">
+    @*<div data-bind="text: ko.computed(function () { debugger })"></div>*@
+    
+        <ul id="posts" data-bind="foreach: posts">
+            <li>
+                <div>
+                    <div data-bind="text: postTitle"></div>
+                    <div data-bind="text: postCreated"></div>
+                </div>
+                <div data-bind="text: postBody"></div>
+                <div data-bind="visible: $root.isAuthenticated">
+                    <input type="button" value="@Resources.DeletePost" data-bind="click: deletePost"/>
+                </div>
+            </li>
+        </ul>
+    </div>

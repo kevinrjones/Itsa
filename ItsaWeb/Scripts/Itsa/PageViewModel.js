@@ -15,9 +15,8 @@
         if (post != null) {
             self.message(resources.res('ItsaWeb.Resources.Resources.AddPostSucceeded'));
             $.jGrowl(resources.res('ItsaWeb.Resources.Resources.AddPostSucceeded'));
-            self.isCreatingBlogPost(false);
-            var blogPosts = ko.contextFor($('#mainsection')[0]).$root;
-            blogPosts.posts.push(new BlogPost(post, blogPosts));
+            self.isCreatingBlogPost(false);            
+            self.blogPosts().posts.unshift(new BlogPost(post, self));
         } else {
             self.message(resources.res('ItsaWeb.Resources.Resources.AddPostFailed'));
             $.jGrowl(resources.res('ItsaWeb.Resources.Resources.AddPostFailed'));
@@ -43,26 +42,12 @@
     self.getPosts = function () {
         $.connection.blogHub.getBlogEntries()
             .done(function (data) {
-                self.onPosts(data);
+                var model = new BlogPostsModel(self);
+                model.onPosts(data);
+                self.blogPosts(model);
             }).fail(function() {
             });
     };
 
-    self.posts = ko.observableArray([]);
-
-    self.onPosts = function (data) {
-
-        var returnedPosts = $.map(data, function (item) {
-            return new BlogPost(item, self);
-        });
-
-        self.posts(returnedPosts);
-    };
-
-    self.removePost = function (post) {
-        self.posts.remove(function (item) {
-            return item.id() == post.id();
-        });
-        self.message(resources.res('ItsaWeb.Resources.Resources.PostDeleted'));
-    };
+    self.blogPosts = ko.observable();
 };
