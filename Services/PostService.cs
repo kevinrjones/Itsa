@@ -49,5 +49,10 @@ namespace Services
         {
             return _postRepository.Entities.Count();
         }
+
+        public IList<Post> GetPosts()
+        {
+            return _postRepository.Entities.ToList();
+        }
     }
 }

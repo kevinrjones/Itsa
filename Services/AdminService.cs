@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Entities;
 using ItsaRepository.Interfaces;
 using ServiceInterfaces;
@@ -13,9 +15,17 @@ namespace Services
             _repository = repository;
         }
 
-        public void AddBlogEntry(Post entry)
+        public Post AddBlogPost(Post entry)
         {
-            _repository.Create(entry);
+            return _repository.Create(entry);
+        }
+
+        public void DeleteBlogPost(Guid id)
+        {
+            var post = (from e in _repository.Entities
+                        where e.Id == id
+                        select e).FirstOrDefault();
+            _repository.Delete(post);
         }
     }
 }

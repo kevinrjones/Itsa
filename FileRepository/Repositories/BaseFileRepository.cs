@@ -75,7 +75,7 @@ namespace FileRepository.Repositories
             }
         }
 
-        public virtual void Create(T entity)
+        public virtual T Create(T entity)
         {
             var fileName = GenerateFileName(entity);
             try
@@ -88,6 +88,7 @@ namespace FileRepository.Repositories
                     var bytes = Encoding.UTF8.GetBytes(json);
                     stream.Write(bytes, 0, bytes.Length);
                 }
+                return entity;
             }
             catch (IOException)
             {

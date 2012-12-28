@@ -1,9 +1,11 @@
+using System;
 using Entities;
 
 namespace ServiceInterfaces
 {
     public interface IAdminService
     {
-        void AddBlogEntry(Post entry);
+        Post AddBlogPost(Post entry);
+        void DeleteBlogPost(Guid Id);
     }
 }

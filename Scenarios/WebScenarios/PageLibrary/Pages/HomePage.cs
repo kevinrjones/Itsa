@@ -24,8 +24,26 @@ namespace WebScenarios.PageLibrary.Pages
         [FindsBy(How = How.Id, Using = "addBlogPost")]
         public IWebElement AddBlogPost { get; set; }
 
+        [FindsBy(How = How.Id, Using = "createBlogPostPanel")]
+        public IWebElement CreateBlogPostPanel { get; set; }
+
         [FindsBy(How = How.Id, Using = "createBlogPost")]
         public IWebElement CreateBlogPost { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "ul#posts li:nth-of-type(1) input")]
+        public IWebElement DeleteBlogPost { get; set; }
+
+        [FindsBy(How = How.Id, Using = "message")]
+        public IWebElement Message { get; set; }
+
+        [FindsBy(How = How.Id, Using = "postTitle")]
+        public IWebElement Title { get; set; }
+
+        [FindsBy(How = How.Id, Using = "postBody")]
+        public IWebElement Body { get; set; }
+
+        [FindsBy(How = How.Id, Using = "posts")]
+        public IWebElement BlogPosts { get; set; }
 
         public PageBase UnRegisterUser()
         {

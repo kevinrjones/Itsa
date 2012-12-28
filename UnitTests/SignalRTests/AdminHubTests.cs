@@ -26,7 +26,7 @@ namespace SignalRTests
         public void GivenAnInValidUser_WhenAPostIsSentToTheHub_ThenAnExceptionIsThrown()
         {
             var hub = new TestableAdminHub(null, null);
-            Action act = () => hub.AddEntry(new NewPostViewModel());
+            Action act = () => hub.AddBlogPost(new NewPostViewModel());
             act.ShouldThrow<NotLoggedInException>();
         }
 
@@ -35,9 +35,9 @@ namespace SignalRTests
         {
             var service = new Mock<IAdminService>();
             var hub = new TestableAdminHub(service.Object, "Kevin");
-            hub.AddEntry(new NewPostViewModel());
+            hub.AddBlogPost(new NewPostViewModel());
 
-            service.Verify(s => s.AddBlogEntry(It.IsAny<Post>()), Times.Once());
+            service.Verify(s => s.AddBlogPost(It.IsAny<Post>()), Times.Once());
         }
 
         [Test]
@@ -45,9 +45,9 @@ namespace SignalRTests
         {
             var service = new Mock<IAdminService>();
             var hub = new TestableAdminHub(service.Object, "Kevin");
-            hub.AddEntry(new NewPostViewModel { Title = "title", Post = "body" });
+            hub.AddBlogPost(new NewPostViewModel { Title = "title", Post = "body" });
             var post = new Post {Title = "title", Body = "body"};
-            service.Verify(s => s.AddBlogEntry(post), Times.Once());
+            service.Verify(s => s.AddBlogPost(It.Is<Post>(p => p.Title == post.Title && p.Body == post.Body)), Times.Once());
         }
     }
 

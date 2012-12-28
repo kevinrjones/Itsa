@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Entities;
 
 namespace ServiceInterfaces
@@ -10,6 +11,6 @@ namespace ServiceInterfaces
         void DeletePost(Guid postId);
         void CreatePost(Post post);
         int GetCountOfPostsForBlog();
-
+        IList<Post> GetPosts();
     }
 }

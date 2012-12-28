@@ -6,13 +6,14 @@
     self.postBody = ko.observable();
 
     self.add = function () {
-        $.connection.adminHub.addEntry({title: self.postTitle(), post: self.postBody()})
-            .done(function () {
-                $.jGrowl(resources.res('Resources.AddPostSucceeded'));
+        $.connection.adminHub.addBlogPost({ title: self.postTitle(), post: self.postBody() })
+            .done(function (post) {
+                parent.postAdded(post);
+                self.postTitle("");
+                self.postBody("");
             })
             .fail(function () {
-                $.jGrowl(resources.res('Resources.AddPostFailed'));
+                parent.postAdded(null);
             });
-        parent.isCreatingBlogPost(false);
     };
 };

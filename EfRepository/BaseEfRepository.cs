@@ -33,10 +33,11 @@ namespace EfRepository
             Save();
         }
 
-        public void Create(T entity)
+        public T Create(T entity)
         {
-            _dbSet.Add(entity);
+            var added = _dbSet.Add(entity);
             Save();
+            return added;
         }
 
         public void Delete(T entity)

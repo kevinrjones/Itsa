@@ -18,29 +18,39 @@
     <ul data-bind="visible: !isAuthenticated()">
         <li>@Html.ActionLink("Login", "New", "Session", new { }, new { id = "login" })</li>
     </ul>
+    <div id="message" data-bind="text: message"></div>
     <div data-bind="visible: isAuthenticated">
         <h1 id="username" data-bind="text: name"></h1>
         <div>
             <input type="button" id="addBlogPost" data-bind="click: addBlogPost" value="@Resources.AddBlogPostTitle" />
         </div>
-        <div id="createBlogPost" data-bind="animate: isCreatingBlogPost()" style="min-height: 300px; border: solid 1px black">
+        <div id="createBlogPostPanel" data-bind="animate: isCreatingBlogPost()" style="min-height: 300px; border: solid 1px black">
             <div>Title:</div>
             <div>
-                <input type="text" id="postTitle" data-bind="value: newPost.postTitle, valueUpdate: 'afterkeydown'"  class="formfields"/>
+                <input type="text" id="postTitle" data-bind="value: newPost.postTitle, valueUpdate: 'afterkeydown'" class="formfields" />
             </div>
             <div>Entry:</div>
             <div>
                 <textarea id="postBody" data-bind="value: newPost.postBody, valueUpdate: 'afterkeydown'" class="formfields"></textarea>
             </div>
             <div>
-                <input type="button" value="@Resources.CreateBlogPostTitle" data-bind="click: newPost.add"/>
+                <input type="button" value="@Resources.CreateBlogPostTitle" data-bind="click: newPost.add" id="createBlogPost"/>
             </div>
         </div>
     </div>
 </div>
 
 <div id="mainsection">
-    <ul data-bind="foreach: posts">
-        <li data-bind="value: postTitle"></li>
+    <ul id="posts" data-bind="foreach: posts">
+        <li>
+            <div>
+                <div data-bind="text: postTitle"></div>
+                <div data-bind="text: postCreated"></div>
+            </div>
+            <div data-bind="text: postBody"></div>
+            <div>
+                <input type="button" value="@Resources.DeletePost" data-bind="click: deletePost"/>
+            </div>
+        </li>
     </ul>
 </div>

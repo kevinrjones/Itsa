@@ -70,7 +70,7 @@ namespace ItsaWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to add post&quot;.
+        ///   Looks up a localized string similar to Failed to add post.
         /// </summary>
         public static string AddPostFailed {
             get {
@@ -79,7 +79,7 @@ namespace ItsaWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post added&quot;.
+        ///   Looks up a localized string similar to Post added.
         /// </summary>
         public static string AddPostSucceeded {
             get {
@@ -102,6 +102,15 @@ namespace ItsaWeb.Resources {
         public static string CreateBlogPostTitle {
             get {
                 return ResourceManager.GetString("CreateBlogPostTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Blog Post.
+        /// </summary>
+        public static string DeletePost {
+            get {
+                return ResourceManager.GetString("DeletePost", resourceCulture);
             }
         }
         

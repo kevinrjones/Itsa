@@ -82,6 +82,7 @@ namespace ItsaWeb
             builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest();
             builder.RegisterType<AdminHub>();
             builder.RegisterType<UserHub>();
+            builder.RegisterType<BlogHub>();
             //            builder.RegisterModule(new ConfigurationSettingsReader("autofac"));
             builder.RegisterFilterProvider();
         }

@@ -8,7 +8,7 @@ namespace Repository
         IQueryable<T> Entities { get; }
         T New();
         void Update(T entity);
-        void Create(T entity);
+        T Create(T entity);
         void Delete(T entity);
         //void Save();
     }

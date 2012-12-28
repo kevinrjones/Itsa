@@ -9,6 +9,20 @@
     self.BlogSubTitle = ko.observable(params.BlogSubTitle);
     self.isAuthenticated = ko.observable(params.IsAuthenticated);
     self.isCreatingBlogPost = ko.observable(false);
+    self.message = ko.observable();
+    
+    self.postAdded = function (post) {
+        if (post != null) {
+            self.message(resources.res('ItsaWeb.Resources.Resources.AddPostSucceeded'));
+            $.jGrowl(resources.res('ItsaWeb.Resources.Resources.AddPostSucceeded'));
+            self.isCreatingBlogPost(false);
+            var blogPosts = ko.contextFor($('#mainsection')[0]).$root;
+            blogPosts.posts.push(new BlogPost(post, blogPosts));
+        } else {
+            self.message(resources.res('ItsaWeb.Resources.Resources.AddPostFailed'));
+            $.jGrowl(resources.res('ItsaWeb.Resources.Resources.AddPostFailed'));
+        }
+    };
 
     self.addBlogEntry = function () {
         $.connection.adminHub.addEntry({});

@@ -1,11 +1,10 @@
 ﻿var home = function () {
 
-
-
     function init() {
         $.connection.blogHub.getBlogEntries()
             .done(function (data) {
                 var model = new BlogPostsModel();
+                model.onPosts(data);
                 ko.applyBindings(model, mainsection);
             })
             .fail(function (error) {

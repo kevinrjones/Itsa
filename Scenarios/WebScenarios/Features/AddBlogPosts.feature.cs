@@ -66,10 +66,10 @@ namespace WebScenarios.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add a blog post as an administrator")]
-        public virtual void AddABlogPostAsAnAdministrator()
+        [NUnit.Framework.DescriptionAttribute("Add a blog should be available post as an administrator")]
+        public virtual void AddABlogShouldBeAvailablePostAsAnAdministrator()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a blog post as an administrator", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a blog should be available post as an administrator", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
@@ -83,17 +83,40 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add a blog post as an administrator")]
+        [NUnit.Framework.CategoryAttribute("deletepost")]
+        public virtual void AddABlogPostAsAnAdministrator()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a blog post as an administrator", new string[] {
+                        "deletepost"});
+#line 12
+this.ScenarioSetup(scenarioInfo);
+#line 13
+ testRunner.Given("I am logged on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 14
+ testRunner.And("I press add blog post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("I enter and title and body", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.When("I add the post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
+ testRunner.Then("the post should be visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add a blog post as a reader")]
         public virtual void AddABlogPostAsAReader()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a blog post as a reader", ((string[])(null)));
-#line 11
+#line 19
 this.ScenarioSetup(scenarioInfo);
-#line 12
+#line 20
  testRunner.Given("I am not logged on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 21
  testRunner.And("I browse to the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 22
  testRunner.Then("the add blog post button is not visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

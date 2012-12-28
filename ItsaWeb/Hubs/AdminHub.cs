@@ -19,19 +19,29 @@ namespace ItsaWeb.Hubs
             _adminService = adminService;
         }
 
-        public void AddEntry(NewPostViewModel model)
+        public BlogPostViewModel AddBlogPost(NewPostViewModel model)
         {
-            var user = UserName;
-
-            var entry = new Post
+            var authenticated = IsAuthenticated();
             {
-                EntryAddedDate = DateTime.Now,
-                EntryUpdateDate = DateTime.Now,
-                Body = model.Post,
-                Title = model.Title
-            };
+                var entry = new Post
+                                {
+                                    EntryAddedDate = DateTime.Now,
+                                    EntryUpdateDate = DateTime.Now,
+                                    Body = model.Post,
+                                    Title = model.Title
+                                };
 
-            _adminService.AddBlogEntry(entry);
+                var added = _adminService.AddBlogPost(entry);
+                return new BlogPostViewModel(added);
+            }
+        }
+
+        public void DeleteBlogPost(Guid id)
+        {
+            if (IsAuthenticated())
+            {
+                _adminService.DeleteBlogPost(id);
+            }
         }
     }
 }

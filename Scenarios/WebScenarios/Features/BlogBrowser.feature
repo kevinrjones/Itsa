@@ -3,8 +3,9 @@
 	As an unregistered user
 	I want to be able to view the blog
 
-
+@addpost
 Scenario: View Main Page
 	Given I am a reader
 	And There are posts available
 	Then I can read the latest posts
+

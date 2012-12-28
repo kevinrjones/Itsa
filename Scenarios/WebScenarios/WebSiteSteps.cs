@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using FluentAssertions;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using WebScenarios.PageLibrary.Base;
 using WebScenarios.PageLibrary.Pages;
@@ -102,6 +103,7 @@ namespace WebScenarios
 
 
         [When(@"I press add blog post")]
+        [Given(@"I press add blog post")]
         public void WhenIPressAddBlogPost()
         {
             var page = CurrentPage.As<HomePage>();
@@ -114,7 +116,7 @@ namespace WebScenarios
         {
             var page = CurrentPage.As<HomePage>();
             Thread.Sleep(100);
-            page.CreateBlogPost.Displayed.Should().BeTrue();
+            page.CreateBlogPostPanel.Displayed.Should().BeTrue();
         }
 
         [Given(@"I am a reader")]
@@ -123,17 +125,24 @@ namespace WebScenarios
             GivenIAmNotLoggedOn();
         }
 
-        [Given(@"There are posts available")]
         [Given(@"I browse to the home page")]
         public void GivenThereArePostsAvailable()
         {
             CurrentPage = PageBase.LoadHomePage(CurrentDriver, Settings.CurrentSettings.Url);            
         }
 
+        public void AddBlogPost()
+        {
+        }
+
         [Then(@"I can read the latest posts")]
         public void ThenICanReadTheLatestPosts()
         {
-            ScenarioContext.Current.Pending();   
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(100);
+            var elems = page.BlogPosts.FindElements(By.CssSelector("ul#posts li"));
+            elems.Count.Should().NotBe(0);
+
         }
 
         [Then(@"the add blog post button is not visible")]
@@ -142,6 +151,82 @@ namespace WebScenarios
             Thread.Sleep(100);
             var page = CurrentPage.As<HomePage>();
             page.AddBlogPost.Displayed.Should().Be(false);
+        }
+
+        [Given(@"I enter and title and body")]
+        public void GivenIEnterAndTitleAndBody()
+        {
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(1000);
+            page.Title.SendKeys("title");
+            page.Body.SendKeys("body");
+        }
+
+        [When(@"I add the post")]
+        public void WhenIAddThePost()
+        {
+            var page = CurrentPage.As<HomePage>();
+            page.CreateBlogPost.Click();
+        }
+
+        [Then(@"the post should be visible")]
+        public void ThenThePostShouldBeVisible()
+        {
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(100);
+            page.Message.Text.Should().Be("Post added");
+            var elems = page.BlogPosts.FindElements(By.CssSelector("ul#posts li"));
+            elems.Count.Should().NotBe(0);
+        }
+
+
+        [When(@"I click the delete post element")]
+        public void WhenIClickTheDeletePostElement()
+        {
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(100);
+            page.DeleteBlogPost.Click();
+        }
+
+        [Then(@"the delete blog post element show be shown")]
+        public void ThenTheDeleteBlogPostElementShowBeShown()
+        {
+            var page = CurrentPage.As<HomePage>();
+            page.DeleteBlogPost.Displayed.Should().BeTrue();
+        }
+
+        [Then(@"the post should deleted")]
+        public void ThenThePostShouldDeleted()
+        {
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(100);
+            var elems = page.BlogPosts.FindElements(By.CssSelector("ul#posts li"));
+            elems.Count.Should().Be(0);
+        }
+
+        [BeforeScenario("addpost")]
+        public void AddPost()
+        {
+            GivenIAmLoggedOn();
+            WhenIPressAddBlogPost();
+            GivenIEnterAndTitleAndBody();
+            WhenIAddThePost();
+        }
+
+        [AfterScenario("deletepost")]
+        public void RemovePost()
+        {
+            GivenIAmLoggedOn();
+            WhenIClickTheDeletePostElement();
+        }
+
+        [Then(@"the delete blog post button is not visible")]
+        public void ThenTheDeleteBlogPostButtonIsNotVisible()
+        {
+            var page = CurrentPage.As<HomePage>();
+            Thread.Sleep(100);
+            var elems = page.BlogPosts.FindElements(By.CssSelector("ul#posts li"));
+            elems.Count.Should().Be(0);
         }
     }
 }

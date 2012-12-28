@@ -71,5 +71,14 @@ namespace ServicesTests
             count.Should().Be(2);
         }
 
+        [Test]
+        public void GivenASetOfPosts_WhenIRetrieveThePosts_ThenAllThePostsAreRetrieved()
+        {
+            var posts = new List<Post> { new Post(), new Post() }.AsQueryable();
+            _postRepository.Setup(p => p.Entities).Returns(posts);
+            var retrievedPosts = _service.GetPosts();
+            retrievedPosts.Count.Should().Be(2);
+        }
+
     }
 }

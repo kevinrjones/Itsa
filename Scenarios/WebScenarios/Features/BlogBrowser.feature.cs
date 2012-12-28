@@ -67,9 +67,11 @@ namespace WebScenarios.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View Main Page")]
+        [NUnit.Framework.CategoryAttribute("addpost")]
         public virtual void ViewMainPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Main Page", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Main Page", new string[] {
+                        "addpost"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
