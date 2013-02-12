@@ -1,7 +1,6 @@
-﻿PageViewModel = function (params) {
+﻿function UserModel(params) {
     var self = this;
 
-    // todo: replace this with a reference to the UserModel, cf blogPosts below
     self.name = ko.observable(params.Name);
     self.allowComments = ko.observable(params.AllowComments);
     self.ModerateComments = ko.observable(params.ModerateComments);
@@ -16,8 +15,9 @@
         if (post != null) {
             self.message(resources.res('ItsaWeb.Resources.Resources.AddPostSucceeded'));
             $.jGrowl(resources.res('ItsaWeb.Resources.Resources.AddPostSucceeded'));
-            self.isCreatingBlogPost(false);            
-            self.blogPosts().posts.unshift(new BlogPost(post, self));
+            self.isCreatingBlogPost(false);
+            var blogPosts = ko.contextFor($('#mainsection')[0]).$root;
+            blogPosts.posts.push(new BlogPost(post, blogPosts));
         } else {
             self.message(resources.res('ItsaWeb.Resources.Resources.AddPostFailed'));
             $.jGrowl(resources.res('ItsaWeb.Resources.Resources.AddPostFailed'));
@@ -38,17 +38,6 @@
     };
 
     self.newPost = new CreateBlogPost(this);
-
-    /* blogposts */
-    self.getPosts = function () {
-        $.connection.blogHub.getBlogEntries()
-            .done(function (data) {
-                var model = new BlogPostsModel(self);
-                model.onPosts(data);
-                self.blogPosts(model);
-            }).fail(function() {
-            });
-    };
-
-    self.blogPosts = ko.observable();
 };
+
+

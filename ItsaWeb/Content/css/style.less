@@ -1,8 +1,14 @@
+@import "variables.less";
+
 @blue: #0072C6;
 @gray: #F3F3F3;
 @border-color: #f0f0f0;
 @focus-border-color: silver;
 @input-height: 30px;
+
+
+html, button, input, select, textarea { font-family: "Segoe UI", "Segoe UI Web Regular", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", "Arial", "sans-serif"; color: #222;}
+
 
 /* Alter box model for consistency */
 * {
@@ -30,133 +36,36 @@
         font-size: 95%;
     }
 
-/* Dropdown menu styling */
-.dropdownMenu {
-    position: absolute;
-    z-index: 1;
-    min-width: 160px;
-    display: none;
-    background-color: white;
-    border: 2px solid black;
-}
-
-    .dropdownMenu ul {
-        list-style-type: none;
-        margin: 10px 0;
-        padding: 0;
-    }
-
-    .dropdownMenu li a {
-        width: 100%;
-        display: inline-block;
-        color: black;
-        padding: 6px 15px;
-        text-decoration: none;
-    }
-
-    .dropdownMenu ul.selectable li a {
-        padding: 6px 15px 6px 10px;
-    }
-
-    .dropdownMenu li a:hover {
-        background-color: @gray;
-        color: black;
-        text-decoration: none;
-    }
-
-    .dropdownMenu li a:visited {
-        color: black;
-    }
-
-    .dropdownMenu li a img {
-        width: 19px;
-        height: 13px;
-        margin-right: 8px;
-    }
-
-    .dropdownMenu li.selected a img {
-        background-image: url("/Content/icons/controls.png");
-        background-position: 0 -308px;
-        background-repeat: no-repeat;
-    }
-
-.toolbarChevron {
-    height: 8px;
-    width: 10px;
-    display: inline-block;
-    background-image: url("/Content/icons/c4.png");
-    background-position: -93px 0px;
-}
-
-.dropdownMenuControl {
-    cursor: pointer;
-}
-
-/* Master layout and styling*/
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
-}
-
-
-#loading {
-    right: 25px;
-    background-color: red;
-}
-
-#dirty {
-    right: 200px;
-    border-top: none;
-}
-
-#loading, #dirty {
-    position: absolute;
-    top: 0px;
-    z-index: 1;
-    width: 150px;
-    height: @input-height;
-    color: white;
-    font-weight: bold;
-}
-
-    #loading span, #dirty span {
-        position: absolute;
-        top: 7px;
-        left: 15px;
-        font-size: 9pt;
-    }
-
-#content {
-    position: relative;
-}
-
-
 /* Login page styling */
-#session-index #signin {
-    width: 85px;
-    height: @input-height;
-    background-color: @blue;
-    border: none;
-    color: white;
-}
+#session-index {
+    #signin {
+        width: 85px;
+        height: @input-height;
+        background-color: @blue;
+        border: none;
+        color: white;
+        margin-top: 1em;
 
-    #session-index #signin.hover {
-        background-color: #1e82cc;
+
+        .hover {
+            background-color: #1e82cc;
+        }
     }
 
-#session-index #login-page-container {
-    position: relative;
-    width: 850px;
-    margin: auto;
-    margin-top: 5em;
+    #login-page-container {
+        position: relative;
+        width: 850px;
+        margin: auto;
+        margin-top: 5em;
+    }
 }
 
-#session-index #introduction-container {
-    top: 0px;
-    width: 450px;
-    height: 450px;
-    text-align: left;
-}
+    #session-index #session-index #introduction-container {
+        top: 0px;
+        width: 450px;
+        height: 450px;
+        text-align: left;
+    }
 
     #session-index #introduction-container #picture {
         height: 300px;
@@ -174,658 +83,67 @@ h1, h2, h3, h4, h5, h6 {
         color: white;
     }
 
-#session-index #login-container {
-    top: 0px;
-    right: 0;
-    width: 400px;
-    padding: 0.1em 1em;
-}
-
-#session-index input.text-box {
-    height: @input-height;
-    width: 320px;
-    padding-left: 0.5em;
-    border: 1px solid @border-color;
-    background-color: white;
-}
-
-    #session-index input.text-box.focus {
-        border: 1px solid @focus-border-color;
+    #session-index #login-container {
+        top: 0px;
+        right: 0;
+        width: 400px;
+        padding: 0.1em 1em;
     }
 
-#session-index input#UserName {
-    height: @input-height;
-    width: 320px;
-    padding-left: 0.5em;
-    border: 1px solid @border-color;
-    background-color: white;
-}
-/*#session-index input#UserName.focus {
-    border: 1px solid @focus-border-color;
-}*/
-#session-index input#Password {
-    height: @input-height;
-    width: 320px;
-    padding-left: 0.5em;
-    border: 1px solid @border-color;
-    background-color: white;
-}
-/*#session-index input#Password.focus {
-    border: 1px solid @focus-border-color;
-}*/
-#session-index input#RepeatPassword {
-    height: @input-height;
-    width: 320px;
-    padding-left: 0.5em;
-    border: 1px solid @border-color;
-    background-color: white;
-}
-/*#session-index input#RepeatPassword.focus {
-    border: 1px solid @focus-border-color;
-}*/
-#session-index input#Email {
-    height: @input-height;
-    width: 320px;
-    padding-left: 0.5em;
-    border: 1px solid #f0f0f0;
-    background-color: white;
-}
-/*#session-index input#Email.focus {
-    border: 1px solid @focus-border-color;
-}*/
-
-#session-index label {
-    display: block;
-    margin-top: 10px;
-}
-
-#session-index .field-validation-error {
-    margin-top: 0;
-    color: red;
-}
-
-#session-index #signin {
-    margin-top: 1em;
-}
-
-
-/* HEADER STUFF */
-
-#header-bar {
-    position: relative;
-    height: 40px;
-    margin-top: 0;
-    color: white;
-    background-color: @blue;
-}
-
-    #header-bar a {
-        height: 40px;
-        display: inline-block;
-        color: white;
-        text-decoration: none;
-        padding-right: 10px;
-    }
-
-        #header-bar a:hover {
-            background-color: rgba(0,0,0, 0.2);
-        }
-
-/* SECTION NAME & ASSOCIATED COLLATERAL */
-
-#section-menu {
-    float: left;
-    height: 40px;
-    padding-left: 10px;
-}
-
-    #section-menu h1 {
-        font-size: 135%;
-        display: inline;
-    }
-
-#section-name {
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    z-index: 1;
-}
-
-
-#section-name-link {
-    position: absolute;
-    width: 106px;
-    padding-right: 10px;
-}
-
-    #section-name-link:hover {
-        background-color: rgba(0,0,0,0.2);
-    }
-
-#section-menu-chevron-link {
-    position: absolute;
-    left: 114px;
-    width: 29px;
-}
-
-    #section-menu-chevron-link:hover {
-    }
-
-    #section-menu-chevron-link #divider {
-        position: relative;
-        top: 9px;
-        width: 1px;
-        height: 22px;
-        display: inline-block;
-        background-color: white;
-        opacity: 0.65;
-    }
-
-#section-menu-chevron {
-    position: absolute;
-    left: 10px;
-    top: 16px;
-    z-index: 1;
-    height: 9px;
-    width: 11px;
-    background-image: url("/Content/icons/c4.png");
-    background-position: -82px -33px;
-}
-
-#section-menu-chevron-link:hover #section-menu-chevron {
-    visibility: visible;
-}
-
-/* TOP NAV MENU*/
-
-#topnav {
-    position: absolute;
-    left: 200px;
-}
-
-    #topnav a {
-        margin-right: 10px;
-        padding-left: 5px;
-    }
-
-        #topnav a span {
-            position: relative;
-            top: 9px;
-            left: 2px;
-        }
-
-        #topnav a:hover {
-            background-color: rgba(0,0,0,0.2);
-        }
-
-/* RIGHT-HAND TOOLS MENU*/
-
-#tools-menu {
-    position: absolute;
-    right: 0;
-    padding-right: 40px;
-}
-
-    #tools-menu span {
-        position: relative;
-        left: 2px;
-        top: 9px;
-    }
-
-/* DROPDOWN NAV MENU*/
-
-#dropdown-navigation {
-    position: absolute;
-    top: -200px;
-    z-index: 1;
-    height: 200px;
-    width: 100%;
-    min-width: 850px;
-    overflow: hidden;
-    background-color: black;
-}
-
-    #dropdown-navigation ul {
-        margin-top: 40px;
-        margin-left: 40px;
-        padding: 0px;
-        display: block;
-        list-style-type: none;
-    }
-
-    #dropdown-navigation li {
-        position: relative;
-        height: 120px;
-        width: 120px;
-        margin-right: 10px;
-        display: inline-block;
-        overflow: hidden;
-        background-color: gray;
-        color: white;
-    }
-
-        #dropdown-navigation li#home-link {
-            background-color: #00B159;
-        }
-
-        #dropdown-navigation li#meetings-link {
-            background-color: @blue;
-        }
-
-        #dropdown-navigation li#minutes-link {
-            background-color: #F37735;
-        }
-
-        #dropdown-navigation li#resolutions-link {
-            background-color: #EC098C;
-        }
-
-        #dropdown-navigation li#actions-link {
-            background-color: #D11141;
-        }
-
-        #dropdown-navigation li#reading-room-link {
-            background-color: #7C4199;
-        }
-
-        #dropdown-navigation li a {
-            position: absolute;
-            height: 120px;
-            width: 120px;
-            display: inline-block;
-            color: white;
-            text-decoration: none;
-        }
-
-            #dropdown-navigation li a:hover {
-                background-color: rgba(255,255,255, 0.2);
-            }
-
-            #dropdown-navigation li a span {
-                position: absolute;
-                left: 10px;
-                bottom: 10px;
-            }
-
-/* modal 'dialogs' */
-
-.modal {
-    position: absolute;
-    width: 100%;
-    padding: 10px;
-    background-color: white;
-}
-
-
-/* Meeting list */
-
-#meeting-list {
-    width: 90%;
-    margin: auto;
-    margin-top: 2em;
-}
-
-    #meeting-list #meeting-list-container {
-        width: 100%;
-    }
-
-    #meeting-list #toolbar {
-        position: relative;
-        padding: 10px;
-        background-color: white;
-        border-bottom: 1px solid gray;
-    }
-
-    #meeting-list #filter {
-        margin-top: 10px;
-        background-color: #eee;
-        padding: 5px;
-    }
-
-        #meeting-list #filter ul {
-            list-style-type: none;
-            margin: 0px;
-            padding: 0px;
-        }
-
-        #meeting-list #filter li input {
-            margin-right: 5px;
-        }
-
-        #meeting-list #filter .column {
-            display: inline-block;
-            margin-right: 10px;
-            vertical-align: top;
-            margin-right: 20px;
-        }
-
-            #meeting-list #filter .column br {
-                margin-bottom: 10px;
-            }
-
-
-    #meeting-list #toolbar #sort {
-        position: absolute;
-        right: 0px;
-    }
-
-    #meeting-list #meetlistcontainer {
-        min-height: 250px;
-        width: 100%;
+    #session-index input.text-box {
+        height: @input-height;
+        width: 320px;
+        padding-left: 0.5em;
+        border: 1px solid @border-color;
         background-color: white;
     }
 
-    #meeting-list .meeting {
-        position: relative;
-        height: 62px;
-        padding: 1em;
-        background-color: white;
-        cursor: pointer;
-    }
-
-        #meeting-list .meeting:hover {
-            background-color: #eeeeee;
-        }
-
-        #meeting-list .meeting div {
-        }
-
-        #meeting-list .meeting .date, .meeting .title {
-            top: 12px;
-            left: 50px;
-            font-weight: 500;
-        }
-
-        #meeting-list .meeting .times, .meeting .company {
-            top: 32px;
-            color: gray;
-        }
-
-        #meeting-list .meeting .date {
-            position: absolute;
-        }
-
-        #meeting-list .meeting .times {
-            position: absolute;
-            left: 50px;
-            font-size: 80%;
-        }
-
-        #meeting-list .meeting .title {
-            position: absolute;
-            left: 150px;
-        }
-
-        #meeting-list .meeting .company {
-            position: absolute;
-            left: 150px;
-        }
-
-        #meeting-list .meeting .status {
-            position: absolute;
-            top: 16px;
-            right: 100px;
-            width: 200px;
-        }
-
-            #meeting-list .meeting .status.Published {
-                color: LimeGreen;
-            }
-
-            #meeting-list .meeting .status.Unpublished {
-                color: red;
-            }
-
-    #meeting-list #toolbar input {
-        padding: 2px;
-    }
-
-        #meeting-list #toolbar input.focus {
+        #session-index input.text-box.focus {
             border: 1px solid @focus-border-color;
         }
 
-    #meeting-list #toolbar #search input {
-        padding-left: 0.35em;
+    #session-index input#UserName {
+        height: @input-height;
+        width: 320px;
+        padding-left: 0.5em;
+        border: 1px solid @border-color;
+        background-color: white;
     }
 
-    #meeting-list #toolbar #checkbox {
-        position: relative;
-        left: 4px;
+    #session-index input#Password {
+        height: @input-height;
+        width: 320px;
+        padding-left: 0.5em;
+        border: 1px solid @border-color;
+        background-color: white;
     }
 
-    #meeting-list #toolbar .toolbar-item {
-        display: inline-block;
-        margin-right: 1.5em;
+    #session-index input#RepeatPassword {
+        height: @input-height;
+        width: 320px;
+        padding-left: 0.5em;
+        border: 1px solid @border-color;
+        background-color: white;
     }
 
-    #meeting-list .meeting .checkbox-container {
-        position: absolute;
-        top: 21px;
+    #session-index input#Email {
+        height: @input-height;
+        width: 320px;
+        padding-left: 0.5em;
+        border: 1px solid #f0f0f0;
+        background-color: white;
     }
 
-    #meeting-list .meeting.selected, #meeting-list .meeting.selected div {
-        background-color: @blue;
-        color: white;
-    }
-
-    #meeting-list #viewMenu {
-        left: 113px;
-        top: 75px;
-    }
-
-    #meeting-list #sortMenu {
-        right: 83px;
-        top: 75px;
-    }
-
-    #meeting-list #nomeetings {
-        margin: 1em 0px;
-    }
-
-        #meeting-list #nomeetings p {
-            margin: 0px;
-            font-style: italic;
-        }
-
-
-/* Meetings home page styling */
-
-.tilegrid {
-    margin-top: 10px;
-}
-
-    .tilegrid a {
+    #session-index label {
         display: block;
-        width: 150px;
-        height: 150px;
-        padding: 10px;
-        color: white;
-        text-decoration: none;
-        float: left;
-        margin: 10px;
+        margin-top: 10px;
     }
 
-.tile1 {
-    background-color: green;
-}
-
-.tile2 {
-    background-color: navy;
-}
-
-
-/* Menus */
-
-/* This specific class referenced in modules to force addition of an icon, and to apply icon styling to a menu item. */
-
-#topnav img.topnav-new {
-    position: relative;
-    top: 7px;
-    width: 26px;
-    height: 26px;
-    margin-left: 4px;
-    margin-right: 8px;
-    background-image: url("/Content/icons/command2.png");
-    background-position: -1px -1px;
-}
-
-
-/* =============================================================================
-   Media Queries
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-/* =============================================================================
-   Non-Semantic Helper Classes
-   ========================================================================== */
-
-.ir {
-    display: block;
-    border: 0;
-    text-indent: -999em;
-    overflow: hidden;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    text-align: left;
-    direction: ltr;
-    *line-height: 0;
-}
-
-    .ir br {
-        display: none;
+    #session-index .field-validation-error {
+        margin-top: 0;
+        color: red;
     }
 
-.hidden {
-    display: none !important;
-    visibility: hidden;
-}
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-    .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
-        clip: auto;
-        height: auto;
-        margin: 0;
-        overflow: visible;
-        position: static;
-        width: auto;
-    }
-
-.invisible {
-    visibility: hidden;
-}
-
-.clearfix:before, .clearfix:after {
-    content: "";
-    display: table;
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-.clearfix {
-    *zoom: 1;
-}
-
-/* =============================================================================
-   Print Styles
-   ========================================================================== */
-
-@media print {
-    * {
-        background: transparent !important;
-        color: black !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-        filter: none !important;
-        -ms-filter: none !important;
-    }
-    /* Black prints faster: h5bp.com/s */
-    a, a:visited {
-        text-decoration: underline;
-    }
-
-        a[href]:after {
-            content: " (" attr(href) ")";
-        }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
-        content: "";
-    }
-    /* Don't show links for images, or javascript/internal links */
-    pre, blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group;
-    }
-    /* h5bp.com/t */
-    tr, img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2, h3 {
-        page-break-after: avoid;
-    }
-}
-
-
-
-/* Styles for validation helpers
------------------------------------------------------------*/
-/*.field-validation-error {
-    color: #b94a48 !important;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-.input-validation-error {
-    color: #b94a48 !important;
-    background-color: #fee !important;
-}
-
-.validation-summary-errors {
-    font-weight: bold;
-    color: #f00;
-}
-
-.validation-summary-valid {
-    display: none;
-}*/
 
 .formfields {
     width: 100%;
@@ -833,4 +151,36 @@ h1, h2, h3, h4, h5, h6 {
 
 textarea {
     min-height: 300px;
+}
+
+.postHeader {
+    margin: 9pt 9pt 9pt 0;
+    padding: 0 0 6px 0;
+    border-bottom: 1px solid #000;
+
+    h3 {
+		float: left;
+		width: 70%;
+		font-size: 16px;
+    }
+}
+
+.postDate {
+	float: left;
+	width: 28%;
+	margin-top: 12px;
+}
+
+.postTitle {
+    color: @dark-main;
+}
+
+.postBody {
+}
+
+.postAdmin {
+}
+
+#mainsection {
+	padding: 0 0 0 10px;
 }

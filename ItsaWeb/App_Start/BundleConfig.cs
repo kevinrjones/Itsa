@@ -29,6 +29,7 @@ namespace ItsaWeb.App_Start
 
             var bootstrapCss = new StyleBundle("~/bundles/content/bootstrap").Include(
                           "~/Content/less/bootstrap.less",
+                          "~/Content/less/bootstrap-config",
                           "~/Content/less/responsive.less"
                           );
 
@@ -61,7 +62,10 @@ namespace ItsaWeb.App_Start
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/other").Include(                            
+            bundles.Add(new ScriptBundle("~/bundles/other").Include(
+                            "~/Scripts/signals.js",
+                            "~/Scripts/hasher.js",
+                            "~/Scripts/bootstrap.js",
                             "~/Scripts/knockout-{version}.js",
                             "~/Scripts/knockout.mapping-latest.js",
                             "~/Scripts/log4javascript.js",

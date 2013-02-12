@@ -1,11 +1,11 @@
 ﻿Feature: DeleteBlogPosts
-	In order to delete posts from the blog
-	As a blog administrator
+	As an administrator
 	I want to be able to delete blog posts
+	In order to remove unwanted entries
 
 @addpost
 @deletepost
-Scenario: Delete a blog post should be available as an administrator
+Scenario: Delete a blog post should be available to an administrator
 	Given I am logged on
 	Then the delete blog post element show be shown
 
