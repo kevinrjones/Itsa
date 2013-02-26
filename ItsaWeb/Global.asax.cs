@@ -16,7 +16,8 @@ using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using Logging;
 using Logging.NLog;
-using SignalR;
+using Microsoft.AspNet.SignalR;
+
 
 namespace ItsaWeb
 {
@@ -32,7 +33,8 @@ namespace ItsaWeb
             var container = builder.Build();
             
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            GlobalHost.DependencyResolver = new Infrastructure.AutofacDependencyResolver(container); // for signalr
+            //GlobalHost.DependencyResolver = new ItsaWeb.Infrastructure.AutofacDependencyResolver(container);
+            GlobalHost.DependencyResolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container); // for signalr
 
             GlobalConfiguration.Configuration.Register();
             GlobalFilters.Filters.RegisterGlobalFilters();
@@ -79,7 +81,7 @@ namespace ItsaWeb
             builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
 
             //builder.RegisterType<NLogLogger>().As<ILogger>();
-            builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest();
+            //builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest();
             builder.RegisterType<AdminHub>();
             builder.RegisterType<UserHub>();
             builder.RegisterType<BlogHub>();

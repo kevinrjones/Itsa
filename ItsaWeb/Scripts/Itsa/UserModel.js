@@ -25,7 +25,7 @@
     };
 
     self.addBlogEntry = function () {
-        $.connection.adminHub.addEntry({});
+        $.connection.adminHub.server.addEntry({});
     };
 
 

@@ -3,7 +3,7 @@
 
     function init() {
         var page;
-        $.connection.userHub.getUser()
+        $.connection.userHub.server.getUser()
             .done(function (data) {
                 if (data) {
                     page = new PageViewModel(data);

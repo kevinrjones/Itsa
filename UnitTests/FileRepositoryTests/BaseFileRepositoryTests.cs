@@ -49,7 +49,7 @@ namespace FileRepositoryTests
             var stream = new Mock<Stream>();
             _fileInfo.Setup(f => f.Create()).Returns(stream.Object);
             _fileInfoFactory.Setup(f => f.CreateFileInfo(It.IsAny<string>())).Returns(_fileInfo.Object);
-            Post post = new Post { Id = Guid.NewGuid() };
+            var post = new Post { Id = Guid.NewGuid() };
             _repository.Create(post);
 
             stream.Verify(s => s.Write(It.IsAny<byte[]>(), It.IsAny<int>(), It.IsAny<int>()), Times.AtLeastOnce());
@@ -59,7 +59,7 @@ namespace FileRepositoryTests
         public void WhenAnEntityIsDeleted_ThenTheEntityIsDeletedFromTheFile()
         {
             _fileInfoFactory.Setup(f => f.CreateFileInfo(It.IsAny<string>())).Returns(_fileInfo.Object);
-            Post post = new Post { Id = Guid.NewGuid() };
+            var post = new Post { Id = Guid.NewGuid() };
             _repository.Delete(post);
 
             _fileInfo.Verify(s => s.Delete(), Times.AtLeastOnce());

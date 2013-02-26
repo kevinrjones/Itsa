@@ -2,9 +2,9 @@
 using ItsaWeb.Hubs;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using Moq;
-using SignalR;
-using SignalR.Hubs;
 
 namespace SignalRTests
 {
@@ -27,15 +27,15 @@ namespace SignalRTests
                 var mockUser = new GenericPrincipal(new UserViewModel {Name = name}, null);
                 mockRequest.Setup(r => r.User).Returns(mockUser);
             }
-            var mockCookies = new Mock<IRequestCookieCollection>();
+            //var mockCookies = new Mock<IRequestCookieCollection>();
 
-            mockRequest.Setup(r => r.Cookies).Returns(mockCookies.Object);
+            //mockRequest.Setup(r => r.Cookies).Returns(mockCookies.Object);
 
-            Clients = new ClientProxy(mockConnection.Object, hubName);
-            Context = new HubCallerContext(mockRequest.Object, connectionId);
+            //Clients = new ClientProxy(mockConnection.Object, hubName);
+            //Context = new HubCallerContext(mockRequest.Object, connectionId);
 
-            var trackingDictionary = new TrackingDictionary();
-            Caller = new StatefulSignalProxy(mockConnection.Object, connectionId, hubName, trackingDictionary);
+            //var trackingDictionary = new TrackingDictionary();
+            //Caller = new StatefulSignalProxy(mockConnection.Object, connectionId, hubName, trackingDictionary);
         }
 
         public string Identity

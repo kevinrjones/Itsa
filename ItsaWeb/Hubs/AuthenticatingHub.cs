@@ -1,6 +1,6 @@
 using ItsaWeb.Authentication;
 using ItsaWeb.Infrastructure;
-using SignalR.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace ItsaWeb.Hubs
 {

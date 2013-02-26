@@ -9,9 +9,5 @@ namespace ItsaWeb.Authentication
 {
     public interface IItsaIdentity : IIdentity
     {
-        string Name { get; set; }
-        string AuthenticationType { get; set; }
-        bool IsAuthenticated { get;  set; }
-        
     }
 }

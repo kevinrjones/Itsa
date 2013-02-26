@@ -25,7 +25,7 @@
     };
 
     self.addBlogEntry = function () {
-        $.connection.adminHub.addEntry({});
+        $.connection.adminHub.server.addEntry({});
     };
 
 
@@ -41,7 +41,7 @@
 
     /* blogposts */
     self.getPosts = function () {
-        $.connection.blogHub.getBlogEntries()
+        $.connection.blogHub.server.getBlogEntries()
             .done(function (data) {
                 var model = new BlogPostsModel(self);
                 model.onPosts(data);

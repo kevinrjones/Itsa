@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Posts;
+using Microsoft.AspNet.SignalR;
 using ServiceInterfaces;
-using SignalR.Hubs;
 
 namespace ItsaWeb.Hubs
 {

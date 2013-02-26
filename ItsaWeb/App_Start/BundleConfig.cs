@@ -19,7 +19,7 @@ namespace ItsaWeb.App_Start
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
-                        "~/Scripts/jquery.signalR-{version}.js"));
+                        "~/Scripts/jquery.signalR-1.0.0-rc2.js"));
                                    
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

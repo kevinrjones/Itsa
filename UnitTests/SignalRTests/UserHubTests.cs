@@ -62,11 +62,11 @@ namespace SignalRTests
 
             mockRequest.Setup(r => r.Cookies).Returns(mockCookies.Object);
 
-            Clients = new ClientProxy(mockConnection.Object, hubName);
-            Context = new HubCallerContext(mockRequest.Object, connectionId);
+            //Clients = new ClientProxy(mockConnection.Object, hubName);
+            //Context = new HubCallerContext(mockRequest.Object, connectionId);
 
             var trackingDictionary = new TrackingDictionary();
-            Caller = new StatefulSignalProxy(mockConnection.Object, connectionId, hubName, trackingDictionary);
+            //Caller = new StatefulSignalProxy(mockConnection.Object, connectionId, hubName, trackingDictionary);
         }
 
         public string Identity

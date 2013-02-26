@@ -33,6 +33,9 @@
     <Reference Include="FluentAssertions">
       <HintPath>..\IntegrationTests\SystemFileAdapterTests\bin\Debug\FluentAssertions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.1.0.0-rc2\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\UnitTests\FileRepositoryTests\bin\Debug\Moq.dll</HintPath>
     </Reference>

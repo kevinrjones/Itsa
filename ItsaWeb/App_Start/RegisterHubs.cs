@@ -1,9 +1,8 @@
 using System.Web;
 using System.Web.Routing;
 using ItsaWeb.App_Start;
-using SignalR;
 
-[assembly: PreApplicationStartMethod(typeof(RegisterHubs), "Start")]
+//[assembly: PreApplicationStartMethod(typeof(RegisterHubs), "Start")]
 
 namespace ItsaWeb.App_Start
 {
