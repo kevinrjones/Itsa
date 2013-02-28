@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium;
 using System.Drawing.Imaging;
@@ -35,8 +36,9 @@ namespace WebScenarios.Fixtures
 
         public static void CreateDriver()
         {
-            CurrentDriver = new ChromeDriver();
-            CurrentDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(20));
+            //CurrentDriver = new ChromeDriver();
+            CurrentDriver = new FirefoxDriver();
+            CurrentDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(2000));
             //FirefoxBinary fb;
             //if (!String.IsNullOrWhiteSpace(Settings.CurrentSettings.FirefoxBinaryPath))
             //{

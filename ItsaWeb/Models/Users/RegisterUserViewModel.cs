@@ -4,9 +4,6 @@ namespace ItsaWeb.Models.Users
 {
     public class RegisterUserViewModel
     {
-        [Display(Name = "User Name")]
-        [Required]
-        public string UserName { get; set; }
         [Required]
         public string Password { get; set; }
         [Required]

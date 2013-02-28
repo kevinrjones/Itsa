@@ -5,8 +5,8 @@ button,
 input,
 select,
 textarea {
-  font-family: "Segoe UI", "Segoe UI Web Regular", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", "Arial", "sans-serif";
   color: #222;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", "Arial", "sans-serif";
 }
 /* Alter box model for consistency */
 * {
@@ -24,28 +24,28 @@ textarea {
 .loading h3 {
   position: relative;
   top: -1px;
-  margin: 0 0 0 1em;
   display: inline-block;
+  margin: 0 0 0 1em;
   vertical-align: middle;
   font-size: 95%;
 }
 /* Login page styling */
 #session-index #signin {
+  margin-top: 1em;
   width: 85px;
   height: 30px;
-  background-color: #0072c6;
   border: none;
+  background-color: #0072c6;
   color: white;
-  margin-top: 1em;
 }
 #session-index #signin .hover {
   background-color: #1e82cc;
 }
 #session-index #login-page-container {
   position: relative;
-  width: 850px;
   margin: auto;
   margin-top: 5em;
+  width: 850px;
 }
 #session-index #session-index #introduction-container {
   top: 0px;
@@ -61,22 +61,22 @@ textarea {
   position: absolute;
   bottom: 0px;
   left: 0px;
+  padding: 1em 2em;
   width: 450px;
   height: 150px;
-  padding: 1em 2em;
   background-color: #0072c6;
   color: white;
 }
 #session-index #login-container {
   top: 0px;
   right: 0;
-  width: 400px;
   padding: 0.1em 1em;
+  width: 400px;
 }
 #session-index input.text-box {
-  height: 30px;
-  width: 320px;
   padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
   border: 1px solid #f0f0f0;
   background-color: white;
 }
@@ -84,30 +84,30 @@ textarea {
   border: 1px solid #c0c0c0;
 }
 #session-index input#UserName {
-  height: 30px;
-  width: 320px;
   padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
   border: 1px solid #f0f0f0;
   background-color: white;
 }
 #session-index input#Password {
-  height: 30px;
-  width: 320px;
   padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
   border: 1px solid #f0f0f0;
   background-color: white;
 }
 #session-index input#RepeatPassword {
-  height: 30px;
-  width: 320px;
   padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
   border: 1px solid #f0f0f0;
   background-color: white;
 }
 #session-index input#Email {
-  height: 30px;
-  width: 320px;
   padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
   border: 1px solid #f0f0f0;
   background-color: white;
 }
@@ -137,8 +137,8 @@ textarea {
 }
 .postDate {
   float: left;
-  width: 28%;
   margin-top: 12px;
+  width: 28%;
 }
 .postTitle {
   color: #1d6896;

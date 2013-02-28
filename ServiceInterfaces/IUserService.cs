@@ -9,9 +9,9 @@ namespace ServiceInterfaces
 {
     public interface IUserService
     {
-        void Register(string userName, string password, string email);
+        User Register(string email, string password);
         bool UnRegister();
-        bool Logon(string userName, string password);
+        User Logon(string email, string password);
         User GetRegisteredUser();
         User GetUser();
     }

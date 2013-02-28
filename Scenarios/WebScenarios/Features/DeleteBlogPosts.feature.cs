@@ -79,7 +79,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Given("I am logged on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.Then("the delete blog post element show be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the delete blog post element should be shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -4,13 +4,7 @@ namespace ItsaWeb.Models.Users
 {
     public class LogonViewModel
     {
-        [Display(Name = "User Name")]
-        [Required]
-        public string UserName { get; set; }
-        [Required]
+        public string Email { get; set; }
         public string Password { get; set; }
-
-        public string RedirectTo { get; set; }
-
     }
 }

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using FluentAssertions;
 using ItsaWeb.Controllers;
@@ -104,12 +99,12 @@ namespace ItsaWebTests.Controllers
         {
         }
 
-        public void OnException(System.Web.Mvc.ExceptionContext filterContext)
+        public new void OnException(ExceptionContext filterContext)
         {
             base.OnException(filterContext);
         }
 
-        public JsonResult JsonError(Exception e, ErrorCode errorCode, string displayMessage)
+        public new JsonResult JsonError(Exception e, ErrorCode errorCode, string displayMessage)
         {
             return base.JsonError(e, errorCode, displayMessage);
         }

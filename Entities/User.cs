@@ -9,18 +9,18 @@ namespace Entities
     {
         public User()
         {
-            
+            LastUpdated = DateTime.Now;
         }
 
-        public User(string name, string email, string password)
+        public User(string email, string password)
         {
-            Name = name;
+            LastUpdated = DateTime.Now;
             Email = email;
             GeneratePassword(password);
         }
 
-        public string Email { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
         public string HashedPassword { get; set; }
         public string Salt { get; set; }
 
@@ -34,11 +34,9 @@ namespace Entities
         }
 
         public string BlogDescription { get; set; }
-
         public string BlogTitle { get; set; }
 
-        public DateTimeOffset LastUpdated { get; set; }
-
+        public DateTimeOffset LastUpdated { get; private set; }
 
         private void GeneratePassword(string password)
         {

@@ -13,12 +13,5 @@ namespace ServicesTests
     [TestFixture]
     class MediaServiceTests
     {
-        private Mock<IMediaRepository> _postRepository;
-        private MediaService _service;
-
-        //void AddImage(Media media);
-        public void GivenAValidImage_WhenItIsAddedToTheService_ThenItIsAddedToTheRepository()
-        {
-        }
     }
 }

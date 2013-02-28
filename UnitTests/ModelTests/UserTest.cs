@@ -32,7 +32,7 @@ namespace ModelTests
         [Test]
         public void GivenAUser_WhenTheHashedPasswordIsSetInTheConstructor_ThenTheSamePasswordIsSetInThePasswordAccessor()
         {
-            var u = new User("name", "email", "password");
+            var u = new User("email", "password");
             var hashedPassword = u.HashedPassword;
             u.Password = "password";
 
@@ -42,21 +42,21 @@ namespace ModelTests
         [Test]
         public void GivenAUser_WhenThePasswordHasBeenSet_AndTheSamePasswordIsCompared_ThenTheComparisonSucceeds()
         {
-            var u = new User("name", "email", "password");
+            var u = new User("email", "password");
             u.MatchPassword("password").Should().BeTrue();
         }
 
         [Test]
         public void GivenAUser_WhenThePasswordHasBeenSet_AndADifferentPasswordIsCompared_ThenTheComparisonFails()
         {
-            var u = new User("name", "email", "password");
+            var u = new User("email", "password");
             u.MatchPassword("password1").Should().BeFalse();
         }
 
         [Test]
         public void GivenAUser_WhenTheHashedPasswordIsSetInTheConstructor_AndADifferentPasswordIsSetInThePasswordAccessor_ThenThePasswordsAreDifferent()
         {
-            var u = new User("name", "email", "password");
+            var u = new User("email", "password");
             var hashedPassword = u.HashedPassword;
             u.Password = "password1";
 

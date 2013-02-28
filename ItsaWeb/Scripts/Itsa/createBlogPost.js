@@ -1,6 +1,6 @@
-﻿function CreateBlogPost(parent) {
+﻿function CreateBlogPost(params) {
     var self = this;
-    self.parent = parent;
+    self.applicationViewModel = params.applicationViewModel;
 
     self.postTitle = ko.observable();
     self.postBody = ko.observable();
@@ -8,7 +8,7 @@
     self.add = function () {
         $.connection.adminHub.server.addBlogPost({ title: self.postTitle(), post: self.postBody() })
             .done(function (post) {
-                parent.postAdded(post);
+                applicationViewModel.postAdded(post);
                 self.postTitle("");
                 self.postBody("");
             })

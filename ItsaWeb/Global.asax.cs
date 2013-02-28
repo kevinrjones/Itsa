@@ -12,7 +12,6 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using ItsaWeb.App_Start;
 using ItsaWeb.Hubs;
-using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using Logging;
 using Logging.NLog;
@@ -33,7 +32,6 @@ namespace ItsaWeb
             var container = builder.Build();
             
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            //GlobalHost.DependencyResolver = new ItsaWeb.Infrastructure.AutofacDependencyResolver(container);
             GlobalHost.DependencyResolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container); // for signalr
 
             GlobalConfiguration.Configuration.Register();
@@ -80,8 +78,8 @@ namespace ItsaWeb
             var fileAssembly = Assembly.Load("SystemFileAdapter");
             builder.RegisterAssemblyTypes(fileAssembly).AsImplementedInterfaces();
 
-            //builder.RegisterType<NLogLogger>().As<ILogger>();
-            //builder.Register(c => new NLogLogger()).As<ILogger>().InstancePerHttpRequest();
+            builder.RegisterType<NLogLogger>().As<ILogger>();
+            builder.Register(c => new NLogLogger()).As<ILogger>();
             builder.RegisterType<AdminHub>();
             builder.RegisterType<UserHub>();
             builder.RegisterType<BlogHub>();

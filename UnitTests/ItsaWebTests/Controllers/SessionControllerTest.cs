@@ -3,7 +3,6 @@ using AbstractConfigurationManager;
 using Entities;
 using FluentAssertions;
 using ItsaWeb.Controllers;
-using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using Logging;
 using Moq;
@@ -30,36 +29,6 @@ namespace ItsaWebTests.Controllers
         }
 
         [Test]
-        public void GivenARegisteredUser_WhenITryAndLogin_ThenIGetTheLoginPage()
-        {
-            _userService.Setup(u => u.GetRegisteredUser()).Returns(new User());
-            var controller = new SessionController(_userService.Object, null, _logger.Object);
-            var view = controller.New("redirect");
-            view.Should().BeOfType<ViewResult>();
-        }
-
-        [Test]
-        public void GivenAnUnRegisteredUser_WhenITryAndLogin_ThenTempDataContainsTheCorrectMessage()
-        {
-            _userService.Setup(u => u.GetRegisteredUser()).Returns((User) null);
-            var controller = new SessionController(_userService.Object, null, _logger.Object);
-            SetControllerContext(controller);
-            controller.New("redirect");
-            TempData["message"].Should().Be("User does not exist");
-        }
-
-        [Test]
-        public void GivenAnUnRegisteredUser_WhenITryAndReRegister_ThenIAmShowTheRegisterView()
-        {
-            _userService.Setup(u => u.GetRegisteredUser()).Returns((User)null);
-            var controller = new SessionController(_userService.Object, null, _logger.Object);
-            var view = controller.New("redirect");
-            view.Should().BeOfType<RedirectToRouteResult>();
-            view.As<RedirectToRouteResult>().RouteValues["controller"].Should().Be("User");
-            view.As<RedirectToRouteResult>().RouteValues["action"].Should().Be("New");
-        }
-
-        [Test]
         public void GivenAnInvalidUser_WhenTheSessionIsCreated_ThenTheUserIsRegistered()
         {
             const string userName = "name";
@@ -69,12 +38,12 @@ namespace ItsaWebTests.Controllers
 
             SetControllerContext(controller);
 
-            controller.Create(new LogonViewModel { UserName = userName, Password = password });
+            controller.Create(new LogonViewModel { Email = userName, Password = password });
             _userService.Verify(u => u.Logon(userName, password), Times.Once());
         }
 
         [Test]
-        public void GivenAnInvalidUser_WhenTheSessionIsCreated_ThenIndexViewIsReturned()
+        public void GivenAnInvalidUser_WhenTheSessionIsCreated_ThenTheUserIsNotAuthenticated()
         {
             const string userName = "name";
             const string password = "password";
@@ -83,40 +52,24 @@ namespace ItsaWebTests.Controllers
 
             SetControllerContext(controller);
 
-            var view = controller.Create(new LogonViewModel { UserName = userName, Password = password });
-            view.Should().BeOfType<ViewResult>();
+            var view = (JsonResult) controller.Create(new LogonViewModel { Email = userName, Password = password });
+            var model = (UserViewModel) view.Data;
+            model.IsAuthenticated.Should().BeFalse();
         }
 
         [Test]
-        public void GivenAValidUser_WhenTheSessionIsCreated_AndThereIsNoRedirect_ThenTheDefaultRedirectViewIsReturned()
+        public void GivenAValidUser_WhenTheSessionIsCreated_TheTheUserShouldBeAuthenticated()
         {
             const string userName = "name";
             const string password = "password";
-            _userService.Setup(u => u.Logon(userName, password)).Returns(true);
+            _userService.Setup(u => u.Logon(userName, password)).Returns(new User());
             var controller = new SessionController(_userService.Object, _configurationManager.Object, _logger.Object);
 
             SetControllerContext(controller);
 
-            var view = controller.Create(new LogonViewModel { UserName = userName, Password = password });
-            view.Should().BeOfType<RedirectToRouteResult>();
-            view.As<RedirectToRouteResult>().RouteValues["controller"].Should().Be("Itsa");
-            view.As<RedirectToRouteResult>().RouteValues["action"].Should().Be("Index");
-        }
-
-        [Test]
-        public void GivenAValidUser_WhenTheSessionIsCreated_AndThereIsARedirect_ThenTheDefaultRedirectViewIsReturned()
-        {
-            const string userName = "name";
-            const string password = "password";
-            const string redirect = "Itsa/Foo";
-            _userService.Setup(u => u.Logon(userName, password)).Returns(true);
-            var controller = new SessionController(_userService.Object, _configurationManager.Object, _logger.Object);
-
-            SetControllerContext(controller);
-
-            var view = controller.Create(new LogonViewModel { UserName = userName, Password = password, RedirectTo = redirect});
-            view.Should().BeOfType<RedirectResult>();
-            view.As<RedirectResult>().Url.Should().Be("Itsa/Foo");
+            var view = (JsonResult) controller.Create(new LogonViewModel { Email = userName, Password = password });
+            var model = (UserViewModel)view.Data;
+            model.IsAuthenticated.Should().BeTrue();
         }
 
         [Test]

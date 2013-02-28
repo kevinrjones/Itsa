@@ -126,13 +126,19 @@ namespace WebScenarios
         }
 
         [Given(@"I browse to the home page")]
-        public void GivenThereArePostsAvailable()
+        public void GivenIBrowseToTheHomePage()
         {
             CurrentPage = PageBase.LoadHomePage(CurrentDriver, Settings.CurrentSettings.Url);            
         }
 
         public void AddBlogPost()
         {
+        }
+
+        [Given(@"There are posts available")]
+        public void GivenThereArePostsAvailable()
+        {
+            GivenIBrowseToTheHomePage();
         }
 
         [Then(@"I can read the latest posts")]
@@ -188,8 +194,8 @@ namespace WebScenarios
             page.DeleteBlogPost.Click();
         }
 
-        [Then(@"the delete blog post element show be shown")]
-        public void ThenTheDeleteBlogPostElementShowBeShown()
+        [Then(@"the delete blog post element should be shown")]
+        public void ThenTheDeleteBlogPostElementShouldBeShown()
         {
             var page = CurrentPage.As<HomePage>();
             page.DeleteBlogPost.Displayed.Should().BeTrue();

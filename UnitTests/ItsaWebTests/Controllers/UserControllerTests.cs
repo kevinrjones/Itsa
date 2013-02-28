@@ -53,35 +53,33 @@ namespace ItsaWebTests.Controllers
         {
             _userService.Setup(u => u.GetRegisteredUser()).Returns((User) null);
             var controller = new UserController(_userService.Object, null, _logger.Object);
-            var view = controller.New(new RegisterUserViewModel{UserName = "user"});
+            var view = controller.New(new RegisterUserViewModel{Email = "user"});
             view.Should().BeOfType<ViewResult>();
         }
 
         [Test]
         public void GivenAValidUser_WhenTheUserIsCreated_ThenTheUserIsRegistered()
         {
-            const string userName = "name";
             const string password = "password";
             const string email = "email";
             var controller = new UserController(_userService.Object, _configurationManager.Object, _logger.Object);
 
             SetControllerContext(controller);
 
-            controller.Create(new RegisterUserViewModel{UserName = userName, Email = email, Password = password});
-            _userService.Verify(u => u.Register(userName, password, email), Times.Once());
+            controller.Create(new RegisterUserViewModel{Email = email, Password = password});
+            _userService.Verify(u => u.Register(email, password), Times.Once());
         }
 
         [Test]
         public void GivenAValidUser_WhenTheUserIsCreated_ThenIndexViewIsReturned()
         {
-            const string userName = "name";
             const string password = "password";
             const string email = "email";
             var controller = new UserController(_userService.Object, _configurationManager.Object, _logger.Object);
 
             SetControllerContext(controller);
 
-            var view = controller.Create(new RegisterUserViewModel { UserName = userName, Email = email, Password = password });
+            var view = controller.Create(new RegisterUserViewModel { Email = email, Password = password });
             view.Should().BeOfType<RedirectToRouteResult>();
             view.As<RedirectToRouteResult>().RouteValues["controller"].Should().Be("Itsa");
             view.As<RedirectToRouteResult>().RouteValues["action"].Should().Be("Index");

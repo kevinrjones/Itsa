@@ -36,6 +36,13 @@ namespace ItsaWeb.App_Start
             bootstrapCss.Transforms.Add(new LessMinify());
             bundles.Add(bootstrapCss);
 
+            var metroBootstrapCss = new StyleBundle("~/bundles/content/metrobootstrap").Include(
+                            "~/Content/less/metro-bootstrap/metro-bootstrap.less"
+                            );
+
+            metroBootstrapCss.Transforms.Add(new LessMinify());
+            bundles.Add(metroBootstrapCss);
+            
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                         "~/Content/css/main.css"
                         , "~/Content/css/normalize.css"
@@ -65,8 +72,9 @@ namespace ItsaWeb.App_Start
             bundles.Add(new ScriptBundle("~/bundles/other").Include(
                             "~/Scripts/signals.js",
                             "~/Scripts/hasher.js",
+                            "~/Scripts/crossroads.js",
                             "~/Scripts/bootstrap.js",
-                            "~/Scripts/knockout-{version}.js",
+                            "~/Scripts/knockout-{version}.debug.js",
                             "~/Scripts/knockout.mapping-latest.js",
                             "~/Scripts/log4javascript.js",
                             "~/Scripts/expanding.js",

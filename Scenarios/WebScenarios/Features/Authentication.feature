@@ -1,4 +1,4 @@
-﻿Feature: AuthenticationFeature
+﻿Feature: Authentication
 	In order to access the system
 	As an administrator
 	I want to be able to logon using forms authentication

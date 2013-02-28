@@ -8,7 +8,7 @@ namespace ItsaWeb.Hubs
     {
         protected bool IsAuthenticated()
         {
-            return UserName != null;
+            return !string.IsNullOrEmpty(UserName);
         }
 
         protected string UserName
@@ -17,7 +17,7 @@ namespace ItsaWeb.Hubs
             {
                 try
                 {
-                    return ((IItsaIdentity)Context.User.Identity).Name;
+                    return Context.User.Identity.Name;
                 }
                 catch
                 {

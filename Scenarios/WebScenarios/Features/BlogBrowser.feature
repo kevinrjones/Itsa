@@ -4,6 +4,7 @@
 	I want to be able to view the blog
 
 @addpost
+@deletepost
 Scenario: View Main Page
 	Given I am a reader
 	And There are posts available

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AbstractConfigurationManager;
+using Entities;
 using ItsaWeb.Filters;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
@@ -35,8 +36,8 @@ namespace ItsaWeb.Controllers
         [HttpPost]
         public ActionResult Create(RegisterUserViewModel user)
         {
-            _userService.Register(user.UserName, user.Password, user.Email);
-            CreateCookie(user.UserName);
+            _userService.Register(user.Email, user.Password);
+            CreateCookie(user.Email);
             return RedirectToAction("Index", "Itsa");
         }
 

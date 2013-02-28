@@ -15,15 +15,15 @@ namespace Services
             _userRepository = userRepository;
         }
 
-        
 
-        public void Register(string userName, string password, string email)
+
+        public User Register(string email, string password)
         {
             if (GetRegisteredUser() != null)
             {
                 throw new ItsaException("User has already registered");
             }
-            _userRepository.Create(new User(userName, email, password));
+            return _userRepository.Create(new User(email, password));
         }
 
         public bool UnRegister()
@@ -32,24 +32,24 @@ namespace Services
             {
                 return false;
             }
-            _userRepository.Create(new User("", "", ""));
+            _userRepository.Create(new User("", ""));
             return true;
         }
 
-        public bool Logon(string userName, string password)
+        public User Logon(string email, string password)
         {
             User user = GetRegisteredUser();
-            if (user == null)
+            if (user == null || user.Email != email || !user.MatchPassword(password))
             {
-                throw new ItsaException("User not yet registered");
+                throw new ItsaException("Invalid credentials");
             }
-            return user.Name == userName && user.MatchPassword(password);
+            return user;
         }
 
         public User GetRegisteredUser()
         {
             var user = GetUser();
-            if (user == null || string.IsNullOrEmpty(user.Name))
+            if (user == null || string.IsNullOrEmpty(user.Email))
             {
                 return null;
             }

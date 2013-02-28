@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using AbstractConfigurationManager;
+using Entities;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using ServiceInterfaces;
@@ -17,43 +18,31 @@ namespace ItsaWeb.Controllers
             _userService = userService;
         }
 
-        public ActionResult New(string redirectTo)
+        public ActionResult Create(LogonViewModel loginUser)
         {
-            if (_userService.GetRegisteredUser() == null)
-            {
-                TempData["message"] = "User does not exist";
-                return RedirectToAction("New", "User");
-            }
-            return View(new LogonViewModel { RedirectTo = redirectTo });
-        }
+            Logger.Info(string.Format("User Name: {0}; Password {1}", loginUser.Email, loginUser.Password));
 
-        public ActionResult Create(LogonViewModel user)
-        {
-            Logger.Info(string.Format("User Name: {0}; Password {1}", user.UserName, user.Password));
             if (ModelState.IsValid)
             {
-                var isUser =
-                    _userService.Logon(user.UserName, user.Password);
+                User entityUser = _userService.Logon(loginUser.Email, loginUser.Password);
 
-                if (isUser)
+                if (entityUser != null)
                 {
                     TempData["message"] = "User logged on";
-                    CreateCookie(user.UserName);
-                    return string.IsNullOrEmpty(user.RedirectTo)
-                               ? RedirectToAction("Index", "Itsa", null)
-                               : Redirect(user.RedirectTo) as ActionResult;
+                    CreateCookie(entityUser.Name);
+                    return Json(new UserViewModel(entityUser));
                 }
                 Logger.Info("User failed to login.");
             }
             TempData["message"] = "Unable to log user on";
-            return View("New", user);
+            return Json(new UserViewModel());
         }
 
-        public ActionResult Delete()
+        public JsonResult Delete()
         {
             CreateCookie("", -10);
             TempData["message"] = "Session ended";
-            return RedirectToAction("New");
+            return Json(new UserViewModel());
         }
     }
 }

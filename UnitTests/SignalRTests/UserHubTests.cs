@@ -48,9 +48,9 @@ namespace SignalRTests
 
         private void InitializeHub(string name)
         {
-            const string connectionId = "1234";
-            const string hubName = "Authenticating";
-            var mockConnection = new Mock<IConnection>();
+            //const string connectionId = "1234";
+            //const string hubName = "Authenticating";
+            //var mockConnection = new Mock<IConnection>();
             var mockRequest = new Mock<IRequest>();
 
             if (name != null)

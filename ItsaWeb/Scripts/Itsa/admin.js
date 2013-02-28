@@ -1,21 +1,22 @@
-﻿var admin = function () {
+﻿var application = function () {
 
+    function getDefaultUser() {
+        return {Name: '', ModerateComments: false, UserName: '', BlogTitle: '', BlogSubTitle: '', IsAuthenticated: false, AllowComments: false};
+    }
 
     function init() {
-        var page;
+        var page = new ApplicationViewModel();
+        var user = getDefaultUser();
         $.connection.userHub.server.getUser()
             .done(function (data) {
                 if (data) {
-                    page = new PageViewModel(data);
-                } else {
-                    page = new PageViewModel({ isAuthenticated: false });
-                }
+                    user  = data;
+                } 
             })
             .fail(function (error) {
                 console.log(error);
-                page = new PageViewModel({ isAuthenticated: false });
-            }).always(function() {
-                page.getPosts();
+            }).always(function () {
+                page.init(user);
                 ko.applyBindings(page);
             });
     }
@@ -28,6 +29,6 @@
 
 $(function () {
     $.connection.hub.start(function () {
-        admin.init();
+        application.init();
     });
 });

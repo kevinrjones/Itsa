@@ -9,8 +9,6 @@ window.onerror = function (msg, url, linenumber) {
 // console replacement, just in case console not available. 
 if (!window.console) console = { log: function () { } };
 
-var model;
-
 
 /* set up logging */
 var log = log4javascript.getLogger();
@@ -21,13 +19,27 @@ log.addAppender(consoleAppender);
 function handleSignalRFail(data) {
 
     // if error contains "NotLoggedInException" magic string, redirect to login
-    if (/NotLoggedInException/.test(data)) {
-        redirectToLogin();
-    }
-    else {
+    //if (/NotLoggedInException/.test(data)) {
+    //    redirectToLogin();
+    //} else {
         // notify user in Growl box
         $.jGrowl(data);
+    //}
+}
+
+function initCrossroads() {
+
+    routes.initRoutes();
+    //setup hasher
+    function parseHash(newHash, oldHash) {
+        crossroads.parse(newHash);
     }
+    hasher.initialized.add(parseHash); //parse initial hash
+    hasher.changed.add(parseHash); //parse hash changes
+    hasher.init(); //start listening for history change
+
+    //update URL fragment generating new history record
+    //  hasher.setHash('/');
 }
 
 
@@ -40,12 +52,7 @@ function oninit() {
         cache: false
     });
 
-    // ensure that any attempt to leave this page attempt to pop the stack first (and hence confirms any data abandons)
-    //window.onbeforeunload = function () {
-    //    if (!modules.resetModule())
-    //        return 'Unsaved work';
-    //};
-
+    initCrossroads();
     // create new MasterViewModel, and bind using knockout
     //var masterModel = new MasterViewModel();
     //ko.applyBindings(masterModel);

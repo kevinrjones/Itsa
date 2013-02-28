@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using FluentAssertions;
 using ItsaWeb.Filters;
-using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using Moq;
 using NUnit.Framework;
@@ -43,19 +37,19 @@ namespace ItsaWebTests.Filters
             var attr = new TestableAuthorizedUserAttribute();
             var httpContextBase = new Mock<HttpContextBase>();
             httpContextBase.Setup(h => h.User).Returns(new GenericPrincipal(new UserViewModel(), null));
-            var result = attr.AuthorizeCore(httpContextBase.Object);
+            bool result = attr.AuthorizeCore(httpContextBase.Object);
             result.Should().BeTrue();
         }
     }
 
     internal class TestableAuthorizedUserAttribute : AuthorizedUserAttribute
     {
-        public void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        public new void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             base.HandleUnauthorizedRequest(filterContext);
         }
 
-        public bool AuthorizeCore(HttpContextBase httpContext)
+        public new bool AuthorizeCore(HttpContextBase httpContext)
         {
             return base.AuthorizeCore(httpContext);
         }

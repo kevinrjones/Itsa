@@ -1,16 +1,33 @@
-﻿PageViewModel = function (params) {
+﻿function ApplicationViewModel() {
     var self = this;
 
+    self.allowComments = ko.observable();
+    self.manageUser = ko.observable();
+    
+    self.init = function (params) {
+        self.manageUser(new ManageUserViewModel());
+        self.manageUser().init({ applicationViewModel: self });
+
+        // load blog module        
+        page.getPosts();
+
+    };
+
     // todo: replace this with a reference to the UserModel, cf blogPosts below
-    self.name = ko.observable(params.Name);
-    self.allowComments = ko.observable(params.AllowComments);
-    self.ModerateComments = ko.observable(params.ModerateComments);
-    self.UserName = ko.observable(params.UserName);
-    self.BlogTitle = ko.observable(params.BlogTitle);
-    self.BlogSubTitle = ko.observable(params.BlogSubTitle);
-    self.isAuthenticated = ko.observable(params.IsAuthenticated);
     self.isCreatingBlogPost = ko.observable(false);
     self.message = ko.observable();
+
+    self.signInText = ko.computed(function () {
+        if (self.manageUser() && self.manageUser().isAuthenticated && self.manageUser().isAuthenticated()) {
+            return resources.res('ItsaWeb.Resources.Resources.SignOut');
+        } else {
+            return resources.res('ItsaWeb.Resources.Resources.SignIn');
+        }
+    });
+
+    self.showManageUserUi = function () {        
+        self.manageUser().show();
+    };
 
     self.postAdded = function (post) {
         if (post != null) {
@@ -25,7 +42,11 @@
     };
 
     self.addBlogEntry = function () {
-        $.connection.adminHub.server.addEntry({});
+        if (self.isAuthenticated()) {
+            $.connection.adminHub.server.addEntry({});
+        } else {
+            $.jGrowl("You are not allowed to post to this blog");
+        }
     };
 
 
@@ -37,7 +58,7 @@
         self.isCreatingBlogPost(true);
     };
 
-    self.newPost = new CreateBlogPost(this);
+    self.newPost = new CreateBlogPost({ applicationViewModel: this });
 
     /* blogposts */
     self.getPosts = function () {
