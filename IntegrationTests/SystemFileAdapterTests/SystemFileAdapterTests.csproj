@@ -29,9 +29,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
-      <HintPath>..\..\packages\FluentAssertions.2.0.0.1\lib\net45\FluentAssertions.dll</HintPath>
+      <HintPath>..\..\packages\FluentAssertions.2.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
@@ -43,6 +52,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="SystemFileAdapter">
+      <HintPath>..\..\SystemFileAdapter\bin\Debug\SystemFileAdapter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SystemIoFileInfoTests.cs" />
@@ -53,10 +65,9 @@
       <Project>{675BEBA7-9580-4B39-96FC-5E0ED60D9CD6}</Project>
       <Name>FileSystemInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SystemFileAdapter\SystemFileAdapter.csproj">
-      <Project>{98DE4FCF-B1B1-4A1A-90E4-F4D29D341585}</Project>
-      <Name>SystemFileAdapter</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

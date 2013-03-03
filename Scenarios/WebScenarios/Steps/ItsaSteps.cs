@@ -44,7 +44,7 @@ namespace WebScenarios.Steps
         [Given(@"I am registered")]
         public void GivenIAmRegistered()
         {
-            Driver.Navigate().GoToUrl("http://dev.itsa.com");
+            Driver.Navigate().GoToUrl("http://test.itsa.com");
             //I.Open("http://dev.itsa.com");
             Login();
         }
