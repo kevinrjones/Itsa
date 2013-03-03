@@ -1,0 +1,26 @@
+﻿<div class="nav pull-right">
+    <a href="signin" data-bind="text: signInText, click: showManageUserUi"></a>
+</div>
+
+<!-- popup dialog for authentication -->
+<div id="manageUserUi" class="userManager" style="display: none">
+    <div data-bind="visible: !isAuthenticated()">
+        <div>
+            <input id="authn_userName" type="text" placeholder="email" data-bind="value: email" />
+        </div>
+        <div>
+            <input id="authn_userPassword" type="password" placeholder="password" data-bind="value: password" />
+        </div>
+        <div>
+            <button id="authn_signIn" class="btn" data-bind="click: signIn, value: signInButtonLabel">@Resources.SignIn</button>
+        </div>
+        <div>
+            <button id="authn_register" class="btn" data-bind="click: register, value: registerButtonLabel">@Resources.Register</button>
+        </div>
+    </div>
+    <div data-bind="visible: isAuthenticated()">
+        <div>
+            <button class="btn" data-bind="click: signOut, value: signOutButtonLabel">@Resources.SignOut</button>
+        </div>
+    </div>
+</div>

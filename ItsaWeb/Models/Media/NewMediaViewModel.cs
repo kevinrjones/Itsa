@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace ItsaWeb.Models.Media
+{
+    public class NewMediaViewModel : IValidatableObject
+    {
+        private readonly Dictionary<string, string> _validExtensions = new Dictionary<string, string>();
+
+
+        public NewMediaViewModel()
+        {
+            _validExtensions.Add("jpg", "image/jpeg");
+            _validExtensions.Add("png", "image/png");
+            _validExtensions.Add("gif", "image/gif");
+            _validExtensions.Add("pdf", "application/pdf");
+            _validExtensions.Add("ppt", "application/vnd.ms-powerpoint");
+            _validExtensions.Add("pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation");
+            _validExtensions.Add("doc", "application/msword");
+            _validExtensions.Add("docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.documen");
+            _validExtensions.Add("xls", "application/vnd.ms-excel");
+            _validExtensions.Add("xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            _validExtensions.Add("zip", "application/zip");
+        }
+
+        [Required]
+        public HttpPostedFileBase File { get; set; }
+
+        public int BlogId { get; set; }
+        public string Title { get; set; }
+        public string Caption { get; set; }
+        public string Description { get; set; }
+        public string Alternate { get; set; }
+        public int Alignment { get; set; }
+        public int Size { get; set; }
+        public string QqFile { get; set; }
+
+        public string ContentType
+        {
+            get
+            {
+                if (File != null)
+                {
+                    return File.ContentType;
+                }
+                try
+                {
+                    return _validExtensions[Extension(QqFile).ToLower()];
+                }
+                catch
+                {
+                    return "";
+                }                
+            }
+        }
+
+        #region IValidatableObject Members
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            string ext;
+            if (File != null)
+            {
+                ext = Extension(File.FileName);
+            }
+            else
+            {
+                ext = Extension(QqFile);
+            }
+            if (!IsAllowed(ext))
+                yield return new ValidationResult("Files with this extension not allowed", new[] {"File"});
+        }
+
+        #endregion
+
+        private bool IsAllowed(string extension)
+        {
+            string s = (from a in _validExtensions.Keys
+                        where a == extension
+                        select a).FirstOrDefault();
+
+            return s != null;
+        }
+
+        private string Extension(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName) && fileName.Contains("."))
+            {
+                return fileName.Split('.').Last();
+            }
+            return "";
+        }
+    }
+}
