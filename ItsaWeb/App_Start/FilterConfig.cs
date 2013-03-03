@@ -2,9 +2,9 @@
 
 namespace ItsaWeb.App_Start
 {
-    public static class FilterConfig
+    public class FilterConfig
     {
-        public static void RegisterGlobalFilters(this GlobalFilterCollection filters)
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
         }

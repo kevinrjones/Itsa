@@ -1,4 +1,4 @@
-using System.Web;
+﻿using System.Web;
 using System.Web.Routing;
 using ItsaWeb.App_Start;
 
@@ -11,7 +11,8 @@ namespace ItsaWeb.App_Start
         public static void Start()
         {
             // Register the default hubs route: ~/signalr/hubs
-            RouteTable.Routes.MapHubs();            
+            RouteTable.Routes.MapHubs();
         }
+
     }
 }

@@ -49,7 +49,7 @@ namespace ItsaWebTests.Filters
             var attribute = new GetCookieUserFilterAttribute();
             var context = new AuthorizationContext();
             _httpContext.Setup(h => h.Request).Returns(new FakeRequest());
-            context.Controller = new UserController(null, null, _logger.Object);
+            context.Controller = new BaseController(_logger.Object);
             context.HttpContext = _httpContext.Object;
             attribute.OnAuthorization(context);
             context.HttpContext.User.Should().BeOfType<GenericPrincipal>();
@@ -67,7 +67,7 @@ namespace ItsaWebTests.Filters
             string value =  ToBase64("name".Encrypt("saltsalt", "keyphrase"));
             request.Cookies.Add(new HttpCookie("USER", value));
             _httpContext.Setup(h => h.Request).Returns(request);
-            context.Controller = new UserController(null, null, _logger.Object);
+            context.Controller = new BaseController(_logger.Object);
             context.HttpContext = _httpContext.Object;
             attribute.UserService = _service.Object;
             attribute.ConfigurationManager = _configurationManager.Object;

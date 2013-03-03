@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9C4C6CBC-4F8F-47DC-83D7-BAB33902F917}</ProjectGuid>
+    <ProjectGuid>{2A3C0F9D-9BA2-4B45-98EE-2D63746BA99D}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -39,23 +39,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime">
+    <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.0.1\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac.Configuration">
       <HintPath>..\packages\Autofac.3.0.1\lib\net40\Autofac.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Integration.Mvc, Version=2.6.2.859, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.Mvc4.2.6.2.859\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.0.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.SignalR">
       <HintPath>..\packages\Autofac.SignalR.3.0.0\lib\net40\Autofac.Integration.SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="Breeze.WebApi">
+      <HintPath>..\packages\Breeze.WebApi.1.1.2\lib\Breeze.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
@@ -63,28 +64,31 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Irony">
+      <HintPath>..\packages\Breeze.WebApi.1.1.2\lib\Irony.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.0.0-rc2\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Owin">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.0.0-rc2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.0.0\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.0.0-rc2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.0.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.0-rc2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Mvc">
-      <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -100,13 +104,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -117,12 +116,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -130,6 +129,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
@@ -141,8 +144,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -156,7 +160,11 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -164,108 +172,100 @@
     <Compile Include="ActionResults\FeedData.cs" />
     <Compile Include="ActionResults\SyndicationActionResult.cs" />
     <Compile Include="ActionResults\SyndicationHelper.cs" />
+    <Compile Include="App_Start\BreezeWebApiConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\HotTowelConfig.cs" />
     <Compile Include="App_Start\RegisterHubs.cs" />
     <Compile Include="Authentication\IItsaIdentity.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ItsaController.cs" />
+    <Compile Include="Controllers\HotTowelController.cs" />
     <Compile Include="Controllers\Publishing\AtomController.cs" />
     <Compile Include="Controllers\SessionBaseController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\AuthorizedUserAttribute.cs" />
     <Compile Include="Filters\BasicAuthorizeAttribute.cs" />
     <Compile Include="Filters\GetCookieUserFilterAttribute.cs" />
     <Compile Include="Filters\HttpBasicUnauthorizedResult.cs" />
-    <Compile Include="HtmlHelpers\DisplayAuthentication.cs" />
-    <Compile Include="HtmlHelpers\IncludeResources.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\AdminHub.cs" />
     <Compile Include="Hubs\AuthenticatingHub.cs" />
     <Compile Include="Hubs\BlogHub.cs" />
     <Compile Include="Hubs\UserHub.cs" />
     <Compile Include="Infrastructure\CookieEncryption.cs" />
+    <Compile Include="Infrastructure\HandleErrorWithELMAHAttribute.cs" />
+    <Compile Include="Infrastructure\Logging\NLog\NLogHandleErrorAttribute.cs" />
+    <Compile Include="Infrastructure\NotLoggedInException.cs" />
     <Compile Include="Infrastructure\UrlGenerator.cs" />
     <Compile Include="Models\Atom\AtomViewModel.cs" />
-    <Compile Include="Models\Posts\BlogPostViewModel.cs" />
+    <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\Media\ImageCreatedViewModel.cs" />
     <Compile Include="Models\Media\MediaCreateJsonResponse.cs" />
     <Compile Include="Models\Media\NewMediaViewModel.cs" />
     <Compile Include="Models\Media\ShowMediaViewModel.cs" />
     <Compile Include="Models\Media\UpdateMediaViewModel.cs" />
+    <Compile Include="Models\Posts\BlogPostViewModel.cs" />
     <Compile Include="Models\Posts\EditPostViewModel.cs" />
+    <Compile Include="Models\Posts\NewPostViewModel.cs" />
+    <Compile Include="Models\Users\LogonViewModel.cs" />
     <Compile Include="Models\Users\RegisterUserViewModel.cs" />
     <Compile Include="Models\Users\UserViewModel.cs" />
-    <Compile Include="Infrastructure\AutofacDependencyResolver.cs" />
-    <Compile Include="Infrastructure\NotLoggedInException.cs" />
-    <Compile Include="Hubs\AdminHub.cs" />
-    <Compile Include="Infrastructure\HandleErrorWithELMAHAttribute.cs" />
-    <Compile Include="Infrastructure\Logging\NLog\NLogHandleErrorAttribute.cs" />
-    <Compile Include="Models\ErrorViewModel.cs" />
-    <Compile Include="Models\Users\LogonViewModel.cs" />
     <Compile Include="MvcHelpers\ImportedFilePathResolver.cs" />
+    <Compile Include="MvcHelpers\IncludeResources.cs" />
     <Compile Include="MvcHelpers\LessMinify.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Posts\NewPostViewModel.cs" />
-    <Compile Include="Resources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Resources\Resources.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\user.json" />
-    <Content Include="App_Data\posts\empty.txt" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\durandal\amd\almond-custom.js" />
+    <Content Include="App\durandal\amd\optimizer.exe" />
+    <Content Include="App\durandal\amd\r.js" />
+    <Content Include="App\durandal\amd\require.js" />
+    <Content Include="App\durandal\amd\text.js" />
+    <Content Include="App\durandal\app.js" />
+    <Content Include="App\durandal\composition.js" />
+    <Content Include="App\durandal\events.js" />
+    <Content Include="App\durandal\http.js" />
+    <Content Include="App\durandal\messageBox.html" />
+    <Content Include="App\durandal\messageBox.js" />
+    <Content Include="App\durandal\modalDialog.js" />
+    <Content Include="App\durandal\plugins\router.js" />
+    <Content Include="App\durandal\system.js" />
+    <Content Include="App\durandal\transitions\entrance.js" />
+    <Content Include="App\durandal\viewEngine.js" />
+    <Content Include="App\durandal\viewLocator.js" />
+    <Content Include="App\durandal\viewModel.js" />
+    <Content Include="App\durandal\viewModelBinder.js" />
+    <Content Include="App\durandal\widget.js" />
+    <Content Include="App\main.js" />
+    <Content Include="App\services\logger.js" />
+    <Content Include="App\viewmodels\authentication.js" />
+    <Content Include="App\viewmodels\blogPost.js" />
+    <Content Include="App\viewmodels\home.js" />
+    <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\views\authentication.html" />
+    <Content Include="App\views\footer.html" />
+    <Content Include="App\views\home.html" />
+    <Content Include="App\views\nav.html" />
+    <Content Include="App\views\shell.html" />
+    <None Include="Content\app.less" />
     <Content Include="App_Readme\Elmah.txt" />
-    <Content Include="Content\css\css\style.css" />
-    <Content Include="Content\css\css\style.min.css" />
-    <Content Include="Content\css\jquery.jgrowl.css" />
-    <Content Include="Content\css\Less1.css">
-      <DependentUpon>bootstrap-config.less</DependentUpon>
-    </Content>
-    <Content Include="Content\css\Less1.min.css">
-      <DependentUpon>bootstrap-config.less</DependentUpon>
-    </Content>
-    <Content Include="Content\css\main.css" />
-    <Content Include="Content\css\normalize.css" />
-    <Content Include="Content\css\style.css">
-      <DependentUpon>style.less</DependentUpon>
-    </Content>
-    <Content Include="Content\css\style.min.css">
-      <DependentUpon>style.less</DependentUpon>
-    </Content>
-    <Content Include="Content\css\variables.css">
-      <DependentUpon>variables.less</DependentUpon>
-    </Content>
-    <Content Include="Content\css\variables.min.css">
-      <DependentUpon>variables.less</DependentUpon>
-    </Content>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\variables.css" />
+    <Content Include="Content\durandal.css" />
+    <Content Include="Content\ie10mobile.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
-    <Content Include="Content\less\bootstrap.css">
-      <DependentUpon>bootstrap.less</DependentUpon>
-    </Content>
-    <Content Include="Content\less\bootstrap.min.css">
-      <DependentUpon>bootstrap.less</DependentUpon>
-    </Content>
-    <Content Include="Content\less\responsive.css">
-      <DependentUpon>responsive.less</DependentUpon>
-    </Content>
-    <Content Include="Content\less\responsive.min.css">
-      <DependentUpon>responsive.less</DependentUpon>
-    </Content>
-    <Content Include="Content\less\variables.css">
-      <DependentUpon>variables.less</DependentUpon>
-    </Content>
-    <Content Include="Content\less\variables.min.css">
-      <DependentUpon>variables.less</DependentUpon>
-    </Content>
+    <Content Include="Content\images\icon.png" />
     <Content Include="Content\metro-bootstrap.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -297,6 +297,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -326,9 +327,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Content\css\style.less" />
     <Content Include="Content\less\wells.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\less\utilities.less" />
@@ -370,8 +372,6 @@
     <Content Include="Content\less\bootstrap.less" />
     <Content Include="Content\less\alerts.less" />
     <Content Include="Content\less\accordion.less" />
-    <Content Include="Content\css\bootstrap-config.less" />
-    <Content Include="Content\css\variables.less" />
     <Content Include="Content\less\metro-bootstrap\wells.less" />
     <Content Include="Content\less\metro-bootstrap\variables.less" />
     <Content Include="Content\less\metro-bootstrap\type.less" />
@@ -392,86 +392,58 @@
     <Content Include="Content\less\metro-bootstrap\button-groups.less" />
     <Content Include="Content\less\metro-bootstrap\breadcrumbs.less" />
     <Content Include="Content\less\metro-bootstrap\alerts.less" />
-    <None Include="Properties\PublishProfiles\Release.pubxml" />
+    <Content Include="Content\style.less" />
+    <Content Include="Content\variables.less" />
+    <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\crossroads.js" />
-    <Content Include="Scripts\date-en-GB.js" />
-    <Content Include="Scripts\expanding.js" />
-    <Content Include="Scripts\hasher.js" />
-    <Content Include="Scripts\html5shiv.js" />
-    <Content Include="Scripts\Itsa\admin.js" />
-    <Content Include="Scripts\Itsa\BlogPosts.js" />
-    <Content Include="Scripts\Itsa\createBlogPost.js" />
-    <Content Include="Scripts\Itsa\hash-helper.js" />
-    <Content Include="Scripts\Itsa\listmodel.js" />
-    <Content Include="Scripts\Itsa\main.js" />
-    <Content Include="Scripts\Itsa\ManageUserViewModel.js" />
-    <Content Include="Scripts\Itsa\ApplicationViewModel.js" />
-    <Content Include="Scripts\Itsa\plugins.js" />
-    <Content Include="Scripts\Itsa\res.js" />
-    <Content Include="Scripts\Itsa\routes.js" />
-    <Content Include="Scripts\Itsa\security.js" />
-    <Content Include="Scripts\Itsa\BlogPost.js" />
-    <None Include="Scripts\jquery-1.8.3.intellisense.js" />
-    <Content Include="Scripts\Itsa\BlogModel.js" />
-    <Content Include="Scripts\jquery-1.8.3.js" />
-    <Content Include="Scripts\jquery-1.8.3.min.js" />
-    <Content Include="Scripts\jquery-ui-1.9.0.js" />
-    <Content Include="Scripts\jquery-ui-1.9.2.js" />
-    <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
-    <Content Include="Scripts\jquery.jgrowl.js" />
-    <Content Include="Scripts\jquery.signalR-1.0.0-rc2.js" />
-    <Content Include="Scripts\jquery.signalR-1.0.0-rc2.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
-    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
-    <Content Include="Scripts\knockout.mapping-latest.js" />
-    <Content Include="Scripts\kosetup.js" />
+    <Content Include="Scripts\breeze.debug.js" />
+    <Content Include="Scripts\breeze.min.js" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.min.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.0.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.0.min.js" />
+    <Content Include="Scripts\knockout-2.2.1.debug.js" />
+    <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\less.min.js" />
-    <Content Include="Scripts\log4javascript.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\signals.js" />
+    <Content Include="Scripts\messager.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\q.js" />
+    <Content Include="Scripts\q.min.js" />
+    <Content Include="Scripts\sammy-0.7.4.js" />
+    <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\HotTowel\index.cshtml" />
+    <Content Include="Views\HotTowel\_splash.cshtml" />
+    <Content Include="Scripts\toastr.min.js.map">
+      <DependentUpon>toastr.js</DependentUpon>
     </Content>
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Itsa\Index.cshtml" />
-    <Content Include="Views\User\New.cshtml" />
-    <Content Include="Views\Atom\Create.cshtml" />
-    <Content Include="Views\Atom\Get.cshtml" />
-    <Content Include="Views\Atom\GetServiceDocument.cshtml" />
-    <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\Itsa\_BlogEntry.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Feed\" />
-    <Folder Include="Views\Session\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractConfigurationManager\AbstractConfigurationManager.csproj">
@@ -482,12 +454,16 @@
       <Project>{66cdcdc4-9f60-4f9b-9e31-4e23b76bd146}</Project>
       <Name>ConfigurationManagerWrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EfRepository\EfRepository.csproj">
+      <Project>{036cd7cd-9e0f-47ab-be61-b0cde49ab0d1}</Project>
+      <Name>EfRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj">
-      <Project>{3B03CAF2-AC3B-4682-9C76-9AA9F4A25321}</Project>
+      <Project>{3b03caf2-ac3b-4682-9c76-9aa9f4a25321}</Project>
       <Name>Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileRepository\FileRepository.csproj">
@@ -508,7 +484,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{6b41d66f-0003-45ec-9692-023f9fca62e8}</Project>
-      <Name>Repository %28Repository\Repository%29</Name>
+      <Name>Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serialization\Serialization.csproj">
+      <Project>{cfd08804-a078-4d4e-80af-8a9153b3a55e}</Project>
+      <Name>Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceInterfaces\ServiceInterfaces.csproj">
       <Project>{4E597FB7-4706-45E2-9F9F-BAED246F06C4}</Project>
@@ -516,19 +496,8 @@
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{ea58bdda-34f5-4b48-b2f3-4e4cce2b66ee}</Project>
-      <Name>Services %28Services\Services%29</Name>
+      <Name>Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SystemFileAdapter\SystemFileAdapter.csproj">
-      <Project>{98de4fcf-b1b1-4a1a-90e4-f4d29d341585}</Project>
-      <Name>SystemFileAdapter</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -546,11 +515,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>15076</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:14195/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:14195/</IISAppRootUrl>
+          <IISUrl>http://localhost:36260/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

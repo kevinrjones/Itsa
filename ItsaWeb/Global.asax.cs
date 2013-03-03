@@ -5,7 +5,6 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using Autofac;
@@ -17,12 +16,8 @@ using Logging;
 using Logging.NLog;
 using Microsoft.AspNet.SignalR;
 
-
 namespace ItsaWeb
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
@@ -30,15 +25,14 @@ namespace ItsaWeb
             var builder = new ContainerBuilder();
             RegisterTypes(builder);
             var container = builder.Build();
-            
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             GlobalHost.DependencyResolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container); // for signalr
 
-            GlobalConfiguration.Configuration.Register();
-            GlobalFilters.Filters.RegisterGlobalFilters();
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterHubs.Start();
             RouteTable.Routes.RegisterRoutes();
-            BundleTable.Bundles.RegisterBundles();
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
@@ -67,11 +61,11 @@ namespace ItsaWeb
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             var repositoryAssemblies = Assembly.Load("FileRepository");
-            builder.RegisterAssemblyTypes(repositoryAssemblies).AsImplementedInterfaces().WithParameter(new NamedParameter("path", baseDirectory)); 
+            builder.RegisterAssemblyTypes(repositoryAssemblies).AsImplementedInterfaces().WithParameter(new NamedParameter("path", baseDirectory));
 
             var serviceAssemblies = Assembly.Load("Services");
             builder.RegisterAssemblyTypes(serviceAssemblies).AsImplementedInterfaces();
-        
+
             var configurationManagerWrapperAssembly = Assembly.Load("ConfigurationManagerWrapper");
             builder.RegisterAssemblyTypes(configurationManagerWrapperAssembly).AsImplementedInterfaces();
 

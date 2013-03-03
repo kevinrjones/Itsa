@@ -66,7 +66,7 @@
       <Name>Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ItsaWeb\ItsaWeb.csproj">
-      <Project>{9C4C6CBC-4F8F-47DC-83D7-BAB33902F917}</Project>
+      <Project>{2a3c0f9d-9ba2-4b45-98ee-2d63746ba99d}</Project>
       <Name>ItsaWeb</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceInterfaces\ServiceInterfaces.csproj">
