@@ -15,37 +15,18 @@ namespace WebScenarios.Steps
         private void Login()
         {
             
-            //Func<IElement> elem = I.Find("a[href=signin]");
             IWebElement dropDown = Driver.FindElement(By.CssSelector("a[href=signin]"));
             dropDown.Click();
 
             Driver.FindElement(By.CssSelector("#authn_userName")).SendKeys("user");
             Driver.FindElement(By.CssSelector("#authn_userPassword")).SendKeys("password");
             Driver.FindElement(By.CssSelector("#authn_signIn")).Click();
-
-            //IElement result = null;
-            //try
-            //{
-            //    result = elem();
-            //}
-            //catch
-            //{
-            //}
-            //if (result != null)
-            //{
-            //    I.Click(elem);
-            //    I.WaitUntil(() => I.Expect.Exists("#authn_userName"));
-            //}
-            //I.Enter("user").In("#authn_userName");
-            //I.Enter("password").In("#authn_userPassword");
-            //I.Click("#authn_signIn");
         }
 
         [Given(@"I am registered")]
         public void GivenIAmRegistered()
         {
             Driver.Navigate().GoToUrl("http://test.itsa.com");
-            //I.Open("http://dev.itsa.com");
             Login();
         }
 

@@ -250,6 +250,7 @@
     <Content Include="App\services\logger.js" />
     <Content Include="App\viewmodels\authentication.js" />
     <Content Include="App\viewmodels\blogPost.js" />
+    <Content Include="App\viewmodels\blogPosts.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\authentication.html" />
@@ -280,6 +281,12 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\metro-bootstrap.css" />
+    <Content Include="Content\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
+    <Content Include="Content\style.min.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -424,6 +431,7 @@
     <Content Include="Scripts\jquery.signalR-1.0.1.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\kosetup.js" />
     <Content Include="Scripts\less.min.js" />
     <Content Include="Scripts\messager.js" />
     <Content Include="Scripts\moment.js" />

@@ -21,6 +21,7 @@ namespace ItsaWeb.App_Start
                 .Include("~/scripts/breeze.debug.js")
                 .Include("~/scripts/bootstrap.js")
                 .Include("~/scripts/moment.js")
+                .Include("~/scripts/kosetup.js")
                 .Include("~/Scripts/jquery.signalR-{version}.js")
                 .Include("~/Scripts/res.js")
                 .Include("~/Scripts/messager.js")

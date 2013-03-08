@@ -28,20 +28,17 @@ namespace ItsaWeb.Controllers
 
                 if (entityUser != null)
                 {
-                    TempData["message"] = "User logged on";
                     CreateCookie(entityUser.Name);
                     return Json(new UserViewModel(entityUser));
                 }
                 Logger.Info("User failed to login.");
             }
-            TempData["message"] = "Unable to log user on";
             return Json(new UserViewModel());
         }
 
         public JsonResult Delete()
         {
             CreateCookie("", -10);
-            TempData["message"] = "Session ended";
             return Json(new UserViewModel());
         }
     }

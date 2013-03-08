@@ -1,5 +1,5 @@
 ﻿<div class="nav pull-right">
-    <a href="signin" data-bind="text: signInText, click: showManageUserUi"></a>
+    <a href="javascript:void(0)" data-bind="text: signInText, click: showManageUserUi"></a>
 </div>
 
 <!-- popup dialog for authentication -->
@@ -12,15 +12,16 @@
             <input id="authn_userPassword" type="password" placeholder="password" data-bind="value: password" />
         </div>
         <div>
-            <button id="authn_signIn" class="btn" data-bind="click: signIn, value: signInButtonLabel">@Resources.SignIn</button>
+            <button class="btn" data-bind="click: signIn, text: signInButtonLabel"></button>
         </div>
         <div>
-            <button id="authn_register" class="btn" data-bind="click: register, value: registerButtonLabel">@Resources.Register</button>
+            <button id="authn_register" class="btn" data-bind="click: register, text: registerButtonLabel"></button>
         </div>
+        <div class="alert alert-error" data-bind="visible: isErrorVisible, text: message, fadeOut: {delay: 1000, fadeTime: 1000, flag: isErrorVisible}"></div>
     </div>
     <div data-bind="visible: isAuthenticated()">
         <div>
-            <button class="btn" data-bind="click: signOut, value: signOutButtonLabel">@Resources.SignOut</button>
+            <button class="btn" data-bind="click: signOut, text: signOutButtonLabel"></button>
         </div>
-    </div>
+    </div>    
 </div>

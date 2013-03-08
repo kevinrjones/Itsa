@@ -150,4 +150,7 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="SignInError" xml:space="preserve">
+    <value>Unable To Sign In</value>
+  </data>
 </root>

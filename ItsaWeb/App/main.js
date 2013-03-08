@@ -9,22 +9,25 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
     system.debug(true);
 
     app.start().then(function () {
-        $.connection.hub.start();
+        $.connection.hub.start(
+            function() {
+                router.handleInvalidRoute = function (route, params) {
+                    logger.logError('No Route Found', route, 'main', true);
+                };
+
+                // When finding a viewmodel module, replace the viewmodel string 
+                // with view to find it partner view.
+                router.useConvention();
+                viewLocator.useConvention();
+
+                // Adapt to touch devices
+                app.adaptToDevice();
+                //Show the app by setting the root view model for our application.
+                app.setRoot('viewmodels/shell', 'entrance');
+            }
+        );
         toastr.options.positionClass = 'toast-bottom-right';
         toastr.options.backgroundpositionClass = 'toast-bottom-right';
 
-        router.handleInvalidRoute = function (route, params) {
-            logger.logError('No Route Found', route, 'main', true);
-        };
-
-        // When finding a viewmodel module, replace the viewmodel string 
-        // with view to find it partner view.
-        router.useConvention();
-        viewLocator.useConvention();
-        
-        // Adapt to touch devices
-        app.adaptToDevice();
-        //Show the app by setting the root view model for our application.
-        app.setRoot('viewmodels/shell', 'entrance');
     });
 });
