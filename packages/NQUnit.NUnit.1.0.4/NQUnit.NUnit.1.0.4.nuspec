@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>NQUnit.NUnit</id>
+    <version>1.0.4</version>
+    <title>NQUnit.NUnit</title>
+    <authors>Robert Moore and Miguel Madero</authors>
+    <owners>Robert Moore and Miguel Madero</owners>
+    <licenseUrl>http://github.com/robdmoore/NQUnit/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/robdmoore/NQUnit</projectUrl>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/NQUnit.NUnit.1.0.4.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A sample project to get you up and running with NQUnit using NUnit quickly.
+
+NQUnit is a .NET library for running jQuery QUnit JavaScript tests and parsing the result.</description>
+    <summary>A sample project to get you up and running with NQUnit using NUnit.</summary>
+    <tags>QUnit testing unit-testing continuous-integration NUnit JavaScript</tags>
+    <dependencies>
+      <dependency id="NUnit" version="2.5.9.10348" />
+      <dependency id="NQUnit" version="1.0.2" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>

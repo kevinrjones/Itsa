@@ -53,7 +53,7 @@
             system.log('authentication loaded', null, true);
         }
 
-        function signIn () {
+        function signIn() {
             $.post("/Session/Create", {
                 email: email(),
                 password: password()
@@ -86,4 +86,5 @@
 
 
         //#endregion
-    });
+    }
+);

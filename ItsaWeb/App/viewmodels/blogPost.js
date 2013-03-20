@@ -1,4 +1,5 @@
-define(['services/logger'], function (logger) {
+define(['services/logger', 'knockout', 'res'], function (logger, ko, resources) {
+
     // ReSharper disable InconsistentNaming
     function BlogPost(item, parent) {
         var self = this;
