@@ -1,10 +1,12 @@
 ﻿/* "resources" module handles all localized resource strings, creating dictionary of key->value pairs in current language choice, populated on load of initial mvc page */
 (function (define) {
     define([], function () {
-        var resourceSingleton = function() {
+
+        var resourceSingleton = function () {
+
+            var resources = {};
 
             /* js map containing all localized strings */
-            var resources = {};
 
             /* add key-value pair to localized string map - called in base of SinglePageApp.cshtml */
 
@@ -39,6 +41,6 @@
     if (typeof module !== 'undefined' && module.exports) { //Node
         module.exports = factory(require(deps[0]));
     } else {
-        window['res'] = factory();
+        window['resources'] = factory();
     }
 }));

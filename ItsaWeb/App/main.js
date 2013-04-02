@@ -1,6 +1,14 @@
 ﻿require.config({
-    paths: { "text": "durandal/amd/text" }
+    paths: {
+        "text": "durandal/amd/text"
+    }
 });
+
+requirejs.onError = function (err) {
+    console.log(err.requireType);
+    console.log('modules: ' + err.requireModules);
+    throw err;
+};
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plugins/router', 'services/logger'],
     function (app, viewLocator, system, router, logger) {

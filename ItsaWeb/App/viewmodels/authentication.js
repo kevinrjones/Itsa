@@ -1,5 +1,5 @@
-﻿define(['durandal/system', 'services/logger'],
-    function (system, logger) {
+﻿define(['durandal/system', 'services/logger', "i18n!nls/site"],
+    function (system, logger, resources) {
 
         var email = ko.observable(),
             password = ko.observable(),
@@ -9,18 +9,18 @@
 
         var signInText = ko.computed(function () {
             if (isAuthenticated()) {
-                return resources.res('ItsaWeb.Resources.Resources.SignOut');
+                return resources.signOut;
             } else {
-                return resources.res('ItsaWeb.Resources.Resources.SignIn');
+                return resources.signIn;
             }
         });
 
         var vm = {
             activate: activate,
             signInText: signInText,
-            signInButtonLabel: resources.res('ItsaWeb.Resources.Resources.SignIn'),
-            signOutButtonLabel: resources.res('ItsaWeb.Resources.Resources.SignOut'),
-            registerButtonLabel: resources.res('ItsaWeb.Resources.Resources.Register'),
+            signInButtonLabel: resources.signIn,
+            signOutButtonLabel: resources.signOut,
+            registerButtonLabel: resources.register,
             showManageUserUi: showManageUserUi,
             email: email,
             password: password,
@@ -62,7 +62,7 @@
                     initialize(params);
                     $('#manageUserUi').hide();
                 }).fail(function (error) {
-                    message(resources.res('ItsaWeb.Resources.Resources.SignInError'));
+                    message(resources.signInError);
                     isErrorVisible(true);
                     console.log(error);
                 }).always(function () {

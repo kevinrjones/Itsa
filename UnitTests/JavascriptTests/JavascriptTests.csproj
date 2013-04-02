@@ -70,17 +70,32 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JavaScriptTests\Scripts\json2.js" />
-    <Content Include="JavaScriptTests\Scripts\qunit.css">
+    <Content Include="JavaScriptTests\Scripts\qunit-1.11.0.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JavaScriptTests\Scripts\qunit.js">
+    <Content Include="JavaScriptTests\Scripts\qunit-1.11.0.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JavaScriptTests\Tests\blogPostsTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JavaScriptTests\Tests\homeTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JavaScriptTests\Tests\signalRFacadeTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JavaScriptTests\Tests\sinon-1.6.0.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JavaScriptTests\Scripts\specit.js" />
-    <Content Include="JavaScriptTests\Tests\blogPost.html">
+    <Content Include="JavaScriptTests\Tests\tests.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JavaScriptTests\Tests\blogPostTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JavaScriptTests\Tests\i18n.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JavaScriptTests\Tests\resTests.js">

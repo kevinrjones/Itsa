@@ -1,5 +1,5 @@
 ﻿;(function(define) {
-    define([], function() {
+    define(function() {
         return (function() {
 
             function init() {
@@ -10,9 +10,12 @@
 
             var messager = {
                 init: init,
-                messager: toastr,
-                error: toastr.error,
-                info: toastr.info
+                //messager: toastr,
+                //error: toastr.error,
+                //info: toastr.info
+                messager: $.jGrowl,
+                error: $.jGrowl,
+                info: $.jGrowl
             };
 
             return messager;

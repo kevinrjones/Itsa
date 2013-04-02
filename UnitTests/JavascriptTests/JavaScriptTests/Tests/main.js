@@ -1,5 +1,3 @@
-﻿QUnit.config.autostart = false;
-
-require(['./blogPostTests', './resTests'], function () {
+﻿require(['./blogPostsTests', './blogPostTests', './resTests', './signalRFacadeTests', './homeTests'], function () {
     QUnit.start(); //Tests loaded, run tests
 });

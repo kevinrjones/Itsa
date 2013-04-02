@@ -17,13 +17,18 @@ namespace ItsaWeb.Controllers
 
         protected void CreateCookie(string userName, int timeInMinutes = 30)
         {
-            Response.Cookies.Add(new HttpCookie(_configurationManager.AppSetting("cookie"), 
-                                                FormsAuthentication.Encrypt(new FormsAuthenticationTicket(1,
-                                                                                                          userName,
-                                                                                                          DateTime.Now,
-                                                                                                          DateTime.Now.AddMinutes(timeInMinutes),
-                                                                                                          false,
-                                                                                                          ""))));
+            var cookie = new HttpCookie(_configurationManager.AppSetting("cookie"),
+                                        FormsAuthentication.Encrypt(new FormsAuthenticationTicket(1,
+                                                                                                  userName,
+                                                                                                  DateTime.Now,
+                                                                                                  DateTime.Now
+                                                                                                          .AddMinutes(
+                                                                                                              timeInMinutes),
+                                                                                                  false,
+                                                                                                  "")));
+            cookie.HttpOnly = true;
+            cookie.Secure = true;
+            Response.Cookies.Add(cookie);
         }
     }
 }

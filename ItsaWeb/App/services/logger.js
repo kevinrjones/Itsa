@@ -1,5 +1,5 @@
-define(['durandal/system'],
-    function (system) {
+define(['durandal/system', 'services/messager'],
+    function (system, messager) {
         var logger = {
             log: log,
             logError: logError

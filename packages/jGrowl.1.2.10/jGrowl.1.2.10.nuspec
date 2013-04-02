@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jGrowl</id>
+    <version>1.2.10</version>
+    <title />
+    <authors>Frans Stridh</authors>
+    <owners>Frans Stridh</owners>
+    <projectUrl>https://github.com/stanlemon/jGrowl</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>jGrowl is a jQuery plugin that raises unobtrusive messages within the browser, similar to the way that OS X's Growl Framework works. The idea is simple, deliver notifications to the end user in a noticeable way that doesn't obstruct the work flow and yet keeps the user informed.</description>
+    <releaseNotes>* Changes in 1.2.10
+ * - Fix beforeClose to be called in click event
+ *
+ * Changes in 1.2.9
+ * - Fixed BC break in jQuery 2.0 beta
+ *
+ * Changes in 1.2.8
+ * - Fixes for jQuery 1.9 and the MSIE6 check, note that with jQuery 2.0 support
+ *   jGrowl intends to drop support for IE6 altogether
+ *
+ * Changes in 1.2.6
+ * - Fixed js error when a notification is opening and closing at the same time
+ * 
+ * Changes in 1.2.5
+ * - Changed wrapper jGrowl's options usage to "o" instead of $.jGrowl.defaults
+ * - Added themeState option to control 'highlight' or 'error' for jQuery UI
+ * - Ammended some CSS to provide default positioning for nested usage.
+ * - Changed some CSS to be prefixed with jGrowl- to prevent namespacing issues
+ * - Added two new options - openDuration and closeDuration to allow 
+ *   better control of notification open and close speeds, respectively 
+ *   Patch contributed by Jesse Vincet.
+ * - Added afterOpen callback.  Patch contributed by Russel Branca.
+ *
+ * Changes in 1.2.4
+ * - Fixed IE bug with the close-all button
+ * - Fixed IE bug with the filter CSS attribute (special thanks to gotwic)
+ * - Update IE opacity CSS
+ * - Changed font sizes to use "em", and only set the base style</releaseNotes>
+    <tags>Alerts Messages</tags>
+    <references />
+  </metadata>
+</package>

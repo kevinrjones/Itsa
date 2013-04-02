@@ -21,9 +21,8 @@ namespace ItsaWeb.App_Start
                 .Include("~/scripts/breeze.debug.js")
                 .Include("~/scripts/bootstrap.js")
                 .Include("~/scripts/moment.js")
-                .Include("~/scripts/kosetup.js")
                 .Include("~/Scripts/jquery.signalR-{version}.js")
-                .Include("~/Scripts/res.js")
+                .Include("~/Scripts/jquery.jgrowl.js")
                 .Include("~/Scripts/messager.js")
               );
 
@@ -37,6 +36,10 @@ namespace ItsaWeb.App_Start
                 .Include("~/Content/toastr.css")
               );
 
+            bundles.Add(new StyleBundle("~/Content/themes/darkhive")
+                .Include("~/Content/css/dark-hive/jquery-ui-1.8.21.custom.css")
+                .Include("~/Content/css/jquery.jgrowl.css"));
+
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
@@ -49,7 +52,8 @@ namespace ItsaWeb.App_Start
                         "~/Content/themes/base/jquery.ui.tabs.css",
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
-                        "~/Content/themes/base/jquery.ui.theme.css")
+                        "~/Content/themes/base/jquery.ui.theme.css",
+                        "~/Content/css/dark-hive/jquery-ui-1.8.21.custom.css")
             );
 
             var itsaLess = new StyleBundle("~/bundles/less")

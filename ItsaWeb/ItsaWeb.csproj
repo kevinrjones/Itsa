@@ -213,6 +213,7 @@
     <Compile Include="Hubs\AdminHub.cs" />
     <Compile Include="Hubs\AuthenticatingHub.cs" />
     <Compile Include="Hubs\BlogHub.cs" />
+    <Compile Include="Hubs\SessionHub.cs" />
     <Compile Include="Hubs\UserHub.cs" />
     <Compile Include="Infrastructure\CookieEncryption.cs" />
     <Compile Include="Infrastructure\HandleErrorWithELMAHAttribute.cs" />
@@ -233,16 +234,16 @@
     <Compile Include="Models\Users\RegisterUserViewModel.cs" />
     <Compile Include="Models\Users\UserViewModel.cs" />
     <Compile Include="MvcHelpers\ImportedFilePathResolver.cs" />
-    <Compile Include="MvcHelpers\IncludeResources.cs" />
     <Compile Include="MvcHelpers\LessMinify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Resources.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App\durandal\amd\almond-custom.js" />
+    <Content Include="App\facades\signalr.js" />
+    <Content Include="App\i18n.js" />
     <Content Include="App\durandal\amd\optimizer.exe" />
     <Content Include="App\durandal\amd\r.js" />
     <Content Include="App\durandal\amd\require.js" />
@@ -263,12 +264,13 @@
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\nls\site.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="App\viewmodels\authentication.js" />
-    <Content Include="App\viewmodels\blogPost.js" />
     <Content Include="App\viewmodels\blogPosts.js" />
     <Content Include="App\viewmodels\details.js" />
     <Content Include="App\viewmodels\home.js" />
+    <Content Include="App\viewmodels\blogPost.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\authentication.html" />
     <Content Include="App\views\details.html" />
@@ -293,12 +295,29 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_highlight-hard_20_0972a5_1x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_highlight-soft_33_003147_1x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_highlight-soft_35_222222_1x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_highlight-soft_44_444444_1x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="Content\css\dark-hive\images\ui-bg_loop_25_000000_21x21.png" />
+    <Content Include="Content\css\dark-hive\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\dark-hive\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="Content\css\dark-hive\images\ui-icons_a83300_256x240.png" />
+    <Content Include="Content\css\dark-hive\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Content\css\dark-hive\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\dark-hive\jquery-ui-1.8.21.custom.css" />
+    <Content Include="Content\css\jquery.jgrowl.css" />
     <Content Include="Content\css\variables.css" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\ie10mobile.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\icon.png" />
+    <Content Include="Content\jquery.jgrowl.css" />
     <Content Include="Content\metro-bootstrap.css" />
     <Content Include="Content\style.css">
       <DependentUpon>style.less</DependentUpon>
@@ -449,18 +468,19 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.min.js" />
+    <Content Include="Scripts\jquery.jgrowl.js" />
     <Content Include="Scripts\jquery.signalR-1.0.1.js" />
     <Content Include="Scripts\jquery.signalR-1.0.1.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\kosetup.js" />
     <Content Include="Scripts\less.min.js" />
-    <Content Include="Scripts\messager.js" />
+    <Content Include="App\services\messager.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
-    <Content Include="Scripts\res.js" />
+    <Content Include="App\services\resources.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\toastr.js" />
@@ -484,11 +504,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Resources.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractConfigurationManager\AbstractConfigurationManager.csproj">

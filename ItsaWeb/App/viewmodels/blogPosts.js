@@ -1,28 +1,36 @@
 ﻿// ReSharper disable InconsistentNaming
-define(['services/logger', 'viewmodels/blogPost'], function (logger, BlogPost) {
-    function BlogPosts(parent) {
-        var self = this;
-        self.parent = parent;
+define(['services/logger', 'viewmodels/blogPost', 'i18n!nls/site'], function (logger, blogPost, resources) {
 
-        self.posts = ko.observableArray([]);
+    var posts = ko.observableArray([]);
+    var _parent;
 
-        self.onPosts = function (data) {
-            var returnedPosts = $.map(data, function (item) {
-                var post = new BlogPost(item, self);
-                return post;
-            });
-            self.posts(returnedPosts);
-        };
-
-        self.remove = function (post) {
-            self.posts.remove(function (item) {
-                return item.id() == post.id();
-            });
-            self.parent.message(resources.res('ItsaWeb.Resources.Resources.PostDeleted'));
-        };
+    var remove = function (post) {
+        posts.remove(function (item) {
+            return item.id() == post.id();
+        });
+        _parent.message(resources.PostDeleted);
     };
 
-    return BlogPosts;
+    function setParent(parent) {
+        _parent = parent;
+    }
+
+    var onPosts = function (data) {
+        var returnedPosts = $.map(data, function (item) {
+            var post = new blogPost({ item: item, parent: vm });
+            return post;
+        });
+        posts(returnedPosts);
+    };
+
+    var vm = {
+        posts: posts,
+        onPosts: onPosts,
+        remove: remove,
+        setParent: setParent
+    };
+
+    return vm;
 
 });
 // ReSharper restore InconsistentNaming

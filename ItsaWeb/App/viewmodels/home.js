@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'viewmodels/blogPosts'], function (system, logger, authentication, BlogPosts) {
+define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'viewmodels/blogPosts', 'facades/signalr'], function (system, logger, authentication, model, server) {
 
     var blogPosts = ko.observable();
 
@@ -7,22 +7,29 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
         activate: activate,
         title: 'Home View',
         blogPosts: blogPosts,
-        isAuthenticated: authentication.isAuthenticated
+        isAuthenticated: authentication.isAuthenticated,
+        message: function() {
+        }
     };
 
     return vm;
 
     //#region Internal Methods
     function activate() {
-        logger.log('Home View Activated', null, 'home', true);
-        $.connection.blogHub.server.getBlogEntries()
+        //logger.log('Home View Activated', null, 'home', true);
+        server.getBlogEntries()
             .done(function (data) {
-                var model = new BlogPosts(self);
+                model.setParent(vm);
                 model.onPosts(data);
                 blogPosts(model);
             })
             .fail()
             .always();
+
+        server.isAuthenticated()
+            .done(function (result) {
+                authentication.isAuthenticated(result);
+            });
         return true;
     }
     //#endregion
