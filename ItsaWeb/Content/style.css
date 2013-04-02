@@ -135,11 +135,11 @@ textarea {
   float: left;
   width: 70%;
   font-size: 16px;
+  margin: 10px 0 0 0;
 }
 .postDate {
-  float: left;
+  float: right;
   margin-top: 12px;
-  width: 28%;
 }
 .postTitle {
   color: #1d6896;

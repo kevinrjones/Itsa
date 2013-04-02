@@ -19,8 +19,8 @@
             var item = params.item;
             self.postTitle(item.Title);
             self.postBody(item.Post);
-            self.postCreated(item.EntryAddedDate);
-            self.postUpdated(item.EntryUpdatedDate);
+            self.postCreated(new Date(item.EntryAddedDate).toString("d-MMM-yyyy HH:MM"));
+            self.postUpdated(new Date(item.EntryUpdatedDate).toString("d-MMM-yyyy HH:MM"));
             self.id(item.Id);
         } else {
             throw "No data for blog post";

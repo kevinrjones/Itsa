@@ -291,6 +291,9 @@
     <Content Include="App_Data\posts\empty.txt" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\app.css" />
+    <Content Include="Content\app.min.css">
+      <DependentUpon>app.less</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -464,6 +467,7 @@
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
+    <Content Include="Scripts\date-en-GB.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.js" />

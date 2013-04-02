@@ -24,6 +24,7 @@ namespace ItsaWeb.App_Start
                 .Include("~/Scripts/jquery.signalR-{version}.js")
                 .Include("~/Scripts/jquery.jgrowl.js")
                 .Include("~/Scripts/messager.js")
+                .Include("~/Scripts/date-en-GB.js")
               );
 
             bundles.Add(
