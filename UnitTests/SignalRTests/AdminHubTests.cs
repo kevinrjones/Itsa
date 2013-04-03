@@ -63,7 +63,7 @@ namespace SignalRTests
 
         private void InitializeHub(string name)
         {
-            //const string connectionId = "1234";
+            const string connectionId = "1234";
             //const string hubName = "Authenticating";
             //var mockConnection = new Mock<IConnection>();
             var mockRequest = new Mock<IRequest>();
@@ -77,10 +77,10 @@ namespace SignalRTests
             mockRequest.Setup(r => r.Cookies).Returns(new Dictionary<string, Cookie>());
 
             //Clients = new ClientProxy(mockConnection.Object, hubName);
-            //Context = new HubCallerContext(mockRequest.Object, connectionId);
+            Context = new HubCallerContext(mockRequest.Object, connectionId);
 
             //Caller = new StatefulSignalProxy(mockConnection.Object, connectionId, hubName, trackingDictionary);
-        }
+        }        
 
         public string Identity
         {

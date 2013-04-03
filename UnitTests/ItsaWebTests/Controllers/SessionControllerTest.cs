@@ -71,26 +71,5 @@ namespace ItsaWebTests.Controllers
             var model = (UserViewModel)view.Data;
             model.IsAuthenticated.Should().BeTrue();
         }
-
-        [Test]
-        public void GivenARegisteredUser_WhenITryAndLogout_ThenTempDataContainsTheCorrectMessage()
-        {
-            _userService.Setup(u => u.UnRegister()).Returns(true);
-            var controller = new SessionController(_userService.Object, _configurationManager.Object, _logger.Object);
-            SetControllerContext(controller);
-            controller.Delete();
-            TempData["message"].Should().Be("Session ended");
-        }
-
-        [Test]
-        public void WhenAUserIsDeleted_ThenTheControllerRedirectsToTheNewView()
-        {
-            _userService.Setup(u => u.UnRegister()).Returns(false);
-            var controller = new SessionController(_userService.Object, _configurationManager.Object, _logger.Object);
-            SetControllerContext(controller);
-            var view = controller.Delete();
-            view.Should().BeOfType<RedirectToRouteResult>();
-            view.As<RedirectToRouteResult>().RouteValues["action"].Should().Be("New");
-        }
     }
 }
