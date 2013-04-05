@@ -11,6 +11,16 @@ namespace ItsaWeb.App_Start
             bundles.IgnoreList.Clear();
             AddDefaultIgnorePatterns(bundles.IgnoreList);
 
+            bundles.Add(new ScriptBundle("~/bundles/syntaxhighlighter")
+                        .Include("~/Scripts/SyntaxHighlighter/XRegExp.js")
+                        .Include("~/Scripts/SyntaxHighlighter/shcore.js")
+                        .Include("~/Scripts/SyntaxHighlighter/shAutoloader.js")
+                        .Include("~/Scripts/SyntaxHighlighter/shBrush*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/highlight")
+                        .Include("~/Scripts/highlight/highlight.pack.js")
+                );
+
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/scripts/jquery-{version}.js")
@@ -25,6 +35,7 @@ namespace ItsaWeb.App_Start
                 .Include("~/Scripts/jquery.jgrowl.js")
                 .Include("~/Scripts/messager.js")
                 .Include("~/Scripts/date-en-GB.js")
+                .Include("~/Scripts/helperscripts.js")
               );
 
             bundles.Add(
@@ -32,10 +43,17 @@ namespace ItsaWeb.App_Start
                 .Include("~/Content/ie10mobile.css")
                 .Include("~/Content/bootstrap.css")
                 //.Include("~/Content/bootstrap-responsive.css")
-                .Include("~/Content/metro-bootstrap.css")
+                //.Include("~/Content/metro-bootstrap.css")
                 .Include("~/Content/durandal.css")
                 .Include("~/Content/toastr.css")
               );
+
+            bundles.Add(new StyleBundle("~/bundle/content/sh/css").Include(
+                    "~/Content/SyntaxHighlighter/shCore.css"
+                   , "~/Content/SyntaxHighlighter/shThemeRDark.css"
+             ));
+            bundles.Add(new StyleBundle("~/bundle/content/highlight/css").Include(
+                    "~/Content/highlight/ir_black.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/darkhive")
                 .Include("~/Content/css/dark-hive/jquery-ui-1.8.21.custom.css")
@@ -58,6 +76,7 @@ namespace ItsaWeb.App_Start
             );
 
             var itsaLess = new StyleBundle("~/bundles/less")
+                .Include("~/Content/less/metro-bootstrap/*.less")
                 .Include("~/Content/app.less")
                 .Include("~/Content/style.less");
 

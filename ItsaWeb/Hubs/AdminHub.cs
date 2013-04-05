@@ -21,7 +21,7 @@ namespace ItsaWeb.Hubs
 
         public BlogPostViewModel AddBlogPost(NewPostViewModel model)
         {
-            var authenticated = IsAuthenticated();
+            IsAuthenticated();
             {
                 var entry = new Post
                                 {

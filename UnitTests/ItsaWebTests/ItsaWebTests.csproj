@@ -90,7 +90,9 @@
     <Compile Include="Controllers\AdminControllerTests.cs" />
     <Compile Include="Controllers\BaseControllerTests.cs" />
     <Compile Include="Controllers\ControllerTestsBase.cs" />
-    <Compile Include="Controllers\SessionControllerTest.cs" />
+    <Compile Include="Controllers\GivenAnInvalidUser.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
+    <Compile Include="Controllers\GivenAValidUser.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="Filters\AuthorizedUserAttributeTests.cs" />
     <Compile Include="Filters\BasicAuthorizeAttributeTests.cs" />

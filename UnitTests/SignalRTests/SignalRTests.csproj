@@ -84,7 +84,12 @@
   <ItemGroup>
     <Compile Include="AdminHubTests.cs" />
     <Compile Include="AuthenticatingHubTests.cs" />
+    <Compile Include="GivenAnInValidUser.cs" />
+    <Compile Include="GivenAValidUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionHubTests\GivenAnAuthenticatedUser.cs" />
+    <Compile Include="SessionHubTests\GivenAnUnauthenticatedUser.cs" />
+    <Compile Include="SessionHubTests\TestableSessionHub.cs" />
     <Compile Include="TestableAuthenticatingHub.cs" />
     <Compile Include="UserHubTests.cs" />
   </ItemGroup>

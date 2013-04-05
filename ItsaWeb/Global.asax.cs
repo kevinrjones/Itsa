@@ -37,17 +37,28 @@ namespace ItsaWeb
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
         {
-            var authCookie = Request.Cookies.Get(ConfigurationManager.AppSettings["cookie"]);
-            if (authCookie != null)
+            try
             {
-                var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                if (ticket != null && !ticket.Expired)
+                var authCookie = Request.Cookies.Get(ConfigurationManager.AppSettings["cookie"]);
+                if (authCookie != null)
                 {
-                    CreateIdentity(ticket.Name);
+                    var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                    if (ticket != null && !ticket.Expired)
+                    {
+                        CreateIdentity(ticket.Name);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                var cookie = new HttpCookie(ConfigurationManager.AppSettings["cookie"]);
+                
+                cookie.Expires = DateTime.Now + new TimeSpan(0, 0, -10);
+                cookie.HttpOnly = true;
+                cookie.Secure = true;
+                Response.Cookies.Add(cookie);
+            }
         }
-
         private void CreateIdentity(string name)
         {
             var identity = new UserViewModel { Name = name };

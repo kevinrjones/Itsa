@@ -5,7 +5,8 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
 
     var vm = {
         activate: activate,
-        title: 'Home View',
+        viewAttached: viewAttached,
+        title: 'Home',
         blogPosts: blogPosts,
         isAuthenticated: authentication.isAuthenticated,
         message: function() {
@@ -23,13 +24,20 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
                 model.onPosts(data);
                 blogPosts(model);
             })
-            .fail()
+            .fail(function (data) {
+                handleSignalRFail(data);
+            })
             .always();
 
         server.isAuthenticated()
             .done(function (result) {
                 authentication.isAuthenticated(result);
             });
+        return true;
+    }
+    
+    function viewAttached() {
+        $('pre code').each(function (i, e) { hljs.highlightBlock(e) });
         return true;
     }
     //#endregion

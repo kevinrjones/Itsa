@@ -134,24 +134,33 @@ textarea {
 .postHeader h3 {
   float: left;
   width: 70%;
-  font-size: 16px;
+  font-size: 26px;
   margin: 10px 0 0 0;
 }
 .postDate {
   float: right;
   margin-top: 12px;
+  font-size: 12px;
 }
-.postTitle {
+.postTitle,
+.postTitle a {
   color: #1d6896;
 }
 .postBody {
-  /* satisfy resharper */
+  font-size: 14px;
 }
 .postAdmin {
   /* satisfy resharper */
+
 }
 #mainsection {
   padding: 0 0 0 10px;
+}
+#mainsection > ul > li > * {
+  margin-left: 10px;
+}
+#mainsection > ul > li li {
+  list-style-position: inside;
 }
 ul#posts {
   margin: 0;
@@ -175,3 +184,8 @@ ul#posts {
   margin: 5px 0 0 0;
 }
 /* ReSharper restore DeclarationIsEmpty */
+pre code {
+  font-family: Consolas, 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #b9bdb6;
+}

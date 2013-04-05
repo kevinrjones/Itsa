@@ -11,7 +11,7 @@ define(['viewmodels/blogPost', 'facades/signalr','sinon'], function (BlogPost, s
     });
 
     test("uninitialized blogpost throws exception", function () {
-        throws(function () { new BlogPost(); }, "Should trown an exception when not correctly initialized");
+        throws(function () { var p = new BlogPost() }, "Should trown an exception when not correctly initialized");
     });
 
     var post;

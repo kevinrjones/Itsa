@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminService.cs" />
+    <Compile Include="MediaNotFoundException.cs" />
     <Compile Include="MediaService.cs" />
     <Compile Include="PostService.cs" />
     <Compile Include="SyndicationFeedService.cs" />

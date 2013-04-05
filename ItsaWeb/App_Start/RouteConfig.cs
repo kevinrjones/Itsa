@@ -10,11 +10,11 @@ namespace ItsaWeb.App_Start
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "HotTowelMvc",
+                name: "Home",
                 url: "{controller}/{action}/{id}",
                 defaults: new
                 {
-                    controller = "HotTowel",
+                    controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
                 }

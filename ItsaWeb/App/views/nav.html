@@ -6,7 +6,10 @@
         <div class="nav-collapse">
             <ul class="nav" data-bind="foreach: router.visibleRoutes">
                 <li data-bind="css: { active: isActive }">
-                    <a data-bind="    css: { active: isActive }, attr: { href: hash }, text: name" class="" href="#"></a>
+                    <div class="nav-container" data-bind="visible: needsNoAuthentication() || isAuthenticated()">
+                        <img class="nav-icon" alt="Home" src="Content/images/invis.gif" data-bind="css: icon"/>
+                        <a data-bind="    css: { active: isActive }, attr: { href: hash }, text: name" class="" href="#"></a>
+                    </div>
                 </li>
             </ul>
             <!-- ko compose:  'viewmodels/authentication'  -->

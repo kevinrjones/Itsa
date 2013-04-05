@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ItsaWeb.Infrastructure;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using ServiceInterfaces;
@@ -18,13 +19,17 @@ namespace ItsaWeb.Hubs
         {
             return Task.Factory.StartNew(() =>
                     {
-                        if (IsAuthenticated())
+                        try
                         {
+                            IsAuthenticated();
                             var user = _userService.GetUser();
                             var model = new UserViewModel {Name = user.Name, IsAuthenticated = true};
                             return model;
                         }
-                        return null;
+                        catch (NotLoggedInException)
+                        {
+                            return null;
+                        }
                     });
         }
     }

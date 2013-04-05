@@ -17,25 +17,42 @@ using ServiceInterfaces;
 
 namespace SignalRTests
 {
-    [TestFixture]
-    class UserHubTests
+    namespace UserHubTests
     {
-        Mock<IUserService> service = new Mock<IUserService>();
-
-        [Test]
-        public void GivenAnAuthenticatedUser_WhenTheUserIsRetrieved_ThenTheUserViewModelIsReturned()
+        [TestFixture]
+        public class GivenAnAuthenticatedUser
         {
-            service.Setup(s => s.GetUser()).Returns(new User());
-            UserHub hub = new TestableUserHub(service.Object, "Kevin");
-            hub.GetUser().Result.As<UserViewModel>().Should().NotBeNull();
+            Mock<IUserService> service = new Mock<IUserService>();
+
+            [Test]
+            public void WhenTheUserIsRetrieved_ThenTheUserViewModelIsReturned()
+            {
+                service.Setup(s => s.GetUser()).Returns(new User());
+                UserHub hub = new TestableUserHub(service.Object, "Kevin");
+                hub.GetUser().Result.As<UserViewModel>().Should().NotBeNull();
+            }
+
+            [Test]
+            public void WhenTheUserIsRetrieved_ThenTheUserIsAuthenticated()
+            {
+                service.Setup(s => s.GetUser()).Returns(new User());
+                UserHub hub = new TestableUserHub(service.Object, "Kevin");
+                hub.GetUser().Result.As<UserViewModel>().IsAuthenticated.Should().BeTrue();
+            }
         }
 
-        [Test]
-        public void GivenAnAuthenticatedUser_WhenTheUserIsRetrieved_ThenTheUserIsAuthenticated()
+        [TestFixture]
+        public class GivenAnUnAuthenticatedUser
         {
-            service.Setup(s => s.GetUser()).Returns(new User());
-            UserHub hub = new TestableUserHub(service.Object, "Kevin");
-            hub.GetUser().Result.As<UserViewModel>().IsAuthenticated.Should().BeTrue();
+            Mock<IUserService> service = new Mock<IUserService>();
+
+            [Test]
+            public void WhenTheUserIsRetrieved_ThenNullIsReturned()
+            {
+                service.Setup(s => s.GetUser()).Returns((User) null);
+                UserHub hub = new TestableUserHub(service.Object, null);
+                hub.GetUser().Result.As<UserViewModel>().Should().BeNull();
+            }
         }
     }
 

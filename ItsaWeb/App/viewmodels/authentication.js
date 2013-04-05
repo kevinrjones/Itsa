@@ -1,5 +1,5 @@
-﻿define(['durandal/system', 'services/logger', "i18n!nls/site"],
-    function (system, logger, resources) {
+﻿define(['durandal/system', 'durandal/plugins/router', 'services/logger', "i18n!nls/site", "facades/signalr"],
+    function (system, router, logger, resources, server) {
 
         var email = ko.observable(),
             password = ko.observable(),
@@ -38,7 +38,13 @@
         //#region Internal Methods
 
         function initialize(params) {
-            isAuthenticated(true);
+            isAuthenticated(params.IsAuthenticated);
+        }
+
+        function updateRoutes(params) {
+            $.each(router.visibleRoutes(), function () {
+                this.isAuthenticated(params.IsAuthenticated);
+            });
         }
 
         function showManageUserUi() {
@@ -61,6 +67,8 @@
                 .done(function (params) {
                     initialize(params);
                     $('#manageUserUi').hide();
+                    updateRoutes(params);
+                    $('#manageUserUi').hide();
                 }).fail(function (error) {
                     message(resources.signInError);
                     isErrorVisible(true);
@@ -73,8 +81,10 @@
             $.post("/Session/Delete", "json")
                 .done(function (params) {
                     initialize(params);
+                    updateRoutes(params);
+                    $('#manageUserUi').hide();
                 }).fail(function (error) {
-                    message("Unable to signin");
+                    message("Unable to signout");
                     console.log(error);
                 }).always(function () {
                 });

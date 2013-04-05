@@ -41,10 +41,5 @@ namespace SignalRTests
             }
             Assert.Fail("Exception should be thrown");
         }
-
-        private TestableAuthenticatingHub GetTestableChatHub(string name)
-        {
-            return new TestableAuthenticatingHub(name);
-        }
     }
 }

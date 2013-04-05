@@ -13,29 +13,37 @@ requirejs.onError = function (err) {
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plugins/router', 'services/logger'],
     function (app, viewLocator, system, router, logger) {
 
-    // Enable debug message to show in the console 
-    system.debug(true);
+        // Enable debug message to show in the console 
+        system.debug(true);
 
-    app.start().then(function () {
-        $.connection.hub.start(
-            function() {
-                router.handleInvalidRoute = function (route, params) {
-                    logger.logError('No Route Found', route, 'main', true);
-                };
+        app.start().then(function () {
+            $.connection.hub.start(
+                function () {
 
-                // When finding a viewmodel module, replace the viewmodel string 
-                // with view to find it partner view.
-                router.useConvention();
-                viewLocator.useConvention();
+                    $.connection.hub.error(function (data) {
+                        console.log('maybe the server is down', data);
+                        var text = data.responseText;
+                        $.jGrowl(text);
+                    });
 
-                // Adapt to touch devices
-                app.adaptToDevice();
-                //Show the app by setting the root view model for our application.
-                app.setRoot('viewmodels/shell', 'entrance');
-            }
-        );
-        toastr.options.positionClass = 'toast-bottom-right';
-        toastr.options.backgroundpositionClass = 'toast-bottom-right';
+                    router.handleInvalidRoute = function (route, params) {
+                        logger.logError('No Route Found', route, 'main', true);
+                    };
 
+                    // When finding a viewmodel module, replace the viewmodel string 
+                    // with view to find it partner view.
+                    router.useConvention();
+                    viewLocator.useConvention();
+
+                    // Adapt to touch devices
+                    app.adaptToDevice();
+                    //Show the app by setting the root view model for our application.
+                    app.setRoot('viewmodels/shell', 'entrance');
+                }
+            );
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.options.backgroundpositionClass = 'toast-bottom-right';
+
+        });
     });
-});
+

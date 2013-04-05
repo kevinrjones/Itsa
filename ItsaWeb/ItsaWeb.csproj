@@ -195,11 +195,10 @@
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\HotTowelConfig.cs" />
-    <Compile Include="App_Start\HotTowelRouteConfig.cs" />
     <Compile Include="App_Start\RegisterHubs.cs" />
     <Compile Include="Authentication\IItsaIdentity.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\HotTowelController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Publishing\AtomController.cs" />
     <Compile Include="Controllers\SessionBaseController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -268,11 +267,13 @@
     <Content Include="App\services\logger.js" />
     <Content Include="App\viewmodels\authentication.js" />
     <Content Include="App\viewmodels\blogPosts.js" />
+    <Content Include="App\viewmodels\new.js" />
     <Content Include="App\viewmodels\details.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\blogPost.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\authentication.html" />
+    <Content Include="App\views\new.html" />
     <Content Include="App\views\details.html" />
     <Content Include="App\views\footer.html" />
     <Content Include="App\views\home.html" />
@@ -297,6 +298,12 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\colors.css">
+      <DependentUpon>colors.less</DependentUpon>
+    </Content>
+    <Content Include="Content\colors.min.css">
+      <DependentUpon>colors.less</DependentUpon>
+    </Content>
     <Content Include="Content\css\dark-hive\images\ui-bg_flat_30_cccccc_40x100.png" />
     <Content Include="Content\css\dark-hive\images\ui-bg_flat_50_5c5c5c_40x100.png" />
     <Content Include="Content\css\dark-hive\images\ui-bg_glass_40_ffc73d_1x400.png" />
@@ -315,10 +322,42 @@
     <Content Include="Content\css\jquery.jgrowl.css" />
     <Content Include="Content\css\variables.css" />
     <Content Include="Content\durandal.css" />
+    <Content Include="Content\highlight\arta.css" />
+    <Content Include="Content\highlight\ascetic.css" />
+    <Content Include="Content\highlight\brown_paper.css" />
+    <Content Include="Content\highlight\brown_papersq.png" />
+    <Content Include="Content\highlight\dark.css" />
+    <Content Include="Content\highlight\default.css" />
+    <Content Include="Content\highlight\far.css" />
+    <Content Include="Content\highlight\github.css" />
+    <Content Include="Content\highlight\googlecode.css" />
+    <Content Include="Content\highlight\idea.css" />
+    <Content Include="Content\highlight\ir_black.css" />
+    <Content Include="Content\highlight\magula.css" />
+    <Content Include="Content\highlight\monokai.css" />
+    <Content Include="Content\highlight\pojoaque.css" />
+    <Content Include="Content\highlight\pojoaque.jpg" />
+    <Content Include="Content\highlight\rainbow.css" />
+    <Content Include="Content\highlight\school_book.css" />
+    <Content Include="Content\highlight\school_book.png" />
+    <Content Include="Content\highlight\solarized_dark.css" />
+    <Content Include="Content\highlight\solarized_light.css" />
+    <Content Include="Content\highlight\sunburst.css" />
+    <Content Include="Content\highlight\tomorrow-night-blue.css" />
+    <Content Include="Content\highlight\tomorrow-night-bright.css" />
+    <Content Include="Content\highlight\tomorrow-night-eighties.css" />
+    <Content Include="Content\highlight\tomorrow-night.css" />
+    <Content Include="Content\highlight\tomorrow.css" />
+    <Content Include="Content\highlight\vs.css" />
+    <Content Include="Content\highlight\xcode.css" />
+    <Content Include="Content\highlight\zenburn.css" />
     <Content Include="Content\ie10mobile.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\icon.png" />
+    <Content Include="Content\images\invis.gif" />
+    <Content Include="Content\images\strip_metro_sp1.png" />
+    <Content Include="Content\images\strip_metro_sp2.png" />
     <Content Include="Content\jquery.jgrowl.css" />
     <Content Include="Content\metro-bootstrap.css" />
     <Content Include="Content\style.css">
@@ -327,6 +366,23 @@
     <Content Include="Content\style.min.css">
       <DependentUpon>style.less</DependentUpon>
     </Content>
+    <Content Include="Content\SyntaxHighlighter\shCore.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreDjango.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreEclipse.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreEmacs.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreFadeToGrey.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreMDUltra.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreMidnight.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreRDark.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeDefault.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeDjango.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeEclipse.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeEmacs.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeFadeToGrey.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeMDUltra.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeMidnight.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeRDark.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -458,6 +514,7 @@
     <Content Include="Content\less\accordion.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\colors.less" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml">
       <SubType>Designer</SubType>
@@ -467,6 +524,8 @@
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
     <Content Include="Scripts\date-en-GB.js" />
+    <Content Include="Scripts\helperscripts.js" />
+    <Content Include="Scripts\highlight\highlight.pack.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.js" />
@@ -486,6 +545,36 @@
     <Content Include="App\services\resources.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shAutoloader.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushAppleScript.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushAS3.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushBash.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushColdFusion.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushCpp.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushCSharp.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushCss.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushDelphi.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushDiff.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushErlang.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushGroovy.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushHaxe.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushJava.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushJavaFX.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushJScript.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPerl.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPhp.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPlain.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPowerShell.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPython.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushRuby.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushSass.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushScala.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushSql.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushVb.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushXml.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shCore.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shLegacy.js" />
+    <Content Include="Scripts\SyntaxHighlighter\XRegExp.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -497,8 +586,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\HotTowel\index.cshtml" />
-    <Content Include="Views\HotTowel\_splash.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Home\_splash.cshtml" />
     <Content Include="Views\Web.config" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>

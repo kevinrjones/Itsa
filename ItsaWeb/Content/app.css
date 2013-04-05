@@ -83,6 +83,10 @@ video {
   margin: 0;
 }
 /* #endregion */
+pre {
+  border: none;
+  background-color: white;
+}
 html {
   padding: 0;
   color: black;
@@ -91,17 +95,19 @@ html {
 body {
   font-size: 18px;
   margin: 0 auto;
-  background-color: transparent;
+  /*background-color: transparent;*/
+
   font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 h1,
 h2,
 h3 {
   letter-spacing: -1px !important;
-  color: #777;
+  color: #0072c6;
+  text-transform: none;
 }
 section.main {
-  margin-top: 80px;
+  margin-top: 50px;
 }
 .navbar .brand {
   padding: 6px 30px 12px 30px;
@@ -114,17 +120,13 @@ h2.page-title {
 .brand .title {
   float: left;
   font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-  font-size: 145%;
-  font-weight: 900;
-  letter-spacing: -2px;
-  margin: 2% 0;
-  padding-left: 50px;
-  -webkit-text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
+  margin: 0;
+  padding-left: 20px;
   text-transform: uppercase;
   text-transform: initial;
   text-decoration: none;
-  color: #000000;
+  color: #ffffff;
+  background-color: #0072c6;
 }
 span.title {
   /*background: url(/content/images/icon.png) no-repeat left center;*/
@@ -181,7 +183,7 @@ span.title {
   text-align: center;
 }
 footer a {
-  font-weight: bold;
+  font-weight: normal;
 }
 footer span {
   padding: 10px 80px;
@@ -189,6 +191,56 @@ footer span {
 }
 /***************************/
 /* Boostrap overrides      */
+.navbar-fixed-bottom .navbar-inner {
+  -webkit-box-shadow: 0 1px 10px rgba(255, 255, 255, 0);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+}
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner {
+  -webkit-box-shadow: 0 1px 10px rgba(255, 255, 255, 0);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+}
+.navbar-inner {
+  padding-bottom: 0px;
+  background-image: linear-gradient(to bottom, #0072c6, #0072c6);
+}
+.navbar .nav .nav-container {
+  margin: 10px 0;
+}
+.navbar .nav > .active > a {
+  background-color: #0072c6;
+  color: white;
+  display: inline-block;
+  margin: 0 15px 0 0;
+}
+a,
+a:hover,
+a:focus {
+  color: white;
+  padding-right: 15px;
+}
+.navbar .nav > li {
+  font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Segoe UI Symbol', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+  font-size: 14px;
+  margin-top: 2px;
+  text-transform: none;
+}
+.navbar .nav .nav-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+}
+.navbar .nav .nav-icon-home {
+  background-image: url("/Content/images/glyphicons-halflings-white.png");
+  background-position: 0px -25px;
+}
+.navbar .nav .nav-icon-new {
+  background-image: url("/Content/images/glyphicons-halflings-white.png");
+  background-position: 0px -97px;
+}
 /*.navbar .btn, .navbar .btn-group {
     margin-top: 16px;
 }
@@ -265,4 +317,15 @@ footer span {
     padding: 10px 50px;
     font-size: 14px;
   }
+}
+.nav.pull-right .authentication {
+  margin: 10px;
+}
+#manageUserUi .close {
+  background-image: url("/Content/images/glyphicons-halflings.png");
+  background-position: -313px 0px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 14px;
 }

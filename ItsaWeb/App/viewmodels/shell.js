@@ -1,5 +1,5 @@
-﻿define(['durandal/system', 'durandal/plugins/router', 'services/logger'],
-    function (system, router, logger) {
+﻿define(['durandal/system', 'durandal/plugins/router', 'services/logger', 'facades/signalr'],
+    function (system, router, logger, server) {
         var shell = {
             activate: activate,
             router: router,
@@ -20,10 +20,24 @@
 
         function boot() {
             //router.mapNav('details');
-            router.mapNav('home');
-            log('ITSA Knockout Loaded!', null, true);
-            
+            var route = router.mapNav('home');
+            route.needsNoAuthentication = ko.observable(true);
+            route.isAuthenticated = ko.observable(true);
+            route.icon = "nav-icon-home";
+
+            route = router.mapNav('new');
+            route.needsNoAuthentication = ko.observable(false);
+            route.isAuthenticated = ko.observable(false);
+            route.icon = "nav-icon-new";
+
             // this is the default route!
+            server.isAuthenticated()
+                .done(function (result) {
+                    $.each(router.visibleRoutes(), function () {
+                        this.isAuthenticated(result);
+                    });
+                });
+
             return router.activate('home');
         }
 

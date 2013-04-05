@@ -10,7 +10,8 @@ namespace ItsaWeb.Controllers
     {
         protected IConfigurationManager _configurationManager;
 
-        public SessionBaseController(IConfigurationManager configurationManager, ILogger logger) : base(logger)
+        public SessionBaseController(IConfigurationManager configurationManager, ILogger logger)
+            : base(logger)
         {
             _configurationManager = configurationManager;
         }
@@ -26,8 +27,7 @@ namespace ItsaWeb.Controllers
                                                                                                               timeInMinutes),
                                                                                                   false,
                                                                                                   "")));
-            cookie.HttpOnly = true;
-            cookie.Secure = true;
+            cookie.HttpOnly = true;            
             Response.Cookies.Add(cookie);
         }
     }
