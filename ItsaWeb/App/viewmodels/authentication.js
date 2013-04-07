@@ -43,7 +43,7 @@
 
         function updateRoutes(params) {
             $.each(router.visibleRoutes(), function () {
-                this.isAuthenticated(params.IsAuthenticated);
+                this.settings.isAuthenticated(params.IsAuthenticated);
             });
         }
 
@@ -83,6 +83,7 @@
                     initialize(params);
                     updateRoutes(params);
                     $('#manageUserUi').hide();
+                    router.navigateTo('#home');
                 }).fail(function (error) {
                     message("Unable to signout");
                     console.log(error);

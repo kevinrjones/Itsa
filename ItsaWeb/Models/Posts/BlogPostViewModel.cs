@@ -24,5 +24,7 @@ namespace ItsaWeb.Models.Posts
         public string Post { get; set; }
         public string[] Tags { get; set; }
         public Guid Id { get; set; }
+        public bool CommentsEnabled { get; set; }
+        public bool Draft { get; set; }
     }
 }

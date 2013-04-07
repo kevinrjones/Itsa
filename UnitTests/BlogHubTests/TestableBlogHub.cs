@@ -1,16 +1,18 @@
-﻿using System.Security.Principal;
+﻿using System.Collections.Generic;
+using System.Security.Principal;
 using ItsaWeb.Hubs;
-using ItsaWeb.Models;
 using ItsaWeb.Models.Users;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Moq;
+using ServiceInterfaces;
 
-namespace SignalRTests
+namespace BlogHubTests
 {
-    public class TestableAuthenticatingHub : AuthenticatingHub
+    public class TestableBlogHub : BlogHub
     {
-        public TestableAuthenticatingHub(string name)
+        public TestableBlogHub(IPostService postService, string name)
+            : base(postService)
         {
             InitializeHub(name);
         }
@@ -24,17 +26,15 @@ namespace SignalRTests
 
             if (name != null)
             {
-                var mockUser = new GenericPrincipal(new UserViewModel {Name = name}, null);
+                var mockUser = new GenericPrincipal(new UserViewModel { Name = name }, null);
                 mockRequest.Setup(r => r.User).Returns(mockUser);
             }
-            //var mockCookies = new Mock<IRequestCookieCollection>();
 
-            //mockRequest.Setup(r => r.Cookies).Returns(mockCookies.Object);
+            mockRequest.Setup(r => r.Cookies).Returns(new Dictionary<string, Cookie>());
 
             //Clients = new ClientProxy(mockConnection.Object, hubName);
             Context = new HubCallerContext(mockRequest.Object, connectionId);
 
-            //var trackingDictionary = new TrackingDictionary();
             //Caller = new StatefulSignalProxy(mockConnection.Object, connectionId, hubName, trackingDictionary);
         }
 
@@ -42,5 +42,6 @@ namespace SignalRTests
         {
             get { return UserName; }
         }
+
     }
 }

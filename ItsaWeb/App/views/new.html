@@ -1,27 +1,13 @@
 ﻿<section>
     <!--    <h2 class="page-title" data-bind="text: title"></h2>-->
     <div class="row-fluid">
-        <div class="span1"></div>
-        <div class="span9">
-
-            <div id="mainsection" data-bind="with: blogPosts">
-                <ul id="posts" data-bind="foreach: posts">
-                    <li>
-                        <div class="postHeader">
-                            <h3 class="postTitle"><a href="#" data-bind="text: postTitle"></a></h3>
-                            <div data-bind="text: postCreated" class="postDate"></div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div data-bind="html: postBody, click: function () { debugger; }" class="postBody"></div>
-                        <div data-bind="visible: $root.isAuthenticated" class="postAdmin">
-                            <input type="button" data-bind="value: deleteButtonTitle, click: deletePost" />
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <div class="span3">
+            Images and media here?
         </div>
-        <div class="span2">
-            &nbsp;
+        <div class="span9">
+            <input type="text" data-bind="value: blogTitle" placeholder="Add a Title" id="blogTitle"/>
+            <textarea data-bind="value: blogEntry, tinymce: true" id="blogEntry" placeholder="Type your entry here"/>
+            <input type="text" value="tags" id="blogTags"/>
         </div>
     </div>
 </section>

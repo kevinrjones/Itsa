@@ -19,5 +19,6 @@ namespace Entities
         {
             get { return Title == null ? "" : Title.Replace(' ', '-').Replace('/', '-').ToLower(); }
         }
+        public bool Draft { get; set; }
     }
 }

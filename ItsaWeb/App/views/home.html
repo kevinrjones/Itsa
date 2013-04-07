@@ -14,7 +14,8 @@
                         <div style="clear: both"></div>
                         <div data-bind="html: postBody, click: function () { debugger; }" class="postBody"></div>
                         <div data-bind="visible: $root.isAuthenticated" class="postAdmin">
-                            <input type="button" data-bind="value: deleteButtonTitle, click: deletePost" />
+                            <span class="delete" data-bind="click: deletePost"></span>
+                            <span class="edit" data-bind="click: editPost"></span>
                         </div>
                     </li>
                 </ul>

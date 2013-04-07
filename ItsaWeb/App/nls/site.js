@@ -11,12 +11,11 @@
         'register': 'Register',
         'addPostSucceeded': 'Post added',
         'addBlogPostTitle': 'Add Blog Post',
-        'itsaHomeTitle': 'Itsa Knockout'
+        'itsaHomeTitle': 'Itsa Knockout',
+        'delete': 'Delete',
+        'deleteThisPost': 'Delete Post?',
+        'savePostLabel': 'Save',
+        'saveDraftPostLabel': 'Save Draft',
+        'cancelPostLabel': 'Cancel'
     }
 });
-
-
-/*
-
-
-*/

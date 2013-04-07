@@ -40,9 +40,9 @@ namespace Services
             _postRepository.Delete(post);
         }
 
-        public void CreatePost(Post post)
+        public Post CreatePost(Post post)
         {
-            _postRepository.Create(post);
+            return _postRepository.Create(post);
         }
 
         public int GetCountOfPostsForBlog()

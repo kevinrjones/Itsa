@@ -33,6 +33,7 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
             .done(function (result) {
                 authentication.isAuthenticated(result);
             });
+
         return true;
     }
     

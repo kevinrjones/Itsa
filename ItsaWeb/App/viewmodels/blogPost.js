@@ -26,16 +26,22 @@
             throw "No data for blog post";
         }
 
-
-        self.deleteButtonTitle = resources.deletePost;
-
+        self.editPost = function () {
+            console.log("edit");
+        };
         self.deletePost = function () {
-            server.deleteBlogPost(self.id())
-                .done(function (data) {
-                    self.parent.remove(self);
-                })
-                .fail(function (error) {
-                });
+            var app = require('durandal/app');
+
+            app.showMessage(resources.deleteThisPost, resources.delete, ['No', 'Yes']).then(function (result) {
+                if (result === "Yes") {
+                    server.deleteBlogPost(self.id())
+                        .done(function (data) {
+                            self.parent.remove(self);
+                        })
+                        .fail(function (error) {
+                        });
+                }
+            });
         };
 
     };

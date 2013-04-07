@@ -36,6 +36,9 @@ namespace ItsaWeb.App_Start
                 .Include("~/Scripts/messager.js")
                 .Include("~/Scripts/date-en-GB.js")
                 .Include("~/Scripts/helperscripts.js")
+//                .Include("~/Scripts/tiny_mce.js")
+                .Include("~/Scripts/jquery.tinymce.js")
+                .Include("~/Scripts/kosetup.js")
               );
 
             bundles.Add(

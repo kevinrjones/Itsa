@@ -9,7 +9,7 @@ namespace ServiceInterfaces
         Post GetPost(Guid postId);
         void UpdatePost(Guid postId, string title, string content);
         void DeletePost(Guid postId);
-        void CreatePost(Post post);
+        Post CreatePost(Post post);
         int GetCountOfPostsForBlog();
         IList<Post> GetPosts();
     }

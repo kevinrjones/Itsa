@@ -82,16 +82,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminHubTests.cs" />
-    <Compile Include="AuthenticatingHubTests.cs" />
-    <Compile Include="GivenAnInValidUser.cs" />
-    <Compile Include="GivenAValidUser.cs" />
+    <Compile Include="AdminHubTests\TestableAdminHub.cs" />
+    <Compile Include="AuthenticatingHubTests\AuthenticatingHubTests.cs" />
+    <Compile Include="BlogHubTests\GivenABlogHub.cs" />
+    <Compile Include="BlogHubTests\TestableBlogHub.cs" />
+    <Compile Include="AdminHubTests\GivenAnInValidUser.cs" />
+    <Compile Include="AdminHubTests\GivenAValidUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionHubTests\GivenAnAuthenticatedUser.cs" />
     <Compile Include="SessionHubTests\GivenAnUnauthenticatedUser.cs" />
     <Compile Include="SessionHubTests\TestableSessionHub.cs" />
-    <Compile Include="TestableAuthenticatingHub.cs" />
-    <Compile Include="UserHubTests.cs" />
+    <Compile Include="AuthenticatingHubTests\TestableAuthenticatingHub.cs" />
+    <Compile Include="UserHubTests\UserHubTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Entities\Entities.csproj">

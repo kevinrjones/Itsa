@@ -19,22 +19,33 @@
         }
 
         function boot() {
-            //router.mapNav('details');
-            var route = router.mapNav('home');
-            route.needsNoAuthentication = ko.observable(true);
-            route.isAuthenticated = ko.observable(true);
-            route.icon = "nav-icon-home";
+            var routes = [{
+                    url: 'home',
+                    visible: true,
+                    isActivate: ko.computed,
+                    settings: {
+                        needsNoAuthentication: ko.observable(true),
+                        isAuthenticated: ko.observable(true),
+                        icon: "nav-icon-home"
+                    }
+                }, {
+                    url: 'new',
+                    visible: true,
+                    isActivate: ko.computed,
+                    settings: {
+                        needsNoAuthentication: ko.observable(false),
+                        isAuthenticated: ko.observable(false),
+                        icon: "nav-icon-new"
+                    }
+                }];
 
-            route = router.mapNav('new');
-            route.needsNoAuthentication = ko.observable(false);
-            route.isAuthenticated = ko.observable(false);
-            route.icon = "nav-icon-new";
+            router.map(routes);
 
             // this is the default route!
             server.isAuthenticated()
                 .done(function (result) {
                     $.each(router.visibleRoutes(), function () {
-                        this.isAuthenticated(result);
+                        this.settings.isAuthenticated(result);
                     });
                 });
 

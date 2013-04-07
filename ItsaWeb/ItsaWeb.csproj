@@ -273,6 +273,7 @@
     <Content Include="App\viewmodels\blogPost.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\authentication.html" />
+    <Content Include="App\views\newactions.html" />
     <Content Include="App\views\new.html" />
     <Content Include="App\views\details.html" />
     <Content Include="App\views\footer.html" />
@@ -533,6 +534,7 @@
     <Content Include="Scripts\jquery.jgrowl.js" />
     <Content Include="Scripts\jquery.signalR-1.0.1.js" />
     <Content Include="Scripts\jquery.signalR-1.0.1.min.js" />
+    <Content Include="Scripts\jquery.tinymce.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\kosetup.js" />
@@ -575,6 +577,7 @@
     <Content Include="Scripts\SyntaxHighlighter\shCore.js" />
     <Content Include="Scripts\SyntaxHighlighter\shLegacy.js" />
     <Content Include="Scripts\SyntaxHighlighter\XRegExp.js" />
+    <Content Include="Scripts\tiny_mce.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
