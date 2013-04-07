@@ -11,7 +11,7 @@ define(['facades/signalr', 'sinon'], function (server, sinon) {
                 },
                 blogHub: {
                     server: {
-                        getBlogEntries: spy
+                        list: spy
                     }
                 }
             };

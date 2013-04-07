@@ -24,8 +24,6 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
 
     //#region Internal Methods
     function activate() {
-        // check authentication?
-        // if not, cancel nav
         server.isAuthenticated()
             .done(function (result) {
                 authentication.isAuthenticated(result);
@@ -59,7 +57,6 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
             done(function () {
                 // navigate to edit/list?
             });
-
     }
     function saveDraft() {
         server.createPost(toObject(true).

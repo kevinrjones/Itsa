@@ -1,13 +1,7 @@
-define(['viewmodels/blogPost', 'facades/signalr','sinon'], function (BlogPost, server, sinon) {
+define(['viewmodels/blogPost', 'facades/signalr','sinon', 'require'], function (BlogPost, server, sinon, require) {
     module("blogPost Tests", {
         setup: function () {
         }
-    });
-
-    test("blogpost delete text set", function () {
-        var post = new BlogPost({ parent: this, item: { Title: "", Post: "", EntryAddedDate: new Date(), EntryUpdatedDate: new Date(), Id: 1 } });
-
-        ok(post.deleteButtonTitle == "Delete Blog Post", "deleteButtonTitle: " + post.deleteButtonTitle + " should be Delete Blog Post");
     });
 
     test("uninitialized blogpost throws exception", function () {
@@ -39,6 +33,13 @@ define(['viewmodels/blogPost', 'facades/signalr','sinon'], function (BlogPost, s
     });
 
     test("deleteBlogPost passes correct id", function () {
+        var app = require('durandal/app');
+        var showMessageStub = sinon.stub();
+        var deferred = new $.Deferred();
+        deferred.resolve("Yes");
+        showMessageStub.returns(deferred);
+        app.showMessage = showMessageStub;
+        
         post.deletePost();
         ok(deleteBlogPost.calledWith(1), "deletePost should be called with correct id");
     });
