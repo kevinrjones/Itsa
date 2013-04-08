@@ -17,7 +17,8 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
         cancelPostLabel: resources.cancelPostLabel,
         save: save,
         saveDraft: saveDraft,
-        cancel: cancel
+        cancel: cancel,
+        isSaveable: isSaveable
     };
 
     return vm;
@@ -41,7 +42,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
     }
 
     function toObject(isDraft) {
-        return { title: blogTitle, entry: blogEntry, tags: blogTags, isDraft: isDraft };
+        return { Title: blogTitle(), Body: blogEntry(), Tags: blogTags(), IsDraft: isDraft };
     }
 
     //#endregion
@@ -56,16 +57,25 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
         server.createPost(toObject(false)).
             done(function () {
                 // navigate to edit/list?
+            }).fail(function () {
+                var app = require('durandal/app');
+                app.showMessage(resources.deleteThisPost, resources.unableToSavePost);
             });
     }
     function saveDraft() {
-        server.createPost(toObject(true).
+        server.createPost(toObject(true)).
             done(function () {
                 // navigate to edit?/list?/home?
-            }));
+            }).fail(function() {
+                var app = require('durandal/app');
+                app.showMessage(resources.deleteThisPost, resources.unableToSavePost);
+            });
 
     }
 
+    function isSaveable() {
+        return blogTitle() !== "" && blogEntry != "";
+    }
 });
 
 

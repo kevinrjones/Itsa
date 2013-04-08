@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Entities;
+using Exceptions;
 using ItsaWeb.Models;
 using ItsaWeb.Models.Posts;
 using Microsoft.AspNet.SignalR;
@@ -22,7 +23,7 @@ namespace ItsaWeb.Hubs
         public List<BlogPostViewModel> List()
         {
             var posts = _blogService.GetPosts();
-            return posts.Select(post => new BlogPostViewModel {Title = post.Title, Post = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate})
+            return posts.Select(post => new BlogPostViewModel {Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate})
                 .OrderByDescending(p => p.EntryAddedDate)
                 .ToList();
         }
@@ -30,7 +31,11 @@ namespace ItsaWeb.Hubs
         public BlogPostViewModel Create(BlogPostViewModel model)
         {
             IsAuthenticated();
-            var post = _blogService.CreatePost(new Post{Body = model.Post, Title = model.Title, Tags = model.Tags, EntryAddedDate = DateTime.Now, CommentsEnabled = model.CommentsEnabled, Draft = model.Draft, EntryUpdateDate = DateTime.Now});
+            if (string.IsNullOrEmpty(model.Title) || string.IsNullOrEmpty(model.Body))
+            {
+                throw new ItsaException("You must pass a title and a body for the post");
+            }
+            var post = _blogService.CreatePost(new Post{Body = model.Body, Title = model.Title, Tags = model.Tags, EntryAddedDate = DateTime.Now, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft, EntryUpdateDate = DateTime.Now});
             model.Id = post.Id;
             return model;
         }

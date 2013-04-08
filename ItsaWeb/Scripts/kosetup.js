@@ -1,77 +1,111 @@
-﻿ko.bindingHandlers.tinymce = {
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-        $(element).tinymce({
-            // Location of TinyMCE script
-            script_url: 'scripts/tiny_mce.js',
+﻿(function ($) {
+    var instances_by_id = {} // needed for referencing instances during updates.
+      , init_queue = $.Deferred() // jQuery deferred object used for creating TinyMCE instances synchronously
+      , init_queue_next = init_queue;
+    init_queue.resolve();
+    ko.bindingHandlers.tinymce = {
+        init: function (element, valueAccessor, allBindingsAccessor, context) {
+            var init_arguments = arguments;
+            var options = allBindingsAccessor().tinymceOptions || {};
+            var modelValue = valueAccessor();
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            var el = $(element);
 
-            // General options
-            theme: "advanced",
-            plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+            options.setup = function (ed) {
+                ed.onChange.add(function (editor, l) { //handle edits made in the editor. Updates after an undo point is reached.
+                    if (ko.isWriteableObservable(modelValue)) {
+                        modelValue(l.content);
+                    }
+                });
 
-            // Theme options
-            theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-            theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,code,|,preview",
-            theme_advanced_buttons3: "",
-            theme_advanced_buttons4: "",
-            theme_advanced_toolbar_location: "top",
-            theme_advanced_toolbar_align: "left",
-            theme_advanced_statusbar_location: "bottom",
-            theme_advanced_resizing: true,
+                //This is required if you want the HTML Edit Source button to work correctly
+                ed.onBeforeSetContent.add(function (editor, l) {
+                    if (ko.isWriteableObservable(modelValue)) {
+                        modelValue(l.content);
+                    }
+                });
 
-            // Example content CSS (should be your site CSS)
-            //content_css : "css/content.css",
+                ed.onPaste.add(function (editor, evt) { // The paste event for the mouse paste fix.
+                    var doc = editor.getDoc();
 
-            // Drop lists for link/image/media/template dialogs
-            //template_external_list_url : "lists/template_list.js",
-            //external_link_list_url : "lists/link_list.js",
-            //external_image_list_url : "lists/image_list.js",
-            //media_external_list_url : "lists/media_list.js",
+                    if (ko.isWriteableObservable(modelValue)) {
+                        setTimeout(function () { modelValue(editor.getContent({ format: 'raw' })); }, 10);
+                    }
 
-            // Replace values for the template plugin
-            template_replace_values: {
-                username: "Some User",
-                staffid: "991234"
+                });
+
+                ed.onInit.add(function (editor, evt) { // Make sure observable is updated when leaving editor.
+                    var doc = editor.getDoc();
+                    tinymce.dom.Event.add(doc, 'blur', function (e) {
+                        if (ko.isWriteableObservable(modelValue)) {
+                            modelValue(editor.getContent({ format: 'raw' }));
+                        }
+                    });
+                });
+
+            };
+
+            //handle destroying an editor (based on what jQuery plugin does)
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                $(element).parent().find("span.mceEditor,div.mceEditor").each(function (i, node) {
+                    var tid = node.id.replace(/_parent$/, '');
+                    var ed = tinyMCE.get(tid);
+                    if (ed) {
+                        ed.remove();
+                        // remove referenced instance if possible.
+                        if (instances_by_id[tid]) {
+                            delete instances_by_id[tid];
+                        }
+                    }
+                });
+            });
+
+            // TinyMCE attaches to the element by DOM id, so we need to make one for the element if it doesn't have one already.
+            if (!element.id) {
+                element.id = tinyMCE.DOM.uniqueId();
             }
-        });
-    },
-    update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-        $(element).tinymce({
-            // Location of TinyMCE script
-            script_url: 'scripts/tiny_mce.js',
 
-            // General options
-            theme: "advanced",
-            plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+            // create each tinyMCE instance synchronously. This addresses an issue when working with foreach bindings
+            init_queue_next = init_queue_next.pipe(function () {
+                var defer = $.Deferred();
+                var init_options = $.extend({}, options, {
+                    mode: 'none',
+                    init_instance_callback: function (instance) {
+                        instances_by_id[element.id] = instance;
+                        ko.bindingHandlers.tinymce.update.apply(undefined, init_arguments);
+                        defer.resolve(element.id);
+                        if (options.hasOwnProperty("init_instance_callback")) {
+                            options.init_instance_callback(instance);
+                        }
+                    }
+                });
+                setTimeout(function () {
+                    tinyMCE.init(init_options);
+                    setTimeout(function () {
+                        tinyMCE.execCommand("mceAddControl", true, element.id);
+                    }, 10);
+                }, 10);
+                return defer.promise();
+            });
+            el.val(value);
+        },
+        update: function (element, valueAccessor, allBindingsAccessor, context) {
+            var el = $(element);
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            var id = el.attr('id');
 
-            // Theme options
-            theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-            theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,code,|,preview",
-            theme_advanced_buttons3: "",
-            theme_advanced_buttons4: "",
-            theme_advanced_toolbar_location: "top",
-            theme_advanced_toolbar_align: "left",
-            theme_advanced_statusbar_location: "bottom",
-            theme_advanced_resizing: true,
-
-            // Example content CSS (should be your site CSS)
-            //content_css : "css/content.css",
-
-            // Drop lists for link/image/media/template dialogs
-            //template_external_list_url : "lists/template_list.js",
-            //external_link_list_url : "lists/link_list.js",
-            //external_image_list_url : "lists/image_list.js",
-            //media_external_list_url : "lists/media_list.js",
-
-            // Replace values for the template plugin
-            template_replace_values: {
-                username: "Some User",
-                staffid: "991234"
+            //handle programmatic updates to the observable
+            // also makes sure it doesn't update it if it's the same.
+            // otherwise, it will reload the instance, causing the cursor to jump.
+            if (id !== undefined && id !== '' && instances_by_id.hasOwnProperty(id)) {
+                var content = instances_by_id[id].getContent({ format: 'raw' });
+                if (content !== value) {
+                    el.val(value);
+                }
             }
-        });
-    }
-};
-
-
+        }
+    };
+}(jQuery));
 
 ko.bindingHandlers.checkbox = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {

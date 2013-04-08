@@ -100,6 +100,10 @@
       <Project>{AEE76B68-8EE3-49A1-8AED-809288568D64}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Exceptions\Exceptions.csproj">
+      <Project>{3B03CAF2-AC3B-4682-9C76-9AA9F4A25321}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ItsaWeb\ItsaWeb.csproj">
       <Project>{2a3c0f9d-9ba2-4b45-98ee-2d63746ba99d}</Project>
       <Name>ItsaWeb</Name>

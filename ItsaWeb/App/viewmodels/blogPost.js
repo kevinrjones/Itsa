@@ -18,7 +18,7 @@
         if (params && params.item) {
             var item = params.item;
             self.postTitle(item.Title);
-            self.postBody(item.Post);
+            self.postBody(item.Body);
             self.postCreated(new Date(item.EntryAddedDate).toString("d-MMM-yyyy HH:MM"));
             self.postUpdated(new Date(item.EntryUpdatedDate).toString("d-MMM-yyyy HH:MM"));
             self.id(item.Id);
@@ -29,6 +29,7 @@
         self.editPost = function () {
             console.log("edit");
         };
+
         self.deletePost = function () {
             var app = require('durandal/app');
 

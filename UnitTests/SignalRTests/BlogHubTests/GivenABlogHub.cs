@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entities;
+using Exceptions;
 using FluentAssertions;
 using ItsaWeb.Hubs;
 using ItsaWeb.Infrastructure;
@@ -45,12 +46,30 @@ namespace SignalRTests.BlogHubTests
         }
 
         [Test]
-        public void WhenTheUserIsAuthenticated_AndAPostsIsCreate_ThenTheNewPostIsReturned()
+        public void WhenTheUserIsAuthenticated_AndAPostsIsCreated_ThenTheNewPostIsReturned()
         {
             _service.Setup(s => s.CreatePost(It.IsAny<Post>())).Returns(new Post());
             var hub = new TestableBlogHub(_service.Object, "Kevin");
-            hub.Create(new BlogPostViewModel());
+            hub.Create(new BlogPostViewModel { Title = "title", Body = "body" });
             _service.Verify(s => s.CreatePost(It.IsAny<Post>()), Times.Once());
+        }
+
+        [Test]
+        public void WhenTheUserIsAuthenticated_AndAPostsIsCreatedWithoutABody_ThenAnExceptionIsThrown()
+        {
+            _service.Setup(s => s.CreatePost(It.IsAny<Post>())).Returns(new Post());
+            var hub = new TestableBlogHub(_service.Object, "Kevin");
+            Action act = () => hub.Create(new BlogPostViewModel { Title = "title" });
+            act.ShouldThrow<ItsaException>();
+        }
+
+        [Test]
+        public void WhenTheUserIsAuthenticated_AndAPostsIsCreatedWithoutATitle_ThenAnExceptionIsThrown()
+        {
+            _service.Setup(s => s.CreatePost(It.IsAny<Post>())).Returns(new Post());
+            var hub = new TestableBlogHub(_service.Object, "Kevin");
+            Action act = () => hub.Create(new BlogPostViewModel { Body = "entry" });
+            act.ShouldThrow<ItsaException>();
         }
 
         [Test]
