@@ -7,7 +7,7 @@
             <ul class="nav" data-bind="foreach: router.visibleRoutes">
                 <li data-bind="css: { active: isActive }">
                     <div class="nav-container" data-bind="visible: settings.needsNoAuthentication() || settings.isAuthenticated()">
-                        <img class="nav-icon" alt="Home" src="Content/images/invis.gif" data-bind="css: settings.icon"/>
+                        <img class="nav-icon" alt="Home" src="Content/images/invis.gif" data-bind="css: settings.icon, visible: settings.icon.length > 0"/>
                         <a data-bind="css: { active: isActive }, attr: { href: hash }, text: name" class="" href="#"></a>
                     </div>
                 </li>

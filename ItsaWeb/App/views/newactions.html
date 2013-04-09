@@ -1,17 +1,17 @@
 ﻿<ul class="nav">
     <li>
         <div class="nav-container">
-            <a href="javascript: void 0" data-bind="click: save, text: savePostLabel, enabled: isSaveable"></a>
+            <a href="javascript: void 0" data-bind="click: save, text: savePostLabel, css: {disableLink: !isSaveable()}"></a>
         </div>
     </li>
     <li>
         <div class="nav-container">
-            <a href="javascript: void 0" data-bind="click: saveDraft, text: saveDraftPostLabel, enabled: isSaveable"></a>
+            <a href="javascript: void 0" data-bind="click: saveDraft, text: saveDraftPostLabel, css: { disableLink: !isSaveable() }"></a>
         </div>
     </li>
     <li>
         <div class="nav-container">
-            <a href="javascript: void 0" data-bind="click: cancel, text: cancelPostLabel"></a>
+            <a href="javascript: void 0" data-bind="click: cancel, text: cancelPostLabel, css: { disableLink: !isCancelable() }"></a>
         </div>
     </li>
 

@@ -10,6 +10,12 @@ requirejs.onError = function (err) {
     throw err;
 };
 
+var editRoute = {
+    url: 'edit/:id',
+    visible: false,
+    isActivate: ko.computed
+};
+
 var homePageRoutes = [{
     url: 'home',
     visible: true,
@@ -28,7 +34,16 @@ var homePageRoutes = [{
         isAuthenticated: ko.observable(false),
         icon: "nav-icon-new"
     }
-}];
+}, {
+    url: 'list',
+    visible: true,
+    isActivate: ko.computed,
+    settings: {
+        needsNoAuthentication: ko.observable(false),
+        isAuthenticated: ko.observable(false),
+        icon: ""
+    }
+}, editRoute];
 
 var newPageRoutes = [{
     url: 'home',
@@ -39,7 +54,36 @@ var newPageRoutes = [{
         isAuthenticated: ko.observable(true),
         icon: "nav-icon-home"
     }
-}];
+}, {
+    url: 'list',
+    visible: true,
+    isActivate: ko.computed,
+    settings: {
+        needsNoAuthentication: ko.observable(false),
+        isAuthenticated: ko.observable(false),
+        icon: ""
+    }
+}, editRoute];
+
+var listPageRoutes = [{
+    url: 'home',
+    visible: true,
+    isActivate: ko.computed,
+    settings: {
+        needsNoAuthentication: ko.observable(true),
+        isAuthenticated: ko.observable(true),
+        icon: "nav-icon-home"
+    }
+}, {
+    url: 'new',
+    visible: true,
+    isActivate: ko.computed,
+    settings: {
+        needsNoAuthentication: ko.observable(false),
+        isAuthenticated: ko.observable(false),
+        icon: "nav-icon-new"
+    }
+}, editRoute];
 
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plugins/router', 'services/logger'],
@@ -48,7 +92,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
         // Enable debug message to show in the console 
         system.debug(true);
         app.title = "Itsa Knockout";
-        
+
         app.start().then(function () {
             $.connection.hub.start(
                 function () {
@@ -68,9 +112,12 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
                             router.routeName = ko.observable();
                         }
                         router.routeName(routeInfo.name);
-                        if (routeInfo.name == "New") {
+                        if (routeInfo.name == "New" || routeInfo.name == "New") {
                             router.map(newPageRoutes);
-                        } else if (routeInfo.name == "Home") {
+                        } else if (routeInfo.name == "List") {
+                            router.map(listPageRoutes);
+                        }
+                        else if (routeInfo.name == "Home") {
                             router.map(homePageRoutes);
                         }
                         var server = require('facades/signalr');

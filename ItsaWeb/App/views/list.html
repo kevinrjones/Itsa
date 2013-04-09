@@ -8,15 +8,20 @@
                 <ul id="posts" data-bind="foreach: posts">
                     <li>
                         <div class="postHeader">
-                            <h3 class="postTitle"><a href="#" data-bind="text: postTitle"></a></h3>
+                            <h3 class="postTitle">
+                                <span data-bind="visible: $root.isAuthenticated" class="postAdmin">
+                                    <span class="delete" data-bind="click: deletePost"></span>
+                                    <span class="edit" data-bind="click: editPost"></span>
+                                </span>
+                                <a href="#" data-bind="text: postTitle"></a>
+                            </h3>
                             <div data-bind="text: postCreated" class="postDate"></div>
                         </div>
                         <div style="clear: both"></div>
-                        <div data-bind="html: postBody" class="postBody"></div>
-                        <div data-bind="visible: $root.isAuthenticated" class="postAdmin">
+                        <!--                        <div data-bind="visible: $root.isAuthenticated" class="postAdmin">
                             <span class="delete" data-bind="click: deletePost"></span>
                             <span class="edit" data-bind="click: editPost"></span>
-                        </div>
+                        </div>-->
                     </li>
                 </ul>
             </div>

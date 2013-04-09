@@ -5,8 +5,8 @@
             Images and media here?
         </div>
         <div class="span9">
-            <input type="text" data-bind="value: blogTitle" placeholder="Add a Title" id="blogTitle"/>
-            <textarea class="tinymce" data-bind="tinymce: blogEntry, tinymceOptions: { theme: 'advanced' }" id="blogEntry" ></textarea>
+            <input type="text" data-bind="value: blogTitle, valueUpdate: 'afterkeydown'" placeholder="Add a Title" id="blogTitle"/>
+            <textarea data-bind="tinymce: blogEntry, tinymceOptions: { theme: 'advanced' }, valueUpdate: 'afterkeydown'" id="blogEntry" ></textarea>
             <input type="text" value="tags" id="blogTags"/>
         </div>
     </div>

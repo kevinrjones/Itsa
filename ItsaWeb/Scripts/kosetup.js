@@ -107,6 +107,87 @@
     };
 }(jQuery));
 
+ko.bindingHandlers.ckeditor = {
+    init: function (element, valueAccessor, allBindingsAccessor, context) {
+        // get observable
+        var modelValue = valueAccessor();;
+
+        $(element).ckeditor(function (textarea) {
+            // <span> element that contains the CKEditor markup
+            var $ckeContainer = $(this.container.$);
+            // <body> element within the iframe (<html> is contentEditable)
+            var $editorBody =
+                    $ckeContainer.find('iframe').contents().find('body');
+            // sets the initial value
+            $editorBody.html(modelValue());
+            // handle edits made in the editor - by typing
+            $editorBody.keyup(function () {
+                modelValue($(this).html());
+            });
+            // handle edits made in the editor - by clicking in the toolbar
+            $ckeContainer.find('table.cke_editor').click(function () {
+                modelValue($editorBody.html());
+            });
+        });
+
+
+        // when ko disposes of <textarea>, destory the ckeditor instance
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            $(element).ckeditorGet().destroy(true);
+        });
+    },
+    update: function (element, valueAccessor, allBindingsAccessor, context) {
+        // handle programmatic updates to the observable
+        var newValue = ko.utils.unwrapObservable(valueAccessor());
+        var $ckeContainer = $(element).ckeditorGet().container;
+        if ($ckeContainer) {
+            // <span> element that contains the CKEditor markup
+            $ckeContainer = $($ckeContainer.$);
+            // <body> element within the iframe (<html> is contentEditable)
+            var $editorBody =
+                    $ckeContainer.find('iframe').contents().find('body');
+            // if new value != existing value, replace it in the editor
+            if ($editorBody.html() != newValue)
+                $editorBody.html(newValue);
+        }
+    }
+};
+
+ko.bindingHandlers.ckedit = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+        var txtBoxID = $(element).attr("id");
+        var options = allBindingsAccessor().richTextOptions || {};
+        options.toolbar_Full = [
+            ['Source', '-', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor', '-', 'Bold', 'Italic', 'Underline', 'SpellChecker'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'],
+            ['Link', 'Unlink', 'Image', 'Table']
+        ];
+
+        //handle disposal (if KO removes by the template binding)
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
+            if (CKEDITOR.instances[txtBoxID]) {
+                CKEDITOR.remove(CKEDITOR.instances[txtBoxID]);
+            }
+            ;
+        });
+
+        $(element).ckeditor(options);
+
+        //wire up the blur event to ensure our observable is properly updated
+        CKEDITOR.instances[txtBoxID].focusManager.blur = function() {
+            var observable = valueAccessor();
+            observable($(element).val());
+        };
+    },
+
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+        var val = ko.utils.unwrapObservable(valueAccessor());
+        $(element).val(val);
+    }
+};
+
+    //<textarea id="txt_viewModelVariableName" data-bind="ckedit: viewModelVariableName"></textarea>
+
 ko.bindingHandlers.checkbox = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
         $(element).checkbox();

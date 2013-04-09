@@ -31,7 +31,7 @@ pre {
 html {
     padding: 0;
     color: black;
-    background: #EFEFEF;
+    /*background: #EFEFEF;*/
 }
 
 body {
@@ -337,6 +337,7 @@ a, a:hover, a:focus {
 
 #blogEntry {
     width: 100%;
+    height: 100%;
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -349,4 +350,10 @@ a, a:hover, a:focus {
     box-shadow: none;
     background-color: lightgray;
     height: 40px;
+}
+
+.disableLink, .disableLink:hover {
+    color: lightgray;
+    cursor: default;
+    text-decoration: none;
 }

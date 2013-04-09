@@ -31,9 +31,9 @@ namespace ItsaWeb.Hubs
         public BlogPostViewModel Create(BlogPostViewModel model)
         {
             IsAuthenticated();
-            if (string.IsNullOrEmpty(model.Title) || string.IsNullOrEmpty(model.Body))
+            if (string.IsNullOrEmpty(model.Title))
             {
-                throw new ItsaException("You must pass a title and a body for the post");
+                throw new ItsaException("All posts must have a title");
             }
             var post = _blogService.CreatePost(new Post{Body = model.Body, Title = model.Title, Tags = model.Tags, EntryAddedDate = DateTime.Now, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft, EntryUpdateDate = DateTime.Now});
             model.Id = post.Id;

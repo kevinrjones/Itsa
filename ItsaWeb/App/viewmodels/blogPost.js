@@ -27,7 +27,8 @@
         }
 
         self.editPost = function () {
-            console.log("edit");
+            var router = require('durandal/plugins/router');
+            router.navigateTo('#edit/' + self.id());
         };
 
         self.deletePost = function () {

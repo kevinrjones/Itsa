@@ -32,7 +32,9 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
     return vm;
 
     //#region Internal Methods
-    function activate() {
+    function activate(params) {
+        // params.splat
+        // get post
         server.isAuthenticated()
             .done(function (result) {
                 authentication.isAuthenticated(result);

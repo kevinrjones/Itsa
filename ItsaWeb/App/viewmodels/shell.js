@@ -19,25 +19,35 @@
         }
 
         function boot() {
-            var routes = [{
-                    url: 'home',
-                    visible: true,
-                    isActivate: ko.computed,
-                    settings: {
-                        needsNoAuthentication: ko.observable(true),
-                        isAuthenticated: ko.observable(true),
-                        icon: "nav-icon-home"
-                    }
-                }, {
-                    url: 'new',
-                    visible: true,
-                    isActivate: ko.computed,
-                    settings: {
-                        needsNoAuthentication: ko.observable(false),
-                        isAuthenticated: ko.observable(false),
-                        icon: "nav-icon-new"
-                    }
-                }];
+            var routes = homePageRoutes;
+            //[{
+            //        url: 'home',
+            //        visible: true,
+            //        isActivate: ko.computed,
+            //        settings: {
+            //            needsNoAuthentication: ko.observable(true),
+            //            isAuthenticated: ko.observable(true),
+            //            icon: "nav-icon-home"
+            //        }
+            //    }, {
+            //        url: 'new',
+            //        visible: true,
+            //        isActivate: ko.computed,
+            //        settings: {
+            //            needsNoAuthentication: ko.observable(false),
+            //            isAuthenticated: ko.observable(false),
+            //            icon: "nav-icon-new"
+            //        }
+            //    }, {
+            //        url: 'list',
+            //        visible: true,
+            //        isActivate: ko.computed,
+            //        settings: {
+            //            needsNoAuthentication: ko.observable(false),
+            //            isAuthenticated: ko.observable(false),
+            //            icon: ""
+            //        }
+            //    }];
 
             router.map(routes);
 
