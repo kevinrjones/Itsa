@@ -26,7 +26,7 @@ namespace ItsaWeb.Controllers.Publishing
             : base(logger)
         {
             _userService = userService;
-            _postService = postService;            
+            _postService = postService;
             _syndicationFeedService = syndicationFeedService;
         }
 
@@ -34,7 +34,7 @@ namespace ItsaWeb.Controllers.Publishing
         public virtual ActionResult GetServiceDocument()
         {
             var user = _userService.GetRegisteredUser();
-            var viewModel = new AtomViewModel { Title = user.BlogTitle};
+            var viewModel = new AtomViewModel { Title = user.BlogTitle };
             return View(viewModel);
         }
 
@@ -54,9 +54,9 @@ namespace ItsaWeb.Controllers.Publishing
         {
             Post post = _postService.GetPost(postId);
             return
-                View(new EditPostViewModel {PostId = postId, Title = post.Title, Post = post.Body, Edited = post.EntryUpdateDate, Published = post.EntryAddedDate});
+                View(new EditPostViewModel { PostId = postId, Title = post.Title, Post = post.Body, Edited = post.EntryUpdateDate, Published = post.EntryAddedDate });
         }
-        
+
         [HttpPut]
         [AuthorizedUser]
         public virtual ActionResult Update(Guid postId)
@@ -64,10 +64,10 @@ namespace ItsaWeb.Controllers.Publishing
             var atomXMl = XDocument.Load(new StreamReader(Request.InputStream));
             XNamespace ns = "http://www.w3.org/2005/Atom";
             var title = (from node in atomXMl.Descendants(ns + "title")
-                           select node.Value).FirstOrDefault();
+                         select node.Value).FirstOrDefault();
             var content = (from node in atomXMl.Descendants(ns + "content")
                            select node.Value).FirstOrDefault();
-            _postService.UpdatePost(postId, title, content);
+            _postService.UpdatePost(new Post { Id = postId, Title = title, Body = content });
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 

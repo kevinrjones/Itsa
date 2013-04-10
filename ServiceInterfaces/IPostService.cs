@@ -7,7 +7,7 @@ namespace ServiceInterfaces
     public interface IPostService
     {
         Post GetPost(Guid postId);
-        void UpdatePost(Guid postId, string title, string content);
+        void UpdatePost(Post post);
         void DeletePost(Guid postId);
         Post CreatePost(Post post);
         int GetCountOfPostsForBlog();

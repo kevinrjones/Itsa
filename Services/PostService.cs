@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using Exceptions;
 using ItsaRepository.Interfaces;
 using ServiceInterfaces;
 
@@ -25,13 +26,16 @@ namespace Services
                     select e).FirstOrDefault();
         }
 
-        public void UpdatePost(Guid postId, string title, string content)
+        public void UpdatePost(Post post)
         {
-            var post = GetPost(postId);
-            post.Title = title;
-            post.Body = content;
-
-            _postRepository.Update(post);
+            if (GetPost(post.Id) != null)
+            {
+                _postRepository.Update(post);
+            }
+            else
+            {
+                throw new ItsaException("Cannot find post to update");
+            }
         }
 
         public void DeletePost(Guid postId)

@@ -83,8 +83,8 @@
                     tinyMCE.init(init_options);
                     setTimeout(function () {
                         tinyMCE.execCommand("mceAddControl", true, element.id);
-                    }, 10);
-                }, 10);
+                    }, 200);
+                }, 200);
                 return defer.promise();
             });
             el.val(value);

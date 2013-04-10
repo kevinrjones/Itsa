@@ -1,8 +1,8 @@
 ﻿// ReSharper disable InconsistentNaming
 define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site', 'viewmodels/authentication'], function (system, logger, server, resources, authentication) {
 
-    var blogTitle = ko.observable();
-    var blogEntry = ko.observable();
+    var blogTitle = ko.observable("");
+    var blogEntry = ko.observable("");
     var blogTags = ko.observableArray();
     var isSaveable = ko.computed(function () {
         return blogTitle() !== undefined && blogTitle() !== "";

@@ -36,7 +36,7 @@ namespace ServicesTests
         public void GivenAValidPost_WhenItIsRemovedFromTheService_ThenItIsDeletedInTheRepository()
         {
             var id = Guid.NewGuid();
-            var posts = new List<Post> {new Post {Id = id}}.AsQueryable();
+            var posts = new List<Post> { new Post { Id = id } }.AsQueryable();
             _postRepository.Setup(p => p.Entities).Returns(posts);
             _service.DeletePost(id);
             _postRepository.Verify(p => p.Delete(It.Is<Post>(post => post.Id == id)), Times.Once());
@@ -48,7 +48,7 @@ namespace ServicesTests
             var id = Guid.NewGuid();
             var posts = new List<Post> { new Post { Id = id } }.AsQueryable();
             _postRepository.Setup(p => p.Entities).Returns(posts);
-            _service.UpdatePost(id, It.IsAny<string>(), It.IsAny<string>());
+            _service.UpdatePost(new Post { Id = id });
             _postRepository.Verify(p => p.Update(It.Is<Post>(post => post.Id == id)), Times.Once());
         }
 

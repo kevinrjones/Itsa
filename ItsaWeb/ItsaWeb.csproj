@@ -267,6 +267,7 @@
     <Content Include="App\services\logger.js" />
     <Content Include="App\viewmodels\authentication.js" />
     <Content Include="App\viewmodels\blogPosts.js" />
+    <Content Include="App\viewmodels\neweditactions.js" />
     <Content Include="App\viewmodels\edit.js" />
     <Content Include="App\viewmodels\list.js" />
     <Content Include="App\viewmodels\new.js" />
@@ -275,19 +276,16 @@
     <Content Include="App\viewmodels\blogPost.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\authentication.html" />
-    <Content Include="App\views\Copy of new.html" />
     <Content Include="App\views\list.html" />
-    <Content Include="App\views\newactions.html" />
+    <Content Include="App\views\new.html" />
+    <Content Include="App\views\neweditactions.html" />
     <Content Include="App\views\edit.html" />
     <Content Include="App\views\details.html" />
     <Content Include="App\views\footer.html" />
     <Content Include="App\views\home.html" />
     <Content Include="App\views\nav.html" />
     <Content Include="App\views\shell.html" />
-    <Content Include="App_Data\posts\014d6521-1725-4046-ba69-acb4598e6cb4.json" />
     <Content Include="App_Data\posts\2180c32e-0708-4889-8135-08db00caa057.json" />
-    <Content Include="App_Data\posts\56e4eeb8-7f51-4549-a83f-4bf1e107b44c.json" />
-    <Content Include="App_Data\posts\792981bf-eb10-437d-83be-663fbcd6a6ec.json" />
     <Content Include="App_Data\posts\9eb19582-df8c-46b8-b9c5-817552f744c6.json" />
     <Content Include="App_Data\user.json" />
     <None Include="Content\app.less" />
@@ -851,6 +849,9 @@
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\Home\_splash.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Atom\Create.cshtml" />
+    <Content Include="Views\Atom\Get.cshtml" />
+    <Content Include="Views\Atom\GetServiceDocument.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

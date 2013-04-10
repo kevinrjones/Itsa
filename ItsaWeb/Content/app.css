@@ -350,7 +350,7 @@ a:focus {
   width: 14px;
   cursor: pointer;
 }
-#blogTitle {
+.blogTitle {
   font-size: 192%;
   border: none;
   width: 100%;
@@ -359,14 +359,14 @@ a:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#blogEntry {
+.blogEntry {
   width: 100%;
   height: 100%;
   border: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#blogTags {
+.blogTags {
   width: 100%;
   border: none;
   -webkit-box-shadow: none;

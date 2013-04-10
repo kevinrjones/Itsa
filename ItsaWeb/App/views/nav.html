@@ -7,15 +7,13 @@
             <ul class="nav" data-bind="foreach: router.visibleRoutes">
                 <li data-bind="css: { active: isActive }">
                     <div class="nav-container" data-bind="visible: settings.needsNoAuthentication() || settings.isAuthenticated()">
-                        <img class="nav-icon" alt="Home" src="Content/images/invis.gif" data-bind="css: settings.icon, visible: settings.icon.length > 0"/>
+                        <img class="nav-icon" alt="Home" src="Content/images/invis.gif" data-bind="css: settings.icon, visible: settings.icon.length > 0" />
                         <a data-bind="css: { active: isActive }, attr: { href: hash }, text: name" class="" href="#"></a>
                     </div>
                 </li>
             </ul>
-            <div data-bind="compose: {
-    view: 'views/newactions',
-    model: 'viewmodels/new'
-}, visible: router.routeName() == 'New'">
+            <div data-bind="compose: 'viewmodels/neweditactions',
+                            visible: router.routeName() == 'New' || router.routeName() == 'Edit'">
             </div>
             <!-- ko compose:  'viewmodels/authentication'  -->
             <!--/ko-->

@@ -112,7 +112,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
                             router.routeName = ko.observable();
                         }
                         router.routeName(routeInfo.name);
-                        if (routeInfo.name == "New" || routeInfo.name == "New") {
+                        if (routeInfo.name == "New" || routeInfo.name == "Edit") {
                             router.map(newPageRoutes);
                         } else if (routeInfo.name == "List") {
                             router.map(listPageRoutes);

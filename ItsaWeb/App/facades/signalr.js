@@ -4,7 +4,11 @@
         return $.connection.adminHub.server.deleteBlogPost(id);
     };
 
-    var getBlogEntries = function() {
+    var getBlogPost = function (id) {
+        return $.connection.blogHub.server.get(id);
+    };
+
+    var getBlogEntries = function () {
         return $.connection.blogHub.server.list();
     };
 
@@ -12,14 +16,20 @@
         return $.connection.sessionHub.server.isAuthenticatedUser();
     };
 
-    var createPost = function(post) {
+    var createPost = function (post) {
         return $.connection.blogHub.server.create(post);
+    };
+
+    var updatePost = function (post) {
+        return $.connection.blogHub.server.update(post);
     };
 
     return {
         deleteBlogPost: deleteBlogPost,
         getBlogEntries: getBlogEntries,
         isAuthenticated: isAuthenticated,
-        createPost: createPost
+        createPost: createPost,
+        updatePost: updatePost,
+        getBlogPost: getBlogPost
     };
 });

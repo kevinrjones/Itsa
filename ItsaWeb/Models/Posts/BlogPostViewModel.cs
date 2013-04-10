@@ -5,10 +5,7 @@ namespace ItsaWeb.Models.Posts
 {
     public class BlogPostViewModel
     {
-        public BlogPostViewModel()
-        {
-            
-        }
+        public BlogPostViewModel(){}
 
         public BlogPostViewModel(Post post)
         {

@@ -1,71 +1,87 @@
 ﻿// ReSharper disable InconsistentNaming
 define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site', 'viewmodels/authentication'], function (system, logger, server, resources, authentication) {
 
+    var id;
+    var originalTitle = "";
+    var originalEntry = "";
     var blogTitle = ko.observable();
     var blogEntry = ko.observable();
     var blogTags = ko.observableArray();
     var isSaveable = ko.computed(function () {
-        return blogTitle() !== undefined && blogTitle() !== "";
-    });
-
-    var isCancelable = ko.computed(function () {
-        return (blogTitle() !== undefined && blogTitle() !== "") || (blogEntry() !== undefined && blogEntry() !== "");
+        return blogTitle() !== originalTitle || blogEntry() !== originalEntry;
     });
 
     var vm = {
         activate: activate,
         viewAttached: viewAttached,
-        title: 'New',
+        title: 'Edit',
         blogTitle: blogTitle,
         blogEntry: blogEntry,
         blogTags: blogTags,
-        savePostLabel: resources.savePostLabel,
-        saveDraftPostLabel: resources.saveDraftPostLabel,
-        cancelPostLabel: resources.cancelPostLabel,
-        save: save,
-        saveDraft: saveDraft,
-        cancel: cancel,
+        saveEditPostLabel: resources.savePostLabel,
+        saveEditDraftPostLabel: resources.saveDraftPostLabel,
+        cancelEditPostLabel: resources.cancelPostLabel,
+        saveEdit: save,
+        saveDraftEdit: saveDraft,
+        cancelEdit: cancel,
         isSaveable: isSaveable,
-        isCancelable: isCancelable
+        isCancelable: isSaveable
     };
 
     return vm;
 
     //#region Internal Methods
     function activate(params) {
-        // params.splat
-        // get post
+        console.log("activate");
+        id = params.id;
+        originalTitle = "";
+        originalEntry = "";
+        cancel();
         server.isAuthenticated()
             .done(function (result) {
                 authentication.isAuthenticated(result);
                 if (!authentication.isAuthenticated()) {
                     var router = require('durandal/plugins/router');
                     return router.navigateTo('#home');
-                }
+                } 
             });
 
         return true;
     }
 
     function viewAttached() {
+        console.log("viewAttached: getBlogPost");
+        if (id != undefined && id != 0) {
+            server.getBlogPost(id)
+                .done(function(post) {
+                    console.log("blog post title: " + post.Title);
+                    originalTitle = post.Title;
+                    blogTitle(post.Title);
+                    originalEntry = post.Body;
+                    blogEntry(post.Body);
+                })
+                .fail(function() {
+                    handleSignalRFail();
+                });
+        }
         return true;
     }
 
     function toObject(isDraft) {
-        return { Title: blogTitle(), Body: blogEntry(), Tags: blogTags(), IsDraft: isDraft };
+        return { Id: id, Title: blogTitle(), Body: blogEntry(), Tags: blogTags(), IsDraft: isDraft };
     }
 
     //#endregion
 
     function cancel() {
-        blogTitle("");
-        blogEntry("");
+        blogTitle(originalTitle);
+        blogEntry(originalEntry);
         blogTags([]);
     }
 
     function save() {
         if (isSaveable()) {
-            server.createPost(toObject(false)).
+            server.updatePost(toObject(false)).
                 done(function () {
                     // navigate to edit/list?
                 }).fail(function () {
@@ -76,7 +92,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
     }
     function saveDraft() {
         if (isSaveable()) {
-            server.createPost(toObject(true)).
+            server.updatePost(toObject(true)).
                 done(function () {
                     // navigate to edit?/list?/home?
                 }).fail(function () {
