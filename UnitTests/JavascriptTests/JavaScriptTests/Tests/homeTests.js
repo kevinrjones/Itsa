@@ -2,7 +2,7 @@
     
     var getBlogEntries;
     
-    module("blogEntries", {
+    module("homeTests", {
         setup: function () {
             var deferred;
 

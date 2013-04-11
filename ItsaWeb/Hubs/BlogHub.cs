@@ -8,6 +8,7 @@ using ItsaWeb.Models;
 using ItsaWeb.Models.Posts;
 using Microsoft.AspNet.SignalR;
 using ServiceInterfaces;
+using StackExchange.DataExplorer.Helpers;
 
 namespace ItsaWeb.Hubs
 {
@@ -20,18 +21,19 @@ namespace ItsaWeb.Hubs
             _blogService = blogService;
         }
 
-        public List<BlogPostViewModel> List()
+        public List<BlogPostViewModel> List(bool includeDrafts)
         {
             var posts = _blogService.GetPosts();
-            return posts.Select(post => new BlogPostViewModel { Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate })
-                .OrderByDescending(p => p.EntryAddedDate)
-                .ToList();
+            var selectedPosts = posts.Select(post => new BlogPostViewModel { Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate })
+                .OrderByDescending(p => p.EntryAddedDate);
+
+            return includeDrafts ? selectedPosts.ToList() : selectedPosts.Where(p => p.IsDraft == false).ToList();
         }
 
         public BlogPostViewModel Get(Guid id)
         {
             var post = _blogService.GetPost(id);
-            return  new BlogPostViewModel { Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate };
+            return new BlogPostViewModel { Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate };
         }
 
         public BlogPostViewModel Create(BlogPostViewModel model)
@@ -41,7 +43,7 @@ namespace ItsaWeb.Hubs
             {
                 throw new ItsaException("All posts must have a title");
             }
-            var post = _blogService.CreatePost(new Post{Body = model.Body, Title = model.Title, Tags = model.Tags, EntryAddedDate = DateTime.Now, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft});
+            var post = _blogService.CreatePost(new Post { Body = model.Body, Title = model.Title, Tags = model.Tags, EntryAddedDate = DateTime.Now, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft });
             model.Id = post.Id;
             return model;
         }
@@ -49,7 +51,8 @@ namespace ItsaWeb.Hubs
         public BlogPostViewModel Update(BlogPostViewModel model)
         {
             IsAuthenticated();
-            _blogService.UpdatePost(new Post{Body = model.Body, Title = model.Title, Tags = model.Tags, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft, EntryUpdateDate = DateTime.Now});
+            // todo sanitize tags
+            _blogService.UpdatePost(new Post { Id = model.Id, Body = HtmlUtilities.Sanitize(model.Body), Title = HtmlUtilities.Sanitize(model.Title), Tags = model.Tags, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft, EntryUpdateDate = DateTime.Now });
             return model;
         }
     }

@@ -29,7 +29,7 @@ namespace SignalRTests.BlogHubTests
         {
             _service.Setup(s => s.GetPosts()).Returns(new List<Post>());
             var hub = new BlogHub(_service.Object);
-            hub.List().Count.Should().Be(0);
+            hub.List(true).Count.Should().Be(0);
         }
 
         [Test]
@@ -37,12 +37,27 @@ namespace SignalRTests.BlogHubTests
         {
             var posts = new List<Post>
                             {
-                                new Post {Body = "body1", Title = "title1"},
-                                new Post {Body = "body2", Title = "title2"}
+                                new Post {Body = "body1", Title = "title1", Draft = true},
+                                new Post {Body = "body2", Title = "title2", Draft = false},
+                                new Post {Body = "body2", Title = "title2", Draft = false}
                             };
             _service.Setup(s => s.GetPosts()).Returns(posts);
             var hub = new BlogHub(_service.Object);
-            hub.List().Count.Should().Be(posts.Count);
+            hub.List(false).Count.Should().Be(posts.Count);
+        }
+
+        [Test]
+        public void WhenThereArePostsThatAreDraftsInTheRepository_AndPostsAreRequested_AllPostsAreReturned()
+        {
+            var posts = new List<Post>
+                            {
+                                new Post {Body = "body1", Title = "title1", Draft = true},
+                                new Post {Body = "body2", Title = "title2", Draft = false},
+                                new Post {Body = "body2", Title = "title2", Draft = false}
+                            };
+            _service.Setup(s => s.GetPosts()).Returns(posts);
+            var hub = new BlogHub(_service.Object);
+            hub.List(true).Count.Should().Be(posts.Count);
         }
 
         [Test]
@@ -52,15 +67,6 @@ namespace SignalRTests.BlogHubTests
             var hub = new TestableBlogHub(_service.Object, "Kevin");
             hub.Create(new BlogPostViewModel { Title = "title", Body = "body" });
             _service.Verify(s => s.CreatePost(It.IsAny<Post>()), Times.Once());
-        }
-
-        [Test]
-        public void WhenTheUserIsAuthenticated_AndAPostsIsCreatedWithoutABody_ThenAnExceptionIsThrown()
-        {
-            _service.Setup(s => s.CreatePost(It.IsAny<Post>())).Returns(new Post());
-            var hub = new TestableBlogHub(_service.Object, "Kevin");
-            Action act = () => hub.Create(new BlogPostViewModel { Title = "title" });
-            act.ShouldThrow<ItsaException>();
         }
 
         [Test]

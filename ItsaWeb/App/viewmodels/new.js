@@ -38,7 +38,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
                 authentication.isAuthenticated(result);
                 if (!authentication.isAuthenticated()) {
                     var router = require('durandal/plugins/router');
-                    return router.navigateTo('#home');
+                    router.navigateTo('#home');
                 }
             });
 
@@ -46,6 +46,9 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
     }
 
     function viewAttached() {
+        var converter = new Markdown.Converter();
+        var editor = new Markdown.Editor(converter);
+        editor.run();
         return true;
     }
 

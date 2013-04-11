@@ -12,7 +12,7 @@
                             <div data-bind="text: postCreated" class="postDate"></div>
                         </div>
                         <div style="clear: both"></div>
-                        <div data-bind="html: postBody" class="postBody"></div>
+                        <div data-bind="html: postBodyOutput" class="postBody"></div>
                         <div data-bind="visible: $root.isAuthenticated" class="postAdmin">
                             <span class="delete" data-bind="click: deletePost"></span>
                             <span class="edit" data-bind="click: editPost"></span>

@@ -6,6 +6,10 @@
 //     blockTest = require(['./homeTests']);
 //    QUnit.start(); //Tests loaded, run tests
 //});
+//require(['./blogPostsTests', './blogPostTests', './resTests', './signalRFacadeTests', './homeTests', './newTests'], function () {
+//    QUnit.start(); //Tests loaded, run tests
+//});
+
 require(['./blogPostsTests', './blogPostTests', './resTests', './signalRFacadeTests', './homeTests', './newTests'], function () {
     QUnit.start(); //Tests loaded, run tests
 });

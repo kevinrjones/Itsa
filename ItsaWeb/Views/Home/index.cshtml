@@ -11,12 +11,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @Styles.Render("~/bundle/content/pagedown/css")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/darkhive")
     @Styles.Render("~/bundle/content/sh/css")
     @Styles.Render("~/bundles/less")
+
     @Styles.Render("~/bundle/content/highlight/css")
-    
+
     <script type="text/javascript">
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
             var msViewportStyle = document.createElement("style");
@@ -26,37 +29,59 @@
         }
     </script>
 </head>
-    <body>
-        <div id="applicationHost">
-            @Html.Partial("_splash")
-        </div>
+<body>
+    <div id="applicationHost">
+        @Html.Partial("_splash")
+    </div>
 
-        @Scripts.Render("~/scripts/vendor")
-        @Scripts.Render("~/bundles/syntaxhighlighter")
-        @Scripts.Render("~/bundles/highlight")
+    @Scripts.Render("~/scripts/vendor")
+    @Scripts.Render("~/bundles/syntaxhighlighter")
+    @Scripts.Render("~/bundles/highlight")
+    @Scripts.Render("~/bundles/pagedown")
 
-        @if (HttpContext.Current.IsDebuggingEnabled)
-        {
-            <script type="text/javascript" src="~/App/durandal/amd/require.js" data-main="@Url.Content("~/App/main")"></script>
-        }
-        else
-        {
-            <!-- Remember to run the Durandal optimizer.exe to create the main-built.js  -->
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/ckeditor/jquery.js"></script>
+
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script type="text/javascript" src="~/App/durandal/amd/require.js" data-main="@Url.Content("~/App/main")"></script>
+    }
+    else
+    {
+        <!-- Remember to run the Durandal optimizer.exe to create the main-built.js  -->
 @* todo *@
-            <script type="text/javascript" src="~/App/main-built.js"></script>
-        }
-        <script type="text/javascript" src="@Url.Content("~/signalr/hubs")"></script>
+        <script type="text/javascript" src="~/App/main-built.js"></script>
+    }
+    <script type="text/javascript" src="@Url.Content("~/signalr/hubs")"></script>
 
-        <script type="text/javascript">
-            $(function () {
-                SyntaxHighlighter.defaults['toolbar'] = true;
-                SyntaxHighlighter.all();
-            });
-        </script>
-        <script>
-            $(function() {
-                hljs.initHighlightingOnLoad();
-            });
-        </script>
-    </body>
+    <script type="text/javascript">
+        $(function () {
+            SyntaxHighlighter.defaults['toolbar'] = true;
+            SyntaxHighlighter.all();
+        });
+    </script>
+    <script>
+        $(function () {
+            hljs.initHighlightingOnLoad();
+        });
+    </script>
+    <script>
+        $(function () {
+            var onresize = function () {
+                var height = $(window).height();
+                var width = $(window).width();
+                $('#content').height((height - 92) + 'px');
+                // colstatus fills the entire window height!
+            };
+
+            setTimeout(function () {
+                onresize();
+            }, 1000);
+
+
+            $(window).resize(onresize);
+
+        });
+    </script>
+</body>
 </html>

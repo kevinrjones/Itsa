@@ -58,7 +58,7 @@ namespace FileRepository.Repositories
             try
             {
                 IFileInfo fileInfo = FileInfoFactory.CreateFileInfo(fileName);
-                using (var stream = fileInfo.Open(FileMode.Open))
+                using (var stream = fileInfo.Open(FileMode.Truncate))
                 {
                     var json = entity.SerializeToString();
                     var bytes = Encoding.UTF8.GetBytes(json);

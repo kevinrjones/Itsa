@@ -69,7 +69,7 @@ namespace FileRepositoryTests
         public void WhenAnEntityIsUpdated_ThenTheEntityIsWritenToTheFile()
         {
             var stream = new Mock<Stream>();
-            _fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(stream.Object);
+            _fileInfo.Setup(f => f.Open(FileMode.Truncate)).Returns(stream.Object);
             _fileInfoFactory.Setup(f => f.CreateFileInfo(It.IsAny<string>())).Returns(_fileInfo.Object);
             Post post = new Post { Id = Guid.NewGuid() };
             _repository.Update(post);

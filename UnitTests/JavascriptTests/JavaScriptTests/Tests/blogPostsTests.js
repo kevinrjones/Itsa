@@ -1,4 +1,4 @@
-define(['viewmodels/blogPosts'], function (blogPosts) {
+define(['viewmodels/blogPosts', 'durandal/app'], function (blogPosts) {
     module("blogPost Tests", {
         setup: function () {
             blogPosts.setParent({

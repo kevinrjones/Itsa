@@ -21,6 +21,12 @@ namespace ItsaWeb.App_Start
                         .Include("~/Scripts/highlight/highlight.pack.js")
                 );
 
+            bundles.Add(new ScriptBundle("~/bundles/pagedown")
+                        .Include("~/Scripts/pagedown/Markdown.Converter.js")
+                        .Include("~/Scripts/pagedown/Markdown.Editor.js")
+                        .Include("~/Scripts/pagedown/Markdown.Sanitizer.js")
+                );
+
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/scripts/jquery-{version}.js")
@@ -54,8 +60,12 @@ namespace ItsaWeb.App_Start
                     "~/Content/SyntaxHighlighter/shCore.css"
                    , "~/Content/SyntaxHighlighter/shThemeRDark.css"
              ));
+
             bundles.Add(new StyleBundle("~/bundle/content/highlight/css").Include(
                     "~/Content/highlight/ir_black.css"));
+
+            bundles.Add(new StyleBundle("~/bundle/content/pagedown/css").Include(
+                    "~/Content/pagedown/pagedown.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/darkhive")
                 .Include("~/Content/css/dark-hive/jquery-ui-1.8.21.custom.css")
@@ -78,9 +88,8 @@ namespace ItsaWeb.App_Start
             );
 
             var itsaLess = new StyleBundle("~/bundles/less")
-                .Include("~/Content/less/metro-bootstrap/*.less")
-                .Include("~/Content/app.less")
-                .Include("~/Content/style.less");
+                .Include("~/Content/less/metro-bootstrap/metro-bootstrap.less")
+                .Include("~/Content/app.less");
 
             itsaLess.Transforms.Add(new LessMinify());
             bundles.Add(itsaLess);

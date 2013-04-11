@@ -1,12 +1,14 @@
 ﻿// ReSharper disable InconsistentNaming
 define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site', 'viewmodels/authentication'], function (system, logger, server, resources, authentication) {
 
+    var self = this;
+
     var id;
     var originalTitle = "";
     var originalEntry = "";
-    var blogTitle = ko.observable();
-    var blogEntry = ko.observable();
-    var blogTags = ko.observableArray();
+    var blogTitle = ko.observable("");
+    var blogEntry = ko.observable("");
+    var blogTags = ko.observableArray([]);
     var isSaveable = ko.computed(function () {
         return blogTitle() !== originalTitle || blogEntry() !== originalEntry;
     });
@@ -21,9 +23,9 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
         saveEditPostLabel: resources.savePostLabel,
         saveEditDraftPostLabel: resources.saveDraftPostLabel,
         cancelEditPostLabel: resources.cancelPostLabel,
-        saveEdit: save,
-        saveDraftEdit: saveDraft,
-        cancelEdit: cancel,
+        save: save,
+        saveDraft: saveDraft,
+        cancel: cancel,
         isSaveable: isSaveable,
         isCancelable: isSaveable
     };
@@ -42,7 +44,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
                 authentication.isAuthenticated(result);
                 if (!authentication.isAuthenticated()) {
                     var router = require('durandal/plugins/router');
-                    return router.navigateTo('#home');
+                    router.navigateTo('#home');
                 } 
             });
 
@@ -50,20 +52,20 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
     }
 
     function viewAttached() {
-        console.log("viewAttached: getBlogPost");
-        if (id != undefined && id != 0) {
-            server.getBlogPost(id)
-                .done(function(post) {
-                    console.log("blog post title: " + post.Title);
-                    originalTitle = post.Title;
-                    blogTitle(post.Title);
-                    originalEntry = post.Body;
-                    blogEntry(post.Body);
-                })
-                .fail(function() {
-                    handleSignalRFail();
-                });
-        }
+        var converter = new Markdown.Converter();
+        var editor = new Markdown.Editor(converter);
+        editor.run();
+        server.getBlogPost(id)
+            .done(function (post) {
+                originalTitle = post.Title;
+                originalEntry = post.Body;
+                blogTitle(post.Title);
+                blogEntry(post.Body);
+                editor.refreshPreview();
+            })
+            .fail(function () {
+                handleSignalRFail();
+            });
         return true;
     }
 
@@ -86,7 +88,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
                     // navigate to edit/list?
                 }).fail(function () {
                     var app = require('durandal/app');
-                    app.showMessage(resources.savePostTitle, resources.unableToSavePost);
+                    app.showMessage(resources.unableToSavePost, resources.savePostTitle);
                 });
         }
     }

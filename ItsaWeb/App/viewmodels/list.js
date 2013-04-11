@@ -17,8 +17,16 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
 
     //#region Internal Methods
     function activate() {
-        //logger.log('Home View Activated', null, 'home', true);
-        server.getBlogEntries()
+        server.isAuthenticated()
+            .done(function (result) {
+                authentication.isAuthenticated(result);
+                if (!authentication.isAuthenticated()) {
+                    var router = require('durandal/plugins/router');
+                    router.navigateTo('#home');
+                }
+            });
+
+        server.getAllBlogEntries()
             .done(function (data) {
                 model.setParent(vm);
                 model.onPosts(data);
@@ -29,16 +37,12 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
             })
             .always();
 
-        server.isAuthenticated()
-            .done(function (result) {
-                authentication.isAuthenticated(result);
-            });
 
         return true;
     }
     
     function viewAttached() {
-        $('pre code').each(function (i, e) { hljs.highlightBlock(e) });
+        $('pre code').each(function (i, e) { hljs.highlightBlock(e); });
         return true;
     }
     //#endregion

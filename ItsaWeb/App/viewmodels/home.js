@@ -9,8 +9,6 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
         title: 'Home',
         blogPosts: blogPosts,
         isAuthenticated: authentication.isAuthenticated,
-        message: function() {
-        }
     };
 
     return vm;
@@ -38,7 +36,7 @@ define(['durandal/system', 'services/logger', 'viewmodels/authentication', 'view
     }
     
     function viewAttached() {
-        $('pre code').each(function (i, e) { hljs.highlightBlock(e) });
+        $('pre code').each(function () { hljs.highlightBlock(this); });
         return true;
     }
     //#endregion

@@ -6,7 +6,13 @@
         </div>
         <div class="span9">
             <input type="text" data-bind="value: blogTitle, valueUpdate: 'afterkeydown'" placeholder="Add a Title" class="blogTitle"/>
-            <textarea data-bind="tinymce: blogEntry, tinymceOptions: { theme: 'advanced' }, valueUpdate: 'afterkeydown'" class="blogEntry" ></textarea>
+            <div class="wmd-panel">
+                <div id="wmd-button-bar">
+                </div>
+                <textarea class="wmd-input blogEntry" id="wmd-input" data-bind="value: blogEntry, valueUpdate: 'afterkeydown'" ></textarea>
+            </div>
+            <div id="wmd-preview" class="wmd-panel wmd-preview">
+            </div>
             <input type="text" value="tags" class="blogTags"/>
         </div>
     </div>

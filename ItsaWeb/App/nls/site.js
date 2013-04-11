@@ -16,7 +16,7 @@
         'deleteThisPost': 'Delete Post?',
         'savePostLabel': 'Save',
         'savePostTitle': 'Save Post',
-        'saveDraftPostLabel': 'Save Draft',
+        'saveDraftPostLabel': 'Save As Draft',
         'cancelPostLabel': 'Cancel',
         'unableToSavePost': 'Unable to save post'
     }

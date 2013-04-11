@@ -83,19 +83,19 @@ namespace FileRepositoryTests
         public void GivenABlogEntry_WhenThenFileIsUdated_ThenTheCorrectFileIsFound()
         {
             string fileName = string.Format("{0}/{1}-{2}-{3}-{4}-{5}.json", Path, "title", 1990, 1, 1, new DateTime(1990, 1, 1).Ticks);
-            _fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(new MemoryStream());
+            _fileInfo.Setup(f => f.Open(FileMode.Truncate)).Returns(new MemoryStream());
 
             var entry = new Post { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
             var repository = new PostRepository(Path, _fileInfoFactory.Object, null);
             repository.Update(entry);
-            _fileInfo.Verify(f => f.Open(FileMode.Open), Times.Once());
+            _fileInfo.Verify(f => f.Open(FileMode.Truncate), Times.Once());
         }
 
         [Test]
         public void GivenABlogEntry_WhenTheEntryIsUpdatedInAFile_ThenTheCorrectJsonIsWritten()
         {
             var stream = new MemoryStream();
-            _fileInfo.Setup(f => f.Open(FileMode.Open)).Returns(stream);
+            _fileInfo.Setup(f => f.Open(FileMode.Truncate)).Returns(stream);
             var entry = new Post { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1), EntryUpdateDate = new DateTime(1991, 2, 2), Body = "post" };
             var repository = new PostRepository(Path, _fileInfoFactory.Object, null);
             repository.Update(entry);
@@ -111,7 +111,7 @@ namespace FileRepositoryTests
         [Test]
         public void GivenABlogEntry_WhenThenFileIsUdated_AndTheFileIsNotFound_ThenTheCorrectExceptionIsThrown()
         {
-            _fileInfo.Setup(f => f.Open(FileMode.Open)).Throws(new IOException());
+            _fileInfo.Setup(f => f.Open(FileMode.Truncate)).Throws(new IOException());
             var entry = new Post { Title = "title", EntryAddedDate = new DateTime(1990, 1, 1) };
             var repository = new PostRepository(Path, _fileInfoFactory.Object, null);
             Assert.Throws<RepositoryException>(() => repository.Update(entry));

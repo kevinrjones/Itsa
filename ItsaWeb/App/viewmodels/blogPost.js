@@ -1,5 +1,5 @@
 ﻿define(['services/logger', 'i18n!nls/site', 'facades/signalr'], function (logger, resources, server) {
-
+    var converter = Markdown.getSanitizingConverter();
     // ReSharper disable InconsistentNaming
     function BlogPost(params) {
         var self = this;
@@ -8,6 +8,16 @@
         self.postBody = ko.observable();
         self.postCreated = ko.observable();
         self.postUpdated = ko.observable();
+
+
+        self.postBodyOutput = ko.computed(function () {
+            var input = self.postBody();
+            if (input) {
+                return converter.makeHtml(input);
+            } else {
+                return "";
+            }
+        }, self);
 
         if (params && params.parent) {
             self.parent = params.parent;
@@ -37,10 +47,10 @@
             app.showMessage(resources.deleteThisPost, resources.delete, ['No', 'Yes']).then(function (result) {
                 if (result === "Yes") {
                     server.deleteBlogPost(self.id())
-                        .done(function (data) {
+                        .done(function () {
                             self.parent.remove(self);
                         })
-                        .fail(function (error) {
+                        .fail(function () {
                         });
                 }
             });

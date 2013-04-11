@@ -1,4 +1,5 @@
-﻿/*font-family: 'Ropa Sans', cursive;
+﻿/* ReSharper disable DeclarationIsEmpty */
+/*font-family: 'Ropa Sans', cursive;
 font-family: 'Asap', sans-serif;*/
 /* #region HTML RESET */
 html,
@@ -83,6 +84,248 @@ video {
   margin: 0;
 }
 /* #endregion */
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+html,
+button,
+input,
+select,
+textarea {
+  color: #222;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", "Arial", "sans-serif";
+}
+/* Alter box model for consistency */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* Loading indicators */
+.loading {
+  margin: 1em 0;
+}
+.loading img {
+  vertical-align: middle;
+}
+.loading h3 {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  margin: 0 0 0 1em;
+  vertical-align: middle;
+  font-size: 95%;
+}
+/* Login page styling */
+#session-index #signin {
+  margin-top: 1em;
+  width: 85px;
+  height: 30px;
+  border: none;
+  background-color: #0072c6;
+  color: white;
+}
+#session-index #signin .hover {
+  background-color: #1e82cc;
+}
+#session-index #login-page-container {
+  position: relative;
+  margin: auto;
+  margin-top: 5em;
+  width: 850px;
+}
+#session-index #introduction-container {
+  top: 0;
+  width: 450px;
+  height: 450px;
+  text-align: left;
+}
+#session-index #introduction-container #picture {
+  height: 300px;
+  background-color: #f0f0f0;
+}
+#session-index #introduction-container #caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1em 2em;
+  width: 450px;
+  height: 150px;
+  background-color: #0072c6;
+  color: white;
+}
+#session-index #login-container {
+  top: 0;
+  right: 0;
+  padding: 0.1em 1em;
+  width: 400px;
+}
+#session-index input.text-box {
+  padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+}
+#session-index input.text-box.focus {
+  border: 1px solid #c0c0c0;
+}
+#session-index input#UserName {
+  padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+}
+#session-index input#Password {
+  padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+}
+#session-index input#RepeatPassword {
+  padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+}
+#session-index input#Email {
+  padding-left: 0.5em;
+  width: 320px;
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+}
+#session-index label {
+  display: block;
+  margin-top: 10px;
+}
+#session-index .field-validation-error {
+  margin-top: 0;
+  color: red;
+}
+.formfields {
+  width: 100%;
+}
+.postHeader {
+  margin: 9pt 9pt 9pt 0;
+  padding: 0 0 6px 0;
+  border-bottom: 1px solid #000;
+}
+.postHeader h3 {
+  float: left;
+  width: 70%;
+  font-size: 26px;
+  margin: 10px 0 0 0;
+}
+.postDate {
+  float: right;
+  margin-top: 12px;
+  font-size: 12px;
+}
+.postTitle,
+.postTitle a,
+.postTitle a:hover,
+.postTitle a:visited {
+  color: #1d6896;
+}
+.postBody {
+  font-size: 14px;
+}
+#mainsection {
+  padding: 0 0 20px 10px;
+}
+#mainsection > ul > li > * {
+  margin-left: 10px;
+}
+#mainsection > ul > li li {
+  list-style-position: inside;
+}
+ul#posts {
+  margin: 0;
+  list-style-type: none;
+}
+.userManager {
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  padding: 10px;
+  border: 1px solid silver;
+  background-color: white;
+}
+.userManager button {
+  width: 100%;
+}
+.userManager div {
+  min-width: 200px;
+}
+.userManager .alert {
+  margin: 5px 0 0 0;
+}
+/* ReSharper restore DeclarationIsEmpty */
+pre code {
+  font-family: Consolas, 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #b9bdb6;
+}
+#content {
+  overflow-y: auto;
+}
+body {
+  overflow-y: hidden;
+}
+.wmd-panel {
+  min-width: 500px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+.wmd-input {
+  height: 150px;
+  width: 100%;
+  min-height: 300px;
+  background-color: Gainsboro;
+  border: 1px solid DarkGray;
+}
+.wmd-preview {
+  border: 1px solid DarkGray;
+  background-color: white;
+  min-height: 150px;
+}
+.wmd-preview ul,
+.wmd-preview ol {
+  list-style-position: inside;
+  padding: 0 0 0 10px;
+}
+.wmd-preview blockquote {
+  margin-bottom: 10px;
+  padding: 10px 10px 1px 10px;
+  background: #eeeeee;
+}
+.wmd-preview p {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+.wmd-preview pre {
+  padding: 5px;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+  overflow: auto;
+  width: auto;
+  max-height: 600px;
+}
+.wmd-preview em {
+  font-style: italic;
+}
+.wmd-preview strong {
+  font-weight: bold;
+}
 pre {
   border: none;
   background-color: white;
@@ -108,7 +351,7 @@ h3 {
   text-transform: none;
 }
 section.main {
-  margin-top: 50px;
+  margin-top: 45px;
 }
 .navbar .brand {
   padding: 6px 30px 12px 30px;
@@ -210,17 +453,27 @@ footer span {
 .navbar .nav .nav-container {
   margin: 10px 0;
 }
+.navbar .nav .nav-container a,
+.navbar .nav .nav-container a:hover,
+.navbar .nav .nav-container a:focus {
+  color: white;
+  padding-right: 15px;
+}
+.navbar .nav .nav-container .disableLink,
+.navbar .nav .nav-container .disableLink:hover {
+  color: lightgray;
+  cursor: default;
+  text-decoration: none;
+}
+a,
+a:hover {
+  color: white;
+}
 .navbar .nav > .active > a {
   background-color: #0072c6;
   color: white;
   display: inline-block;
   margin: 0 15px 0 0;
-}
-a,
-a:hover,
-a:focus {
-  color: white;
-  padding-right: 15px;
 }
 .navbar .nav > li {
   font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Segoe UI Symbol', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
@@ -321,6 +574,10 @@ a:focus {
 }
 .nav.pull-right .authentication {
   margin: 10px;
+  font-size: 14px;
+}
+.nav.pull-right .authentication a {
+  color: white;
 }
 #manageUserUi .close {
   background-image: url("/Content/images/glyphicons-halflings.png");
@@ -373,10 +630,4 @@ a:focus {
   box-shadow: none;
   background-color: lightgray;
   height: 40px;
-}
-.disableLink,
-.disableLink:hover {
-  color: lightgray;
-  cursor: default;
-  text-decoration: none;
 }

@@ -83,8 +83,8 @@
                     tinyMCE.init(init_options);
                     setTimeout(function () {
                         tinyMCE.execCommand("mceAddControl", true, element.id);
-                    }, 200);
-                }, 200);
+                    }, 500);
+                }, 500);
                 return defer.promise();
             });
             el.val(value);
@@ -110,14 +110,13 @@
 ko.bindingHandlers.ckeditor = {
     init: function (element, valueAccessor, allBindingsAccessor, context) {
         // get observable
-        var modelValue = valueAccessor();;
+        var modelValue = valueAccessor();
 
         $(element).ckeditor(function (textarea) {
             // <span> element that contains the CKEditor markup
             var $ckeContainer = $(this.container.$);
             // <body> element within the iframe (<html> is contentEditable)
-            var $editorBody =
-                    $ckeContainer.find('iframe').contents().find('body');
+            var $editorBody = $ckeContainer.find('iframe').contents().find('body');
             // sets the initial value
             $editorBody.html(modelValue());
             // handle edits made in the editor - by typing
@@ -154,7 +153,7 @@ ko.bindingHandlers.ckeditor = {
 };
 
 ko.bindingHandlers.ckedit = {
-    init: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
         var txtBoxID = $(element).attr("id");
         var options = allBindingsAccessor().richTextOptions || {};
         options.toolbar_Full = [
@@ -164,7 +163,7 @@ ko.bindingHandlers.ckedit = {
         ];
 
         //handle disposal (if KO removes by the template binding)
-        ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
             if (CKEDITOR.instances[txtBoxID]) {
                 CKEDITOR.remove(CKEDITOR.instances[txtBoxID]);
             }
@@ -174,19 +173,17 @@ ko.bindingHandlers.ckedit = {
         $(element).ckeditor(options);
 
         //wire up the blur event to ensure our observable is properly updated
-        CKEDITOR.instances[txtBoxID].focusManager.blur = function() {
+        CKEDITOR.instances[txtBoxID].focusManager.blur = function () {
             var observable = valueAccessor();
             observable($(element).val());
         };
     },
 
-    update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
         var val = ko.utils.unwrapObservable(valueAccessor());
         $(element).val(val);
     }
 };
-
-    //<textarea id="txt_viewModelVariableName" data-bind="ckedit: viewModelVariableName"></textarea>
 
 ko.bindingHandlers.checkbox = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
@@ -235,7 +232,7 @@ ko.bindingHandlers.animate = {
 
 ko.bindingHandlers.fadeOut = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-        var value = valueAccessor();         
+        var value = valueAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
         var delay = valueUnwrapped.delay ? valueUnwrapped.delay : 0;
         var fadeTime = valueUnwrapped.fadeTime ? valueUnwrapped.fadeTime : 500;

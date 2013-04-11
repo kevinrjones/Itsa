@@ -8,8 +8,12 @@
         return $.connection.blogHub.server.get(id);
     };
 
+    var getAllBlogEntries = function () {
+        return $.connection.blogHub.server.list(true);
+    };
+
     var getBlogEntries = function () {
-        return $.connection.blogHub.server.list();
+        return $.connection.blogHub.server.list(false);
     };
 
     var isAuthenticated = function () {
@@ -27,6 +31,7 @@
     return {
         deleteBlogPost: deleteBlogPost,
         getBlogEntries: getBlogEntries,
+        getAllBlogEntries: getAllBlogEntries,
         isAuthenticated: isAuthenticated,
         createPost: createPost,
         updatePost: updatePost,
