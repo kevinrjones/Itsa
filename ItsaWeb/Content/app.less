@@ -13,16 +13,14 @@
 
 /* #region HTML RESET */
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr,
-acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
-b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot,
-thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu,
-nav, section, summary, time, mark, audio, video {
-    font: inherit;
-    margin: 0;
+pre code {
+    line-height: normal;
 }
 
 /* #endregion */
+p {
+    margin: 0 0 12.5px;
+}
 
 em {
     font-style: italic;
@@ -33,7 +31,7 @@ strong {
 }
 
 
-html, button, input, select, textarea {
+html, h1, h2, h3, h4, h5, h6, body, button, input, select, textarea {
     color: #222;
     font-family: "Segoe UI", "Segoe UI Web Regular", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", "Arial", "sans-serif";
 }
@@ -178,7 +176,7 @@ html, button, input, select, textarea {
     margin: 9pt 9pt 9pt 0;
     padding: 0 0 6px 0;
     border-bottom: 1px solid #000;
-    
+
 
     h3 {
         float: left;
@@ -208,10 +206,12 @@ html, button, input, select, textarea {
 
     #mainsection > ul > li > * {
         margin-left: 10px;
+
     }
 
     #mainsection > ul > li li {
         list-style-position: inside;
+        list-style-type: circle;
     }
 
 ul#posts {
@@ -221,10 +221,10 @@ ul#posts {
 
 .userManager {
     position: absolute;
-    top: 40px;
+    top: 45px;
     right: 0px;
     padding: 10px;
-    border: 1px solid silver;
+    border: 1px solid @main-color;
     background-color: white;
 
     button {
@@ -454,16 +454,17 @@ footer span {
 
 .navbar .nav .nav-container {
     margin: 10px 0;
+
     a, a:hover, a:focus {
         color: white;
         padding-right: 15px;
     }
+
     .disableLink, .disableLink:hover {
         color: lightgray;
         cursor: default;
         text-decoration: none;
     }
-
 }
 
 a, a:hover {
@@ -590,6 +591,7 @@ a, a:hover {
 .nav.pull-right .authentication {
     margin: 10px;
     font-size: 14px;
+
     a {
         color: white;
     }
@@ -654,4 +656,3 @@ a, a:hover {
     background-color: lightgray;
     height: 40px;
 }
-

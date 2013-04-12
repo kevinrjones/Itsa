@@ -8,6 +8,7 @@
         self.postBody = ko.observable();
         self.postCreated = ko.observable();
         self.postUpdated = ko.observable();
+        self.isDraft = ko.observable(false);
 
 
         self.postBodyOutput = ko.computed(function () {
@@ -32,6 +33,7 @@
             self.postCreated(new Date(item.EntryAddedDate).toString("d-MMM-yyyy HH:MM"));
             self.postUpdated(new Date(item.EntryUpdatedDate).toString("d-MMM-yyyy HH:MM"));
             self.id(item.Id);
+            self.isDraft(item.IsDraft);
         } else {
             throw "No data for blog post";
         }
@@ -39,6 +41,10 @@
         self.editPost = function () {
             var router = require('durandal/plugins/router');
             router.navigateTo('#edit/' + self.id());
+        };
+
+        self.draftStatus = function () {
+            isDraft(!isDraft());
         };
 
         self.deletePost = function () {

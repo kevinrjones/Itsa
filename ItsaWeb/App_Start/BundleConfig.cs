@@ -39,6 +39,7 @@ namespace ItsaWeb.App_Start
                 .Include("~/scripts/moment.js")
                 .Include("~/Scripts/jquery.signalR-{version}.js")
                 .Include("~/Scripts/jquery.jgrowl.js")
+                .Include("~/Scripts/jquery.checkbox.js")
                 .Include("~/Scripts/messager.js")
                 .Include("~/Scripts/date-en-GB.js")
                 .Include("~/Scripts/helperscripts.js")
