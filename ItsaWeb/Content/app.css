@@ -540,6 +540,16 @@ a:hover {
   width: 14px;
   cursor: pointer;
 }
+.postAdmin .checkbox {
+  margin: 0 0px 12px 0;
+  padding-left: 0px;
+}
+.postAdmin input[type="checkbox"] {
+  margin: 0px;
+}
+.checkbox {
+  min-height: 0;
+}
 .blogTitle {
   font-size: 192%;
   border: none;

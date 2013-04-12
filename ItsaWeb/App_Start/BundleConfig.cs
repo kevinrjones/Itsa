@@ -54,12 +54,13 @@ namespace ItsaWeb.App_Start
                 //.Include("~/Content/metro-bootstrap.css")
                 .Include("~/Content/durandal.css")
                 .Include("~/Content/toastr.css")
+                .Include("~/Content/css/jquery.jgrowl.css")
+                .Include("~/Content/css/jquery.checkbox.css")
               );
 
-            bundles.Add(new StyleBundle("~/bundle/content/sh/css").Include(
-                    "~/Content/SyntaxHighlighter/shCore.css"
-                   , "~/Content/SyntaxHighlighter/shThemeRDark.css"
-             ));
+            bundles.Add(new StyleBundle("~/bundle/content/sh/css")
+                .Include("~/Content/SyntaxHighlighter/shCore.css")
+                .Include("~/Content/SyntaxHighlighter/shThemeRDark.css"));
 
             bundles.Add(new StyleBundle("~/bundle/content/highlight/css").Include(
                     "~/Content/highlight/ir_black.css"));
@@ -68,8 +69,7 @@ namespace ItsaWeb.App_Start
                     "~/Content/pagedown/pagedown.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/darkhive")
-                .Include("~/Content/css/dark-hive/jquery-ui-1.8.21.custom.css")
-                .Include("~/Content/css/jquery.jgrowl.css"));
+                .Include("~/Content/css/dark-hive/jquery-ui-1.8.21.custom.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

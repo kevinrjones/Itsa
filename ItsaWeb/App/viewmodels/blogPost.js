@@ -8,8 +8,8 @@
         self.postBody = ko.observable();
         self.postCreated = ko.observable();
         self.postUpdated = ko.observable();
+        self.Tags = ko.observable();
         self.isDraft = ko.observable(false);
-
 
         self.postBodyOutput = ko.computed(function () {
             var input = self.postBody();
@@ -44,7 +44,8 @@
         };
 
         self.draftStatus = function () {
-            isDraft(!isDraft());
+            self.isDraft(!self.isDraft());
+            return true;
         };
 
         self.deletePost = function () {

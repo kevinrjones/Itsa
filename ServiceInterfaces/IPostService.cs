@@ -11,6 +11,7 @@ namespace ServiceInterfaces
         void DeletePost(Guid postId);
         Post CreatePost(Post post);
         int GetCountOfPostsForBlog();
-        IList<Post> GetPosts();
+        IList<Post> GetAllPosts();
+        IList<Post> GetPublishedPosts();
     }
 }

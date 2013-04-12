@@ -76,7 +76,7 @@ namespace ServicesTests
         {
             var posts = new List<Post> { new Post(), new Post() }.AsQueryable();
             _postRepository.Setup(p => p.Entities).Returns(posts);
-            var retrievedPosts = _service.GetPosts();
+            var retrievedPosts = _service.GetAllPosts();
             retrievedPosts.Count.Should().Be(2);
         }
 

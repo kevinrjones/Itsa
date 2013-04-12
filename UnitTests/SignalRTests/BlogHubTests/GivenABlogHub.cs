@@ -27,7 +27,7 @@ namespace SignalRTests.BlogHubTests
         [Test]
         public void WhenThereAreNoPosts_AndPostsAreRequested_AnEmptyListIsReturned()
         {
-            _service.Setup(s => s.GetPosts()).Returns(new List<Post>());
+            _service.Setup(s => s.GetAllPosts()).Returns(new List<Post>());
             var hub = new BlogHub(_service.Object);
             hub.List(true).Count.Should().Be(0);
         }
@@ -41,7 +41,7 @@ namespace SignalRTests.BlogHubTests
                                 new Post {Body = "body2", Title = "title2", Draft = false},
                                 new Post {Body = "body2", Title = "title2", Draft = false}
                             };
-            _service.Setup(s => s.GetPosts()).Returns(posts);
+            _service.Setup(s => s.GetAllPosts()).Returns(posts);
             var hub = new BlogHub(_service.Object);
             hub.List(false).Count.Should().Be(posts.Count);
         }
@@ -55,7 +55,7 @@ namespace SignalRTests.BlogHubTests
                                 new Post {Body = "body2", Title = "title2", Draft = false},
                                 new Post {Body = "body2", Title = "title2", Draft = false}
                             };
-            _service.Setup(s => s.GetPosts()).Returns(posts);
+            _service.Setup(s => s.GetAllPosts()).Returns(posts);
             var hub = new BlogHub(_service.Object);
             hub.List(true).Count.Should().Be(posts.Count);
         }

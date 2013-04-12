@@ -10,7 +10,7 @@
                         <div class="postHeader">
                             <h3 class="postTitle">
                                 <span data-bind="visible: $root.isAuthenticated" class="postAdmin">
-                                    <input type="checkbox" class="checkbox" data-bind="checkbox: true, click: draftStatus, value: isDraft"/>
+                                    <input type="checkbox" data-bind="click: draftStatus, checked: isDraft, checkbox: true, clickBubble:false"/>
                                     <span class="delete" data-bind="click: deletePost"></span>
                                     <span class="edit" data-bind="click: editPost"></span>
                                 </span>

@@ -1,14 +1,13 @@
 ﻿// ReSharper disable InconsistentNaming
 define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site', 'viewmodels/authentication'], function (system, logger, server, resources, authentication) {
 
-    var self = this;
-
     var id;
     var originalTitle = "";
     var originalEntry = "";
     var blogTitle = ko.observable("");
     var blogEntry = ko.observable("");
     var blogTags = ko.observableArray([]);
+    var entryAddedDate = "";
     var isSaveable = ko.computed(function () {
         return blogTitle() !== originalTitle || blogEntry() !== originalEntry;
     });
@@ -61,6 +60,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
                 originalEntry = post.Body;
                 blogTitle(post.Title);
                 blogEntry(post.Body);
+                entryAddedDate = post.EntryAddedDate;
                 editor.refreshPreview();
             })
             .fail(function () {
@@ -70,7 +70,7 @@ define(['durandal/system', 'services/logger', 'facades/signalr', 'i18n!nls/site'
     }
 
     function toObject(isDraft) {
-        return { Id: id, Title: blogTitle(), Body: blogEntry(), Tags: blogTags(), IsDraft: isDraft };
+        return { Id: id, Title: blogTitle(), Body: blogEntry(), Tags: blogTags(), IsDraft: isDraft, EntryAddedDate: entryAddedDate };
     }
 
     //#endregion

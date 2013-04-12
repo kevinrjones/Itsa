@@ -54,9 +54,14 @@ namespace Services
             return _postRepository.Entities.Count();
         }
 
-        public IList<Post> GetPosts()
+        public IList<Post> GetAllPosts()
         {
             return _postRepository.Entities.ToList();
+        }
+
+        public IList<Post> GetPublishedPosts()
+        {
+            return _postRepository.Entities.Where(p => p.Draft == false).ToList();
         }
     }
 }

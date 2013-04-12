@@ -1,0 +1,92 @@
+.checkbox {
+	position:relative;
+
+	height: 13px;
+	width: 16px;
+
+	display:inline-block;
+	
+	background-image: url('/Content/icons/controls.png');
+	background-position: -3px 752px;
+	vertical-align: middle;
+	padding-top: 0px;
+	background-repeat: repeat-y;
+	margin-bottom: 2px;
+}
+.checkbox.large { 
+	height: 20px;
+	width: 24px;
+	background-image: url('/Content/icons/largecheckbox.png');
+	background-position: -3px -183px;
+}
+.checkbox.foreground {
+    position: absolute;
+}
+.checkbox.checked {
+	background-position: -3px 657px;
+}
+.checkbox.disabled {
+	background-position: -3px 695px;
+}
+.checkbox.disabled.hover {
+	background-position: -3px 695px;
+}
+.checkbox.disabled .checkbox.checked {
+	background-position: -3px 638px;
+}
+.checkbox.enabled {
+	background-position: -3px 733px;
+}
+.checkbox.hover {
+	background-position: -3px 676px;
+}
+.checkbox.active {
+	background-position: -3px 713px;
+}
+
+.checkbox.large.checked {
+	background-position: -3px -107px;
+}
+.checkbox.large.disabled {
+	background-position: -3px -55px;
+}
+.checkbox.large.disabled.hover {
+	background-position: -3px -55px;
+}
+.checkbox.large.disabled .checkbox.checked {
+	background-position: -3px -133px;
+}
+.checkbox.large.enabled {
+	background-position: -3px -3px;
+}
+.checkbox.large.enabled.hover {
+	background-position: -3px -81px;
+}
+.checkbox.large.active {
+	background-position: -3px -29px;
+}
+
+.checkbox-control {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	height: 13px;
+	width: 13px;
+
+	margin: 0;
+	margin-right: 2px;
+	padding: 0;
+	border: 0;
+
+	opacity: 0.0;
+}
+
+.checkbox-control.large {
+	height: 20px;
+	width: 20px;
+}
+
+.diagnostics {
+	outline: 1px solid green;
+}

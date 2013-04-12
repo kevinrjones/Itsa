@@ -23,11 +23,18 @@ namespace ItsaWeb.Hubs
 
         public List<BlogPostViewModel> List(bool includeDrafts)
         {
-            var posts = _blogService.GetPosts();
-            var selectedPosts = posts.Select(post => new BlogPostViewModel { Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate })
-                .OrderByDescending(p => p.EntryAddedDate);
-
-            return includeDrafts ? selectedPosts.ToList() : selectedPosts.Where(p => p.IsDraft == false).ToList();
+            IList<Post> posts;
+            if (includeDrafts)
+            {
+                posts = _blogService.GetAllPosts();
+            }
+            else
+            {
+                posts = _blogService.GetPublishedPosts();
+            }
+            return posts.Select(post => new BlogPostViewModel { Title = post.Title, Body = post.Body, Id = post.Id, EntryAddedDate = post.EntryAddedDate, EntryUpdateDate = post.EntryUpdateDate, IsDraft = post.Draft})
+                .OrderByDescending(p => p.EntryAddedDate).ToList();
+            
         }
 
         public BlogPostViewModel Get(Guid id)
@@ -52,7 +59,7 @@ namespace ItsaWeb.Hubs
         {
             IsAuthenticated();
             // todo sanitize tags
-            _blogService.UpdatePost(new Post { Id = model.Id, Body = HtmlUtilities.Sanitize(model.Body), Title = HtmlUtilities.Sanitize(model.Title), Tags = model.Tags, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft, EntryUpdateDate = DateTime.Now });
+            _blogService.UpdatePost(new Post { Id = model.Id, Body = HtmlUtilities.Sanitize(model.Body), Title = HtmlUtilities.Sanitize(model.Title), Tags = model.Tags, CommentsEnabled = model.CommentsEnabled, Draft = model.IsDraft, EntryUpdateDate = DateTime.Now, EntryAddedDate = model.EntryAddedDate});
             return model;
         }
     }
